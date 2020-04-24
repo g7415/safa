@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+
+<div class="row"> 
+
+    <div class="col-md-12 col-md-offset-2 scroll">
+      <h1 style="text-align: center;"> Type Congé </h1>
+      
+      <form [formGroup]="crudApi.dataForm" (ngSubmit)="onSubmit()">
+      <div>
+            <input type="hidden" class="form-control" formControlName="id_type" id="id_type">
+          </div>
+    
+        <div class="form-group">
+            <label  >Type_Conge</label>
+            <input type="text" class="form-control" formControlName="type_conge" id="type_conge">
+            <div *ngIf="type_conge.touched && crudApi.dataForm.get('type_conge').invalid">
+              <small *ngIf="type_conge.errors.required" class="text-danger">Required type_conge</small>
+          </div>
+          </div>
+        <div class="form-group">
+          <label>max_permis</label>
+          <input type="number" class="form-control" formControlName="max_permis" id="max_permis">
+          <div *ngIf="max_permis.touched && crudApi.dataForm.get('max_permis').invalid">
+            <small *ngIf="max_permis.errors.required" class="text-danger">Required max_permis</small>
+        </div>
+        </div>
+
+        <div class="form-group">
+            <label>cong_deja_pris</label>
+            <input type="number" class="form-control" formControlName="cong_deja_pris" id="cong_deja_pris">
+            <div *ngIf="cong_deja_pris.touched && crudApi.dataForm.get('cong_deja_pris').invalid">
+                <small *ngIf="cong_deja_pris.errors.required" class="text-danger">Required cong_deja_pris</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>cong_restant</label>
+            <input type="number" class="form-control" formControlName="cong_restant" id="cong_restant">
+            <div *ngIf="cong_restant.touched && crudApi.dataForm.get('cong_restant').invalid">
+                <small *ngIf="cong_restant.errors.required" class="text-danger">Required cong_restant</small>
+            </div>
+          </div>
+          
+         
+          <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+          <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+        
+      </form>
+    </div>
+  </div>

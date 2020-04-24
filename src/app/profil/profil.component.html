@@ -1,0 +1,114 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div  class="container">
+	<div class="row">
+       <div class="col-md-7 ">
+<div class="panel panel-default">
+  <div class="panel-heading"> 
+     <h4 >Profil</h4>
+     
+  </div>
+   <div class="panel-body">
+    <div class="box box-info">
+            <div class="box-body">
+                     <div class="col-sm-6">
+                     <div  align="center"> <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive"> 
+
+                <input id="profile-image-upload" class="hidden" type="file">
+              <div style="color:#999;" >Appuier ici pour changer votre photo</div>
+                <!--Upload Image Js And Css-->
+           
+             
+                     </div>
+              
+              <br>
+    
+              <!-- /input-group -->
+            </div>
+            <div class="col-sm-6">
+            <h4 style="color:#00b1b1;"> <br/> </h4>
+              <span><strong>Username:</strong> {{info.username}}<br/>
+                <strong>Roles:</strong> {{info.authorities}}<br /></span>   
+                     
+            </div>
+            <div class="clearfix"></div>
+            <hr style="margin:5px 0 5px 0;">
+    
+              
+<div class="col-sm-5 col-xs-6 tital " >Nom:</div><div class="col-sm-7 col-xs-6 ">{{info.nom}}</div>
+     <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Prenom:</div><div class="col-sm-7"> {{info.prenom}}</div>
+  <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Email:</div><div class="col-sm-7"> {{info.mail}}</div>
+  <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Date de naissance:</div><div class="col-sm-7">15 Jun 2016</div>
+
+  <!-- <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Date d'entrée:</div><div class="col-sm-7">{{info.date_entree}}</div>
+
+  <div class="clearfix"></div>
+<div class="bot-border"></div>
+<div class="col-sm-5 col-xs-6 tital " >Numero de telephone:</div><div class="col-sm-7">{{info.num_tel}}</div> -->
+
+ <div class="clearfix"></div>
+<div class="bot-border"></div>
+<div class="col-sm-5 col-xs-6 tital " >Nom du responsable:</div><div class="col-sm-7">{{info.nom_responsable}}</div>
+ <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Grade:</div><div class="col-sm-7">{{info.grade}}</div>
+
+ <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Groupe:</div><div class="col-sm-7">{{info.groupe}}</div>
+
+<!-- <div class="clearfix"></div>
+<div class="bot-border"></div>
+<div class="col-sm-5 col-xs-6 tital " >Mot de passe:</div><div class="col-sm-7">{{info.password}}</div> -->
+
+
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+        </div>
+       
+            
+    </div> 
+    </div>
+</div>  
+    <script>
+              $(function() {
+    $('#profile-image1').on('click', function() {
+        $('#profile-image-upload').click();
+    });
+});       
+              </script> 
+       
+       
+       
+       
+       
+       
+       
+       
+       
+   </div>
+</div>
+
+
+
+
+         

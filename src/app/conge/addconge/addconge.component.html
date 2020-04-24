@@ -1,0 +1,79 @@
+<app-navbar></app-navbar>
+
+<div class="row">
+
+    <div class="col-md-12 col-md-offset-2 scroll">
+      <h1 style="text-align: center;">Congé </h1>
+      
+      <form [formGroup]="crudApi.dataForm" (ngSubmit)="onSubmit()">
+      <div>
+            <input type="hidden" class="form-control" formControlName="num" id="num">
+          </div>
+        <div class="form-group">
+          <label>date_debut</label>
+          <input type="date" class="form-control" formControlName="date_debut" id="date_debut">
+          <div *ngIf="date_debut.touched && crudApi.dataForm.get('date_debut').invalid">
+            <small *ngIf="date_debut.errors.required" class="text-danger">Required date_debut</small>
+        </div>
+        </div>
+        <div class="form-group">
+          <label>date_fin</label>
+          <input type="date" class="form-control" formControlName="date_fin" id="date_fin">
+          <div *ngIf="date_fin.touched && crudApi.dataForm.get('date_fin').invalid">
+            <small *ngIf="date_fin.errors.required" class="text-danger">Required date_fin</small>
+        </div>
+        </div>
+
+        <div class="form-group">
+            <label>statut</label>
+            <input type="text" class="form-control" formControlName="statut" id="statut">
+            
+          </div>
+          <!-- <div class="form-group">
+            <label>id_sal</label>
+            <select name="id"   class="form-control" formControlName="id" id="id">
+             
+        <option value="0">-Select-</option>
+        <option *ngFor="let sal of this.SalarieList" value="{{sal.id}}">{{sal.id}}</option>
+            </select>
+            <div *ngIf="id.touched && crudApi.dataForm.get('id').invalid">
+              <small *ngIf="id.errors.required" class="text-danger">Required id</small>
+          </div>
+          </div> -->
+          <!-- <div class="form-group">
+            <label for="salarie"> salarie</label>
+            <select  id="conge.salarie" name="salarie" formControlName="salarie"  class="form-control">
+              <option value="0">-Select-</option>
+              <option *ngFor="let sal of this.SalarieList"  >{{sal.username}}</option>
+            </select>
+            <div class="text-danger" *ngIf="crudApi.dataForm.get('salarie').invalid && salarie.touched">
+              <small *ngIf="salarie.errors.required">conges required</small>
+            </div>
+          </div> -->
+          <!-- <div class="form-group">
+            <label for="typeconge">Type Conges</label>
+            <select  id="conge.typeconge" name="typeconge" formControlName="typeconge"  class="form-control">
+              <option value="0">-Select-</option>
+              <option *ngFor="let con of this.listtypecon"  >{{con.type_conge}}</option>
+            </select>
+            <div class="text-danger" *ngIf="crudApi.dataForm.get('typeconge').invalid && typeconge.touched">
+              <small *ngIf="typeconge.errors.required">conges required</small>
+            </div>
+          </div> -->
+
+
+        
+
+
+
+          
+
+
+          <button type="submit" class="btn btn-dark"(click)
+
+          ="navigateToListConge()"><i class="fa fa-database"></i> Submit</button>
+          <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+        
+      </form>
+    </div>
+  </div>

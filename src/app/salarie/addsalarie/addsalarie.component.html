@@ -1,0 +1,122 @@
+
+<div class="sa">
+<div class="row">
+
+    <div class="col-md-12 col-md-offset-2 " >
+      <h1 style="text-align: center;">Employé </h1>
+      <!-- (ngSubmit) hezli les donnés lel fonction onSubmit -->
+      <form [formGroup]="crudApi.dataForm" (ngSubmit)="onSubmit()">
+      <div>
+            <input type="hidden" class="form-control" formControlName="id" id="id">
+          </div>
+        <div class="form-group">
+          <label  >nom</label>
+          <input type="text" class="form-control" formControlName="nom" id="nom">
+          <div *ngIf="nom.touched && crudApi.dataForm.get('nom').invalid">
+            <small *ngIf="nom.errors.required" class="text-danger">Required nom</small>
+        </div>
+        </div>
+        <div class="form-group">
+          <label  >Prenom</label>
+          <input type="text" class="form-control" formControlName="prenom" id="prenom">
+          <div *ngIf="prenom.touched && crudApi.dataForm.get('prenom').invalid">
+            <small *ngIf="prenom.errors.required" class="text-danger">Required prenom</small>
+        </div>
+        </div>
+
+        <div class="form-group">
+            <label  >solde_congé</label>
+            <input type="text" class="form-control" formControlName="solde_conge" id="solde_conge">
+            <div *ngIf="solde_conge.touched && crudApi.dataForm.get('solde_conge').invalid">
+              <small *ngIf="solde_conge.errors.required" class="text-danger">Required solde_conge</small>
+          </div>
+          </div>
+          <div class="form-group">
+            <label  >date_entree</label>
+            <input type="date" class="form-control" formControlName="date_entree" id="date_entree">
+            <div *ngIf="date_entree.touched && crudApi.dataForm.get('date_entree').invalid">
+              <small *ngIf="date_entree.errors.required" class="text-danger">Required date_entree</small>
+          </div>
+          </div>
+          <div class="form-group">
+            <label  >grade</label>
+            <input type="text" class="form-control" formControlName="grade" id="grade">
+            <div *ngIf="grade.touched && crudApi.dataForm.get('grade').invalid">
+              <small *ngIf="grade.errors.required" class="text-danger">Required grade</small>
+          </div>
+          </div>
+          <div class="form-group">
+            <label  >Email</label>
+            <input  [class.is-invalid]="mail.invalid && mail.touched" type="text" class="form-control" formControlName="mail" id="mail"placeholder="exemple@mail.com">
+             <!-- le "crudApi.dataFormForm.get('mail')" est remplacé par 'mail' à travers la fonction get mail dans la classe modele-->
+       <div    *ngIf="mail.invalid && mail.touched ">
+        <small *ngIf="mail.errors?.required" class="text-danger"> E-mail is required</small>
+        <small *ngIf="mail.errors?.minlength" class="text-danger"> E-mail must have at least 7 caracters </small>
+        <small *ngIf="mail.errors?.custom" class="text-danger"> / @ is missing </small>
+       </div>     
+          </div>
+          <div class="form-group">
+            <label  >num_tel</label>
+            <input type="text" class="form-control" formControlName="num_tel" id="num_tel">
+            <div *ngIf="num_tel.touched && crudApi.dataForm.get('num_tel').invalid">
+              <small *ngIf="num_tel.errors.required" class="text-danger">Required num_tel</small>
+          </div>
+          </div>
+          <div class="form-group">
+            <label  >nom_responsable</label>
+            <input type="text" class="form-control" formControlName="nom_responsable" id="nom_responsable">
+            <div *ngIf="nom_responsable.touched && crudApi.dataForm.get('nom_responsable').invalid">
+              <small *ngIf="nom_responsable.errors.required" class="text-danger">Required nom_responsable</small>
+          </div>
+          </div>
+          <div class="form-group">
+            <label  >groupe</label>
+            <input type="text" class="form-control" formControlName="groupe" id="groupe">
+            <div *ngIf="groupe.touched && crudApi.dataForm.get('groupe').invalid">
+              <small *ngIf="groupe.errors.required" class="text-danger">Required groupe</small>
+          </div>
+          </div>
+        
+          <div class="form-group">
+            <label  >username</label>
+            <input type="text" class="form-control" formControlName="username" id="username">
+            <div *ngIf="username.touched && crudApi.dataForm.get('username').invalid">
+              <small *ngIf="username.errors.required" class="text-danger">Required username</small>
+          </div>
+          </div>
+          <div class="form-group">
+            <label  >password</label>
+            <input type="password" class="form-control" formControlName="password" id="password">
+            <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+                        <div *ngIf="password.touched && crudApi.dataForm.get('password').invalid">
+                            <small *ngIf="password.errors.required" class="text-danger">Required password</small>
+                        </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="roles">Roles</label>
+            
+            <select  id="roles" name="roles" formControlName="roles" multiple class="form-control">
+              
+              <option *ngFor="let role of this.crudApi.listrol"   value="{{role.name}}"  >{{role.name}}</option>
+            </select>
+            <!-- <select id="roles" name="roles" formControlName="roles" class="form-control"  >
+              
+              <option value="ROLE_USER">ROLE_USER</option>
+              <option value="ROLE_MANAGER">ROLE_MANAGER</option>
+              <option value="ROLE_RH">ROLE_RH</option>
+            </select> -->
+            <!-- <input type="checkbox" name="roles" id="checkbox1" formControlName="roles" class="form-control" value="ROLE_USER">ROLE_USER<br>      
+            <input type="checkbox" name="roles" id="checkbox2" formControlName="roles" class="form-control" value="ROLE_MANAGER">ROLE_MANAGER<br>      
+            <input type="checkbox" name="roles" id="checkbox3" formControlName="roles" class="form-control" value="ROLE_RH">ROLE_RH<br> -->
+            <div class="text-danger" *ngIf="crudApi.dataForm.get('roles').invalid && roles.touched">
+              <small *ngIf="roles.errors.required">Role required</small>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-info" class="form-control"  > Submit</button>
+          <button type="button" class="btn btn-outline-dark ml-1" class="form-control" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+      
+      </form>
+    </div>
+  </div>
+</div>

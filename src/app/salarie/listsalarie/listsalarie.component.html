@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+<br/><br/>
+     <div class="pricing-header mx-auto">
+      
+       <div class="table-responsive">
+        <a class="btn btn-sm btn-primary text-white pull-right" (click)="addEmploye()"><i class="fa fa-plus"></i>   Ajouter employé </a>
+        <h1>Listes des employés</h1>
+<br/>
+<div class="search-hero" class="col-lg-12"> 
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for an employees by id or name ">
+</div>
+        <table  class="table table-bordered table-striped table-hover" >
+        <thead>
+          
+        <tr>
+        <th scope="col">id</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">solde_congé</th>
+        <th scope="col">date_entree</th>
+        <!-- <th scope="col">grade</th> -->
+
+        <th scope="col">mail</th>
+        <th scope="col">num_tel</th>
+        <th scope="col">nom_responsable</th>
+        <th scope="col">groupe</th>
+        <th scope="col">username</th>
+        <!-- <th scope="col">Password</th> -->
+        <th scope="col">Role</th>
+
+        <!-- <th class="text-center" scope="col">Consulter</th> -->
+        <th class="text-center" scope="col">Modifier</th>
+        <th class="text-center" scope="col">Supprimer</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of this.crudApi.listsal| filter:searchText">
+        <th>{{item.id}}</th>
+        <td>{{item.nom}}</td>
+        <td>{{item.prenom}}</td>
+        <td>{{item.solde_conge}}</td>
+        <td>{{item.date_entree}}</td>
+        <!-- <td>{{item.grade}}</td> -->
+        <td>{{item.mail}}</td>
+        <td>{{item.num_tel}}</td>
+        <td>{{item.nom_responsable}}</td>
+        <td>{{item.groupe}}</td>
+        <td>{{item.username}}</td>
+        <!-- <td>{{item.password}}</td> -->
+        <td>
+          <div *ngFor="let role of item.roles">
+              <span>{{role.name}}</span>
+          </div>
+      </td>
+
+        <!-- <td><button class="btn btn-info" style="margin-left: 20px;" >
+          <i class="fal fa-eye"></i></button></td> -->
+       
+          <td><button class="btn btn-warning" style="margin-left: 20px;" (click) = "selectData(item)">
+            <i class="fa fa-pencil-square-o" ></i></button></td>
+         <td><button class="btn btn-danger" (click) = "removeData(item.id)">
+            <i class="fa fa-trash-o"></i></button></td>
+          
+           </tr>
+        
+             </tbody>
+             </table>
+             
+             </div>
+           </div>

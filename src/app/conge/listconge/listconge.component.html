@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+
+<br/>
+     <div class="pricing-header mx-auto">
+       <div class="table-responsive">
+        <a class="btn btn-sm btn-primary text-white pull-right" (click)="addConge()"><i class="fa fa-plus"></i>   Ajouter un congé </a>
+        <h1>Listes des congés</h1>
+<br/>
+        <table  class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+        <th scope="col">num</th>
+        <th scope="col">date_debut</th>
+        <th scope="col">date_fin</th>
+        <th scope="col">statut</th>
+        <th scope="col">Username Salarie</th>
+        <th scope="col">type de conge</th>
+
+        
+
+       
+        <th class="text-center" scope="col">Modifier</th>
+        <th class="text-center" scope="col">Supprimer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of this.crudApi.listcon">
+        <th>{{item.num}}</th>
+        <td>{{item.date_debut| date:'yyyy-MM-dd'}}</td>
+        <td>{{item.date_fin| date:'yyyy-MM-dd'}}</td>
+        <td>{{item.statut}}</td>
+        <td>{{item.salarie.username}}</td>
+        <td>{{item.typeconge.type_conge}}</td>
+
+          <td><button class="btn btn-warning" style="margin-left: 25px;" (click) = "selectData(item)">
+            <i class="fa fa-pencil-square-o" ></i></button></td>
+         <td><button class="btn btn-danger"  style="margin-left: 25px;" (click) = "removeData(item.num)">
+            <i class="fa fa-trash-o"></i></button></td>
+           </tr>
+        
+             </tbody>
+             </table>
+             </div>
+           </div>

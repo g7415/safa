@@ -1,0 +1,54 @@
+          
+<div class="alert alert-success" *ngIf="isLoggedIn; else loggedOut">
+    Logged in as {{roles}}.
+  </div>
+  <ng-template #loggedOut>
+    <div class="container-login"> 
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="content">
+            <div class="values">
+        <div class="form-group">
+          <!-- <label for="username">Nom d'utilisateur :</label> -->
+          <input type="text"  class="form-control" placeholder="Nom d'utilisateur" name="username" [(ngModel)]="form.username" #username="ngModel"
+            required />
+          <div *ngIf="f.submitted && username.invalid">
+            <div *ngIf="username.errors.required">Nom d'utilisateur est obligatoire</div>
+          </div>
+        
+        <div class="form-group">
+          <!-- <label for="password">Mot de passe</label> -->
+          <input type="password" placeholder="Mot de passe" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
+            required minlength="6" />
+          <div *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required">Mot de passe obligatoire</div>
+            <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+        </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <!-- <button class="btn btn-primary">Ouverture de session</button> -->
+        <!-- <input  value="signin" class="register" type="submit" /> -->
+        <div class="container-login100-form-btn m-t-32">
+              
+          <button type="submit" class="login100-form-btn" >Ouverture de session</button>
+      </div>
+        <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
+          Login failed: {{errorMessage}}
+        </div>
+      </div>
+    </div>
+    
+        
+
+      </form>
+      <div id="formFooter">
+        <a class="underlineHover" href="#">réinitialiser le mot de passe</a>
+      </div>      <!-- <a href="#">réinitialiser le mot de passe</a> -->
+      <!-- <div class="footer">
+              <input  value="réinitialiser le mot de passe" class="register" type="submit" />
+            </div> -->
+      <!-- <a href="signup" class="btn btn-success">réinitialiser le mot de passe</a> -->
+    </div>
+  </ng-template>
+       

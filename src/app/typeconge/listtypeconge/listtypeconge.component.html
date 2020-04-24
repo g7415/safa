@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+<br/><br/>
+     <div class="pricing-header mx-auto">
+      
+       <div class="table-responsive">
+        <a class="btn btn-sm btn-primary text-white pull-right" (click)="addTypeConge()"><i class="fa fa-plus"></i>   Ajouter Type de congé </a>
+        <h1>Listes des Types de congés</h1>
+<br/>
+<div class="search-hero" class="col-lg-12"> 
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for  type by id or name ">
+</div>
+        <table  class="table table-bordered table-striped table-hover" >
+        <thead>
+        <tr>
+        <th scope="col">id_type</th>
+        <th scope="col">Type_Conge</th>
+        <th scope="col">max_permis</th>
+        <th scope="col">cong_deja_pris</th>
+        <th scope="col">cong_restant</th>
+      
+        <th class="text-center" scope="col">Modifier</th>
+        <th class="text-center" scope="col">Supprimer</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of this.crudApi.listtypecon| filter:searchText">
+        <th>{{item.id_type}}</th>
+        <td>{{item.type_conge}}</td>
+        <td>{{item.max_permis}}</td>
+        <td>{{item.cong_deja_pris}}</td>
+        <td>{{item.cong_restant}}</td>
+        
+
+        <!-- <td><button class="btn btn-info" style="margin-left: 20px;" >
+          <i class="fal fa-eye"></i></button></td> -->
+       
+          <td><button class="btn btn-warning" style="margin-left: 20px;" (click) = "selectData(item)">
+            <i class="fa fa-pencil-square-o" ></i></button></td>
+         <td><button class="btn btn-danger" (click) = "removeData(item.id_type)">
+            <i class="fa fa-trash-o"></i></button></td>
+          
+           </tr>
+        
+             </tbody>
+             </table>
+             
+             </div>
+           </div>
