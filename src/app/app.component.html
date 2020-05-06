@@ -20,10 +20,13 @@
               <li *ngIf="authority === 'user'" class="nav-item">
                 <a class="nav-link"  routerLink="/conge" routerLinkActive="active">Congés</a>
               </li>
-              <li  *ngIf="authority === 'user'|| authority === 'manager'" class="nav-item">
-                <a class="nav-link" routerLink="/listconge" routerLinkActive="active">Voir l'historique des demandes</a>
+              <li  *ngIf="authority === 'user'" class="nav-item">
+                <a class="nav-link" routerLink="/listconge" routerLinkActive="active">Voir l'historique de ses demandes</a>
               </li>
-              <li  *ngIf="authority === 'rh' || authority === 'manager'" class="nav-item">
+              <li  *ngIf="authority === 'manager'" class="nav-item">
+                <a class="nav-link" routerLink="/listconge" routerLinkActive="active">Voir l'historique des demandes de Congés</a>
+              </li>
+              <li  *ngIf="authority === 'rh' || authority === 'manager'|| authority === 'user'" class="nav-item">
                 <a class="nav-link" routerLink="/listsalarie" routerLinkActive="active">Utilisateurs</a>
               </li>
               <li  *ngIf="authority === 'rh'|| authority === 'manager'|| authority === 'user' " class="nav-item">

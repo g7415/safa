@@ -24,7 +24,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of this.crudApi.listtypecon| filter:searchText">
+        <tr *ngFor="let item of this.crudApi.listtypecon| paginate: { itemsPerPage: count, currentPage: p }| filter:searchText">
         <th>{{item.id_type}}</th>
         <td>{{item.type_conge}}</td>
         <td>{{item.max_permis}}</td>
@@ -46,4 +46,7 @@
              </table>
              
              </div>
+             <div class="text-right">
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
            </div>

@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder,FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Salarie } from '../model/salarie';
 import { Role } from '../model/role';
+import { catchError } from 'rxjs/operators';
 const httpOptions = {
+
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 // kad ma 3ana controlleurs fe back-end kad ma ana service fe front
@@ -14,6 +16,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class SalarieService {
+  
   private baseUrlEmail = 'http://localhost:8080/testapp/getdetails';
   
   private baseUrl = 'http://localhost:8080/api/sal';
@@ -37,9 +40,13 @@ export class SalarieService {
  }
  
   updatedata(id: number, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/${id}`, value);
+    return this.http.put(`${this.baseUrl}/${id}`, value).pipe(catchError(this.errorHandler));
+
   }
-  
+
+  errorHandler(error: HttpErrorResponse){
+    return throwError(error || "Server Error");
+  }
 
   deleteData(id: number): Observable<any> {
    

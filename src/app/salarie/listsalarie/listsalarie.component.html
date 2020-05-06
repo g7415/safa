@@ -27,7 +27,7 @@
         <th scope="col">username</th>
         <!-- <th scope="col">Password</th> -->
         <th scope="col">Role</th>
-
+        <th scope="col">manager</th>
         <!-- <th class="text-center" scope="col">Consulter</th> -->
         <th class="text-center" scope="col">Modifier</th>
         <th class="text-center" scope="col">Supprimer</th>
@@ -35,7 +35,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of this.crudApi.listsal| filter:searchText">
+          <!-- | filter:searchText  -->
+        <tr *ngFor="let item of this.crudApi.listsal| paginate: { itemsPerPage: count, currentPage: p }| filter:searchText">
         <th>{{item.id}}</th>
         <td>{{item.nom}}</td>
         <td>{{item.prenom}}</td>
@@ -49,10 +50,11 @@
         <td>{{item.username}}</td>
         <!-- <td>{{item.password}}</td> -->
         <td>
-          <div *ngFor="let role of item.roles">
-              <span>{{role.name}}</span>
+          <div *ngFor="let role of item.roles[0]">
+              <span>{{role}}</span>
           </div>
       </td>
+      <td>{{item.manager}}</td>
 
         <!-- <td><button class="btn btn-info" style="margin-left: 20px;" >
           <i class="fal fa-eye"></i></button></td> -->
@@ -68,4 +70,9 @@
              </table>
              
              </div>
+              <!--Including the pagination control.-->
+  <div class="text-right">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+
            </div>

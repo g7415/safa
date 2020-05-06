@@ -6,6 +6,9 @@
         <a class="btn btn-sm btn-primary text-white pull-right" (click)="addConge()"><i class="fa fa-plus"></i>   Ajouter un congé </a>
         <h1>Listes des congés</h1>
 <br/>
+<div class="search-hero" class="col-lg-12"> 
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for an employees by id or name ">
+</div>
         <table  class="table table-bordered table-striped table-hover">
         <thead>
         <tr>
@@ -15,7 +18,9 @@
         <th scope="col">statut</th>
         <th scope="col">Username Salarie</th>
         <th scope="col">type de conge</th>
-
+        <!-- <th scope="col">idsal</th>
+        <th scope="col">Type congé</th> -->
+        
         
 
        
@@ -24,11 +29,15 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of this.crudApi.listcon">
+        <tr *ngFor="let item of this.crudApi.listcon | paginate: { itemsPerPage: count, currentPage: p }| filter:searchText">
         <th>{{item.num}}</th>
         <td>{{item.date_debut| date:'yyyy-MM-dd'}}</td>
         <td>{{item.date_fin| date:'yyyy-MM-dd'}}</td>
         <td>{{item.statut}}</td>
+        <!-- <td>{{item.idsal}}</td>
+        <td>{{item.id_type}}</td> -->
+
+        
         <td>{{item.salarie.username}}</td>
         <td>{{item.typeconge.type_conge}}</td>
 
@@ -41,4 +50,7 @@
              </tbody>
              </table>
              </div>
+             <div class="text-right">
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
            </div>

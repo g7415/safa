@@ -14,7 +14,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./listtypeconge.component.scss']
 })
 export class ListtypecongeComponent implements OnInit {
-
+  p: number = 1;
+  count: number = 5;
   searchText:any;
   typeconge : TypeConge;
   constructor(public crudApi: TypecongeService, public toastr: ToastrService,

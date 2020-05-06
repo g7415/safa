@@ -22,13 +22,48 @@ import { ProfilComponent } from './profil/profil.component';
 import { SigninComponent } from './signin/signin.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { httpInterceptorProviders } from './auth/auth-interceptor.interceptor';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { TypecongeComponent } from './typeconge/typeconge.component';
 import { AddtypecongeComponent } from './typeconge/addtypeconge/addtypeconge.component';
 import { ListtypecongeComponent } from './typeconge/listtypeconge/listtypeconge.component';
+import { CalendrierComponent } from './calendrier/calendrier.component';
+import { TreeViewModule } from "@syncfusion/ej2-angular-navigations";
+
+import {
+  DropDownListAllModule,
+  MultiSelectAllModule
+} from "@syncfusion/ej2-angular-dropdowns";
+
+import {
+  MaskedTextBoxModule,
+  UploaderAllModule
+} from "@syncfusion/ej2-angular-inputs";
+
+import {
+  ToolbarAllModule,
+  ContextMenuAllModule
+} from "@syncfusion/ej2-angular-navigations";
+
+import { ButtonAllModule } from "@syncfusion/ej2-angular-buttons";
+
+import { CheckBoxAllModule } from "@syncfusion/ej2-angular-buttons";
+
+import {
+  DatePickerAllModule,
+  TimePickerAllModule,
+  DateTimePickerAllModule
+} from "@syncfusion/ej2-angular-calendars";
+
+import { NumericTextBoxAllModule } from "@syncfusion/ej2-angular-inputs";
+
+import {
+  ScheduleAllModule,
+  RecurrenceEditorAllModule
+} from "@syncfusion/ej2-angular-schedule";
+import { CommonModule } from "@angular/common";
+
 
 const MATERIAL_MODULES = [MatToolbarModule,
   MatIconModule
@@ -46,6 +81,7 @@ const MATERIAL_MODULES = [MatToolbarModule,
     {path: 'listsalarie', component: ListsalarieComponent},
     {path: 'typeconge', component: AddtypecongeComponent},
     {path: 'listtypeconge', component: ListtypecongeComponent},
+    {path: 'calendrier', component: CalendrierComponent},
     {
       path: 'home',
       component: HomeComponent
@@ -56,7 +92,7 @@ const MATERIAL_MODULES = [MatToolbarModule,
 },
 {
   path: '',
-  redirectTo: 'home',
+  redirectTo: 'auth/login',
   pathMatch: 'full'
 }
   ]
@@ -74,7 +110,8 @@ const MATERIAL_MODULES = [MatToolbarModule,
     LoginComponent,
     TypecongeComponent,
     AddtypecongeComponent,
-    ListtypecongeComponent
+    ListtypecongeComponent,
+    CalendrierComponent
   ],
   imports: [Ng2SearchPipeModule ,NgxPaginationModule,
     BrowserModule,
@@ -89,7 +126,25 @@ const MATERIAL_MODULES = [MatToolbarModule,
     BrowserAnimationsModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    CommonModule,
+   
+    ScheduleAllModule,
+    RecurrenceEditorAllModule,
+    NumericTextBoxAllModule,
+    DatePickerAllModule,
+    TimePickerAllModule,
+    DateTimePickerAllModule,
+    CheckBoxAllModule,
+    ToolbarAllModule,
+    DropDownListAllModule,
+    ContextMenuAllModule,
+    MaskedTextBoxModule,
+    UploaderAllModule,
+    MultiSelectAllModule,
+    TreeViewModule,
+    ButtonAllModule,
+  
   ],
   exports : MATERIAL_MODULES,
   providers: [{ provide: MAT_DIALOG_DATA, useValue: {} },

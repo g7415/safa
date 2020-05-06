@@ -15,6 +15,10 @@ import { Salarie } from 'src/app/model/salarie';
   styleUrls: ['./addsalarie.component.scss']
 })
 export class AddsalarieComponent implements OnInit {
+  errorMessage = '';
+  userUpdated;
+  userCreated;
+  SalarieList:Salarie[];
   signupInfo: Salarie;
   submitted = false 
   public userFile : any = File 
@@ -28,15 +32,29 @@ export class AddsalarieComponent implements OnInit {
    } 
 
 //si on est en mode ajout 
-  ngOnInit(){
-    if (this.crudApi.choixmenu == 1)
-    {this.infoForm()} 
-            }
+ngOnInit(){
+
+    if (this.crudApi.choixmenu == 1){
+      this.infoForm()
+    }
+    debugger;
+    this.crudApi.getAll().subscribe(
+      response =>{this.SalarieList = response;}
+     );
+}
+
+// SearchProduct(username: string) {  
+  
+//   let obj = this.SalarieList.filter(m => m.roles == this.roles);  
+//   this.SalarieList = obj;  
+//   return this.SalarieList;  
+// }  
+
 //donc je vais instancié mon formulaire , le vider
-  infoForm() {
+infoForm() {
     this.crudApi.dataForm = this.fb.group({
-      id: ['', [Validators.required]],
-      nom:   ['', [Validators.required]], 
+      id: [''],
+      nom:   ['', [Validators.required, Validators.minLength(3)]], 
       prenom: ['', [Validators.required]], 
       solde_conge: ['', [Validators.required]],  
       date_entree:['', [Validators.required]],  
@@ -46,33 +64,43 @@ export class AddsalarieComponent implements OnInit {
       nom_responsable:  ['', [Validators.required]], 
       groupe:  ['', [Validators.required]], 
       username: ['', [Validators.required]], 
-      password: ['', [Validators.required]], 
+      password: ['', [Validators.required, Validators.minLength(5)]], 
       roles: ['', [Validators.required]], 
+      manager: ['', [Validators.required]], 
         }) 
-    }
+  }
+
   ResetForm() {
       this.crudApi.dataForm.reset() 
-              }
+  }
   //si je suis en mode ajout je fais adddata sinon updatedata
   // en applelons le web service service/salarie/service/ts eli fih les methodes
   onSubmit() {
     if (this.crudApi.choixmenu == 1)
        this.addData();
     else
-      {this.updateData();
-       this.crudApi.choixmenu = 1;
+      {
+        this.updateData();
+        
       }
-             }  
+  }  
+
+  viderFormulaire(){
+    this.crudApi.choixmenu = 1
+  }
             
-  addData() {
+addData() {
       // let data = this.crudApi.dataForm.value;
       // data.role = [data.role];
-     
-     this.crudApi.createData(this.crudApi.dataForm.value)
-  .subscribe( data => {
+    debugger;
+    let formvalues = this.crudApi.dataForm.value;
+    // formvalues.manager = { "username": formvalues.manager };
+    this.crudApi.createData(formvalues)
+    .subscribe(user => {  
     this.dialogRef.close();
-    this.crudApi.getAll().subscribe(
-    response =>{this.crudApi.listsal = response;
+    this.crudApi.getAll()
+    .subscribe(
+    response =>{this.crudApi.listsal = this.formatRole(response);
     Swal.fire({
     position: 'top-end',
     icon: 'success',
@@ -80,23 +108,23 @@ export class AddsalarieComponent implements OnInit {
     showConfirmButton: false,
     timer: 1500})        
     }
-     );
-     this.crudApi.getAllRoles().subscribe(
-        response =>{this.crudApi.listrol = response;  
-        alert('Email Sent successfully');     
-      }
-       );
-      //  this.crudApi.creatEmail(this.crudApi.dataForm.value)
-      //  .subscribe(
-      //  res => {
-      //    this.crudApi.dataForm.value = res;
-      //    console.log(this.crudApi.dataForm.value);
-      //    alert('Email Sent successfully');
-      //    this.crudApi.dataForm.username = '';
-      //    this.crudApi.dataForm.mail = '';
-      //  });
+    );
+    this.crudApi.getAllRoles().subscribe(
+    response =>{this.crudApi.listrol = response;       
+    }
+    );
+    debugger;
+    this.crudApi.creatEmail(this.crudApi.dataForm.value)
+    .subscribe(
+     res => {
+     this.crudApi.dataForm.value = res;
+     console.log(this.crudApi.dataForm.value);
+     alert('Email Sent successfully');
+     this.crudApi.dataForm.username = '';
+     this.crudApi.dataForm.mail = '';
+     });
    
-  });
+});
     // this.https.post<Salarie>('http://localhost:8080/testapp/getdetails', this.crudApi.dataForm.value)
     // .subscribe(
     // res => {
@@ -107,36 +135,42 @@ export class AddsalarieComponent implements OnInit {
     //   this.crudApi.dataForm.mail = '';
     // });
 }
-
-  updateData()
-  {   let data = this.crudApi.dataForm.value;
-    console.log(data); 
-    // data.roles = [data.roles];
-    this.crudApi.updatedata(this.crudApi.dataForm.value.id,data)
-    .subscribe( data => {
-      this.dialogRef.close();
-      this.crudApi.getAll().subscribe(
-        response =>{this.crudApi.listsal = response;
-          this.toastr.info( 'Employé modifier avec Success'); }
-       );
-       this.crudApi.getAllRoles().subscribe(
-        response =>{this.crudApi.listrol = response;
-          }
-       );
-      //  this.crudApi.creatEmail(this.crudApi.dataForm.value)
-      //  .subscribe(
-      //  res => {
-      //    this.crudApi.dataForm.value = res;
-      //    console.log(this.crudApi.dataForm.value);
-      //    alert('Email Sent successfully');
-      //    this.crudApi.dataForm.username = '';
-      //    this.crudApi.dataForm.mail = '';
-      //  });
-   
+debugger;
+updateData() {
+  let data = this.crudApi.dataForm.value;
+  console.log(data); 
+  // data.roles = [data.roles];
+  this.crudApi.updatedata(this.crudApi.dataForm.value.id,data)
+  .subscribe( user => {  
+  this.userUpdated = user;
+   this.dialogRef.close();
+   this.crudApi.choixmenu == 1
+   this.crudApi.getAll()
+   .subscribe(
+   response =>{this.crudApi.listsal = this.formatRole(response);
+   this.toastr.info( 'Employé modifier avec Success');
+   }
+   );
+   this.crudApi.getAllRoles().subscribe(
+   response =>{this.crudApi.listrol = response;
+   }
+   );
+   debugger;
+   this.crudApi.creatEmail(this.userUpdated)
+   .subscribe(
+    res => {
+    this.crudApi.dataForm.value = res;
+    console.log(this.crudApi.dataForm.value);
+    alert('Email Sent successfully');
+    this.crudApi.dataForm.username = '';
+    this.crudApi.dataForm.mail = '';
     });
-  
-   
-  }
+    } ,
+    error => {this.errorMessage ='Please verify the informations in the form.', 
+              console.error(error)}
+    );
+   }
+ 
   get mail(){return this.crudApi.dataForm.get('mail')}
   get password(){return this.crudApi.dataForm.get('password')}
   get groupe(){return this.crudApi.dataForm.get('groupe')}
@@ -149,4 +183,21 @@ export class AddsalarieComponent implements OnInit {
   get num_tel(){return this.crudApi.dataForm.get('num_tel')}
   get username(){return this.crudApi.dataForm.get('username')}
   get roles(){return this.crudApi.dataForm.get('roles')}
+  get manager(){return this.crudApi.dataForm.get('manager')}
+
+
+  formatRole(reponse : any){
+    for (var salarie of reponse) {
+      let tabRole = Array();
+      let tabTabRole = Array();
+      let i = 0;
+      for(var role of salarie.roles){
+        tabRole[i] = role.name;
+        i++;
+      }
+      tabTabRole[0] = tabRole;
+      salarie.roles = tabTabRole;
+    }
+    return reponse;
+  }
 }

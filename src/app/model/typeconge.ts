@@ -7,6 +7,7 @@ export class TypeConge {
     cong_deja_pris:number;
     cong_restant:number;
     conges:Conge[];
+    
     constructor(){
     }
 }

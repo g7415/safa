@@ -19,7 +19,9 @@ import * as $ from 'jquery';
 export class ListsalarieComponent implements OnInit {
   searchText:any;
   sal : Salarie;
-  
+  p: number = 1;
+  count: number = 5;
+ 
   constructor(public crudApi: SalarieService, public toastr: ToastrService,
     private router : Router,public fb: FormBuilder,
     private matDialog: MatDialog,
@@ -40,15 +42,30 @@ export class ListsalarieComponent implements OnInit {
     //dialogConfig.data="gdddd";
     this.matDialog.open(AddsalarieComponent, dialogConfig);
   }
-
+  debugger;
   getData() {
     this.crudApi.getAll().subscribe(
-      response =>{this.crudApi.listsal = response;}
+      response =>{this.crudApi.listsal = this.formatRole(response);}
      );
     this.crudApi.getAllRoles().subscribe(
       response =>{this.crudApi.listrol = response;}
      );
   
+  }
+
+  formatRole(reponse : any){
+    for (var salarie of reponse) {
+      let tabRole = Array();
+      let tabTabRole = Array();
+      let i = 0;
+      for(var role of salarie.roles){
+        tabRole[i] = role.name;
+        i++;
+      }
+      tabTabRole[0] = tabRole;
+      salarie.roles = tabTabRole;
+    }
+    return reponse;
   }
   
   removeData(id: number) {
@@ -79,10 +96,15 @@ export class ListsalarieComponent implements OnInit {
   }
 
   selectData(item : Salarie) {
-   
-    //  item.roles =  [item.roles[0]['name']]
+    // item.roles = [item.roles[0]['name']];
+    debugger;
+    item.password = '';
     this.crudApi.choixmenu = 2;
     this.crudApi.dataForm = this.fb.group(Object.assign({},item));
+    this.crudApi.dataForm.patchValue({
+      manager: item.manager.username,
+      
+    });
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
@@ -90,6 +112,8 @@ export class ListsalarieComponent implements OnInit {
     dialogConfig.height="90%";
     this.matDialog.open(AddsalarieComponent, dialogConfig);
   }
+
+  
 
 
  

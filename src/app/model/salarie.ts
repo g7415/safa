@@ -13,6 +13,7 @@ export class Salarie {
 	groupe:   string;
 	username:  string;
 	roles: string[];
+	manager:Salarie;
 	password:  string;
 	conges:Conge[];
 	
@@ -30,7 +31,7 @@ export class Salarie {
 		this.groupe=groupe;
 		this.username = username;
         this.password = password;
-		this.roles = ['role'];
+		// this.roles = ['role'];
 
 	}
 	

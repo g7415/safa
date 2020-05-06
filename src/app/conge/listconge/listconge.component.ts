@@ -20,7 +20,9 @@ import { TypeConge } from 'src/app/model/typeconge';
 })
 export class ListcongeComponent implements OnInit {
   listtypecon:TypeConge[];
-
+  p: number = 1;
+  count: number = 5;
+  searchText:any;
   con : Conge;
   constructor(public crudApi: CongeService, public toastr: ToastrService,
     private router : Router,public fb: FormBuilder,public typecongeService:TypecongeService,
@@ -84,6 +86,10 @@ export class ListcongeComponent implements OnInit {
   selectData(item : Conge) {
     this.crudApi.choixmenu = 2;
     this.crudApi.dataForm = this.fb.group(Object.assign({},item));
+    this.crudApi.dataForm.patchValue({
+      salarie: item.salarie.id,
+      typeconge: item.typeconge.id_type
+    });
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
