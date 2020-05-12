@@ -35,14 +35,21 @@ export class AddtypecongeComponent implements OnInit {
 
   infoForm() {
     this.crudApi.dataForm = this.fb.group({
-      id_type: ['', [Validators.required]],
+      id_type: [''],
       type_conge:   ['', [Validators.required]], 
       max_permis: ['', [Validators.required]], 
       cong_deja_pris: ['', [Validators.required]],  
       cong_restant:['', [Validators.required]],  
         }) 
     }
-  ResetForm() {
+
+    get id_type(){return this.crudApi.dataForm.get('id_type')}
+    get type_conge(){return this.crudApi.dataForm.get('type_conge')}
+    get max_permis(){return this.crudApi.dataForm.get('max_permis')}
+    get cong_deja_pris(){return this.crudApi.dataForm.get('cong_deja_pris')}
+    get cong_restant(){return this.crudApi.dataForm.get('cong_restant')}
+    
+     ResetForm() {
       this.crudApi.dataForm.reset() 
               }
   //si je suis en mode ajout je fais adddata sinon updatedata
@@ -57,11 +64,8 @@ export class AddtypecongeComponent implements OnInit {
              }  
             
   addData() {
-      // let data = this.crudApi.dataForm.value;
-      // data.role = [data.role];
-     
-     this.crudApi.createData(this.crudApi.dataForm.value)
-  .subscribe( data => {
+    this.crudApi.createData(this.crudApi.dataForm.value)
+    .subscribe( data => {
     this.dialogRef.close();
     this.crudApi.getAll().subscribe(
     response =>{this.crudApi.listtypecon = response;
@@ -79,7 +83,9 @@ export class AddtypecongeComponent implements OnInit {
   });
    
 }
-
+viderFormulaire(){
+  this.crudApi.choixmenu = 1
+}
   updateData()
   {   let data = this.crudApi.dataForm.value;
     console.log(data); 
@@ -87,6 +93,7 @@ export class AddtypecongeComponent implements OnInit {
     this.crudApi.updatedata(this.crudApi.dataForm.value.id_type,data)
     .subscribe( data => {
       this.dialogRef.close();
+      this.crudApi.choixmenu == 1
       this.crudApi.getAll().subscribe(
         response =>{this.crudApi.listtypecon = response;
           this.toastr.info( 'TypeConge modifier avec Success'); }
@@ -98,10 +105,4 @@ export class AddtypecongeComponent implements OnInit {
    
   }
   
-  get id_type(){return this.crudApi.dataForm.get('id_type')}
-  get type_conge(){return this.crudApi.dataForm.get('type_conge')}
-  get max_permis(){return this.crudApi.dataForm.get('max_permis')}
-  get cong_deja_pris(){return this.crudApi.dataForm.get('cong_deja_pris')}
-  get cong_restant(){return this.crudApi.dataForm.get('cong_restant')}
- 
 }

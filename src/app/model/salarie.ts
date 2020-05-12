@@ -14,7 +14,7 @@ export class Salarie {
 	username:  string;
 	roles: string[];
 	manager:Salarie;
-	password:  string;
+	password:string;
 	conges:Conge[];
 	
 	  constructor(nom:  string, prenom: string,solde_conge:number,date_entree:Date,grade: string,

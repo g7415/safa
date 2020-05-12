@@ -30,7 +30,7 @@ import { AddtypecongeComponent } from './typeconge/addtypeconge/addtypeconge.com
 import { ListtypecongeComponent } from './typeconge/listtypeconge/listtypeconge.component';
 import { CalendrierComponent } from './calendrier/calendrier.component';
 import { TreeViewModule } from "@syncfusion/ej2-angular-navigations";
-
+import { DateValueAccessorModule } from 'angular-date-value-accessor';
 import {
   DropDownListAllModule,
   MultiSelectAllModule
@@ -63,6 +63,8 @@ import {
   RecurrenceEditorAllModule
 } from "@syncfusion/ej2-angular-schedule";
 import { CommonModule } from "@angular/common";
+import { HistoriqueListCongeComponent } from './conge/historique-list-conge/historique-list-conge.component';
+import { EditProfileComponent } from './profil/edit-profile/edit-profile.component';
 
 
 const MATERIAL_MODULES = [MatToolbarModule,
@@ -71,12 +73,13 @@ const MATERIAL_MODULES = [MatToolbarModule,
 
   const appRoutes : Routes = [
     //{path:'', redirectTo :"listconge" , pathMatch:"full"},
+    {path: 'editProfile', component: EditProfileComponent},
     {path: 'navbar', component: NavbarComponent},
     {path: 'conge', component: AddcongeComponent},
     {path: 'listconge', component: ListcongeComponent},
     {path: 'profil', component: ProfilComponent},
     {path: 'signin', component: SigninComponent},
-
+    {path: 'historiqueListConge', component: HistoriqueListCongeComponent},
     {path: 'salarie', component: AddsalarieComponent},
     {path: 'listsalarie', component: ListsalarieComponent},
     {path: 'typeconge', component: AddtypecongeComponent},
@@ -111,9 +114,11 @@ const MATERIAL_MODULES = [MatToolbarModule,
     TypecongeComponent,
     AddtypecongeComponent,
     ListtypecongeComponent,
-    CalendrierComponent
+    CalendrierComponent,
+    HistoriqueListCongeComponent,
+    EditProfileComponent
   ],
-  imports: [Ng2SearchPipeModule ,NgxPaginationModule,
+  imports: [DateValueAccessorModule,Ng2SearchPipeModule ,NgxPaginationModule,
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,

@@ -13,7 +13,7 @@ const DATE_ENTREE_KEY = 'AuthDate_Entree';
 const NOM_RESPONSABLE_KEY = 'AuthNom_Responsable';
 const GROUPE_KEY = 'AuthGroupe';
 const PASSWORD_KEY = 'AuthPassword';
-
+const ID_KEY = 'AuthId';
 @Injectable({
   providedIn: 'root'
 })
@@ -33,7 +33,14 @@ export class TokenStorageService {
   public getToken(): string {
     return sessionStorage.getItem(TOKEN_KEY);
   }
+  public saveId(id: number) {
+    window.sessionStorage.removeItem(ID_KEY);
+    window.sessionStorage.setItem(ID_KEY, id.toString());
+  }
 
+  public getId(): string {
+    return sessionStorage.getItem(ID_KEY);
+  }
   public saveGroupe(groupe: string) {
     window.sessionStorage.removeItem(GROUPE_KEY);
     window.sessionStorage.setItem(GROUPE_KEY, groupe);
@@ -58,17 +65,17 @@ export class TokenStorageService {
   public getNom_responsable(): string {
     return sessionStorage.getItem(NOM_RESPONSABLE_KEY);
   }
-  public saveDate_entree(date_entree: string) {
+  public saveDate_entree(date_entree: Date) {
     window.sessionStorage.removeItem(DATE_ENTREE_KEY);
-    window.sessionStorage.setItem(DATE_ENTREE_KEY, date_entree);
+    window.sessionStorage.setItem(DATE_ENTREE_KEY, date_entree.toString());
   }
 
   public getDate_entree(): string {
     return sessionStorage.getItem(DATE_ENTREE_KEY);
   }
-  public saveNumero(num_tel: string) {
+  public saveNumero(num_tel: number) {
     window.sessionStorage.removeItem(NUMERO_KEY);
-    window.sessionStorage.setItem(NUMERO_KEY, num_tel);
+    window.sessionStorage.setItem(NUMERO_KEY, num_tel.toString());
   }
 
   public getNumero(): string {

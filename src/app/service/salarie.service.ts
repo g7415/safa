@@ -18,7 +18,7 @@ const httpOptions = {
 export class SalarieService {
   
   private baseUrlEmail = 'http://localhost:8080/testapp/getdetails';
-  
+  private baseUrlM = 'http://localhost:8080/api/manager';
   private baseUrl = 'http://localhost:8080/api/sal';
   private baseUrl1 = 'http://localhost:8080/api/salarie';
 
@@ -27,11 +27,12 @@ export class SalarieService {
   dataForm: any =  FormGroup; 
   listsal:Salarie[];
   listrol:Role[];
+  managerList:Salarie[];
   constructor(private http: HttpClient,private toastr: ToastrService,public fb: FormBuilder) { }
   getProfil(username: String): Observable<Salarie> {
     return this.http.get<Salarie>(`${this.baseUrl1}/${username}`);
   }
-  getData(id: number): Observable<Object> {
+  getData(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
@@ -41,7 +42,6 @@ export class SalarieService {
  
   updatedata(id: number, value: any): Observable<Object> {
     return this.http.put(`${this.baseUrl}/${id}`, value).pipe(catchError(this.errorHandler));
-
   }
 
   errorHandler(error: HttpErrorResponse){
@@ -52,7 +52,10 @@ export class SalarieService {
    
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
-
+  getAllManager(): Observable<any> {
+   
+    return this.http.get(`${this.baseUrlM}`);
+  }
   getAll(): Observable<any> {
    
     return this.http.get(`${this.baseUrl}`);

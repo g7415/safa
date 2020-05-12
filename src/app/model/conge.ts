@@ -5,6 +5,7 @@ export class Conge {
     num: number;
    date_debut : Date;
   date_fin: Date;
+  duree:number;
 statut: string ;
 typeconge:TypeConge;
 salarie:Salarie;

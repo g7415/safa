@@ -49,13 +49,13 @@ export class ListtypecongeComponent implements OnInit {
   
   removeData(id_type: number) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: 'Etes vous sur?',
+      text: "Vous ne pourrez plus revenir en arrière!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Oui, supprimez-le!'
     }).then((result) => {
       if (result.value) {this.crudApi.deleteData(id_type)
           .subscribe(
@@ -66,17 +66,14 @@ export class ListtypecongeComponent implements OnInit {
             error => console.log(error));
       
         Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
+          'Type de congé est supprimer avec succes.'
+          
         )
       }
     })
   }
 
   selectData(item : TypeConge) {
-   
-    //  item.roles =  [item.roles[0]['name']]
     this.crudApi.choixmenu = 2;
     this.crudApi.dataForm = this.fb.group(Object.assign({},item));
     const dialogConfig = new MatDialogConfig();

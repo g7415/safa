@@ -20,7 +20,7 @@
 
         <div class="form-group">
           <label  >Nom</label>
-          <input type="text" required [class.is-invalid] ="nom.touched && nom.invalid" class="form-control" formControlName="nom" id="nom">
+          <input type="text" required [class.is-invalid] ="nom.touched && nom.invalid" class="form-control"minlength="3" formControlName="nom" id="nom">
         <div  *ngIf="nom.invalid && nom.touched ">
           <small *ngIf="nom.errors?.required" class="text-danger"> Le champs nom est obligatoire</small>
           <small *ngIf="nom.errors?.minlength" class="text-danger"> Le nom doit avoir au moins 3 caractéres </small>
@@ -29,31 +29,33 @@
 
         <div class="form-group">
           <label  >Prenom</label>
-          <input type="text" required [class.is-invalid] ="prenom.touched && prenom.invalid" class="form-control" formControlName="prenom" id="prenom">
+          <input type="text" required [class.is-invalid] ="prenom.touched && prenom.invalid" class="form-control"minlength="3" formControlName="prenom" id="prenom">
           <div *ngIf="prenom.touched && prenom.invalid">
             <small *ngIf="prenom.errors.required" class="text-danger"> Le champs prenom est obligatoire</small>
+            <small *ngIf="prenom.errors?.minlength" class="text-danger"> Le prenom doit avoir au moins 3 caractéres </small>
         </div>
         </div>
 
         <div class="form-group">
             <label  >Solde de congé</label>
-            <input type="text" class="form-control" formControlName="solde_conge" id="solde_conge">
-            <div *ngIf="solde_conge.touched && crudApi.dataForm.get('solde_conge').invalid">
+            <input type="number" required [class.is-invalid] ="solde_conge.touched && solde_conge.invalid" class="form-control" formControlName="solde_conge" id="solde_conge">
+            <div *ngIf="solde_conge.touched && solde_conge.invalid">
               <small *ngIf="solde_conge.errors.required" class="text-danger">Le champs solde de congé est obligatoire</small>
           </div>
           </div>
           <div class="form-group">
             <label  >Date d'entrée</label>
-            <input type="date" class="form-control" formControlName="date_entree" id="date_entree">
-            <div *ngIf="date_entree.touched && crudApi.dataForm.get('date_entree').invalid">
+            <input type="date"required [class.is-invalid] ="date_entree.touched && date_entree.invalid" class="form-control" formControlName="date_entree" id="date_entree">
+            <div *ngIf="date_entree.touched && date_entree.invalid">
               <small *ngIf="date_entree.errors.required" class="text-danger">Le champs date d'entrée est obligatoire</small>
           </div>
           </div>
           <div class="form-group">
             <label  >Grade</label>
-            <input type="text" class="form-control" formControlName="grade" id="grade">
-            <div *ngIf="grade.touched && crudApi.dataForm.get('grade').invalid">
+            <input type="text"required [class.is-invalid] ="grade.touched && grade.invalid" class="form-control" minlength="3"formControlName="grade" id="grade">
+            <div *ngIf="grade.touched && grade.invalid">
               <small *ngIf="grade.errors.required" class="text-danger">Le champs grade est obligatoire</small>
+              <small *ngIf="grade.errors?.minlength" class="text-danger"> Le champs grage doit avoir au moins 3 caractéres </small>
           </div>
           </div>
           <div class="form-group">
@@ -62,46 +64,50 @@
              <!-- le "crudApi.dataFormForm.get('mail')" est remplacé par 'mail' à travers la fonction get mail dans la classe modele-->
        <div    *ngIf="mail.invalid && mail.touched ">
         <small *ngIf="mail.errors?.required" class="text-danger"> Le champs E-mail est obligatoire</small>
-        <small *ngIf="mail.errors?.minlength" class="text-danger"> E-mail must have at least 7 caracters </small>
-        <small *ngIf="mail.errors?.custom || mail.errors?.pattern" class="text-danger"> / @ is missing </small>
+        <small *ngIf="mail.errors?.minlength" class="text-danger">Le champs E-mail doit avoir au moins 7 caracteres </small>
+        <small *ngIf="mail.errors?.custom || mail.errors?.pattern" class="text-danger"> / @ est manquant </small>
        </div>     
           </div>
           <div class="form-group">
-            <label  >num_tel</label>
-            <input type="text" class="form-control" formControlName="num_tel" id="num_tel">
-            <div *ngIf="num_tel.touched && crudApi.dataForm.get('num_tel').invalid">
-              <small *ngIf="num_tel.errors.required" class="text-danger">Required num_tel</small>
+            <label  >Numero de telephone</label>
+            <input type="number" required [class.is-invalid] ="num_tel.touched && num_tel.invalid" class="form-control"minlength="7" formControlName="num_tel" id="num_tel">
+            <div *ngIf="num_tel.touched && num_tel.invalid">
+              <small *ngIf="num_tel.errors.required" class="text-danger">Le champs numero de telephone est obligatoire</small>
+              <small *ngIf="num_tel.errors?.minlength" class="text-danger"> Le champs numero de telephone doit avoir au moins 7 caractéres </small>
+
           </div>
           </div>
           <div class="form-group">
-            <label  >nom_responsable</label>
-            <input type="text" class="form-control" formControlName="nom_responsable" id="nom_responsable">
-            <div *ngIf="nom_responsable.touched && crudApi.dataForm.get('nom_responsable').invalid">
-              <small *ngIf="nom_responsable.errors.required" class="text-danger">Required nom_responsable</small>
+            <label  >Nom du responsable</label>
+            <input type="text"required [class.is-invalid] ="nom_responsable.touched && nom_responsable.invalid"minlength="3"  class="form-control" formControlName="nom_responsable" id="nom_responsable">
+            <div *ngIf="nom_responsable.touched && nom_responsable.invalid">
+              <small *ngIf="nom_responsable.errors.required" class="text-danger">Le champs nom_responsable est obligatoire</small>
+              <small *ngIf="nom_responsable.errors?.minlength" class="text-danger"> Le champs nom du responsable  doit avoir au moins 3 caractéres </small>
           </div>
           </div>
           <div class="form-group">
-            <label  >groupe</label>
-            <input type="text" class="form-control" formControlName="groupe" id="groupe">
-            <div *ngIf="groupe.touched && crudApi.dataForm.get('groupe').invalid">
-              <small *ngIf="groupe.errors.required" class="text-danger">Required groupe</small>
+            <label  >Groupe</label>
+            <input type="text" required [class.is-invalid] ="groupe.touched && groupe.invalid"minlength="3" class="form-control" formControlName="groupe" id="groupe">
+            <div *ngIf="groupe.touched && groupe.invalid">
+              <small *ngIf="groupe.errors.required" class="text-danger">Le champs groupe est obligatoire</small>
+              <small *ngIf="groupe.errors?.minlength" class="text-danger"> Le champs groupe doit avoir au moins 3 caractéres </small>
           </div>
           </div>
         
           <div class="form-group">
-            <label  >username</label>
-            <input type="text" class="form-control" formControlName="username" id="username">
-            <div *ngIf="username.touched && crudApi.dataForm.get('username').invalid">
-              <small *ngIf="username.errors.required" class="text-danger">Required username</small>
+            <label  >Username</label>
+            <input type="text"required [class.is-invalid] ="username.touched && username.invalid" class="form-control" formControlName="username" id="username">
+            <div *ngIf="username.touched && username.invalid">
+              <small *ngIf="username.errors.required" class="text-danger">Le champs username est obligatoire</small>
           </div>
           </div>
           <div class="form-group">
-            <label  >password</label>
+            <label  >Mot de passe</label>
             <input type="password" [class.is-invalid]="password.invalid && password.touched" minlength="5"  required class="form-control"  formControlName="password" id="password">
             <span class="focus-input100" data-placeholder="&#xe80f;"></span>
                         <div *ngIf="password.touched && password.invalid">
-                          <small *ngIf="password.errors?.minlength" class="text-danger">Password must be at least 5 caracters</small>
-                            <small *ngIf="password.errors.required" class="text-danger">Required password.</small>
+                          <small *ngIf="password.errors?.minlength" class="text-danger">Le champs mot de passe doit avoir au moins 5 caractéres</small>
+                            <small *ngIf="password.errors.required" class="text-danger">Le champs Mot de passe est obligatoire</small>
                         </div>
                         
           </div>
@@ -114,19 +120,18 @@
             </select>
            
             <div class="text-danger" *ngIf="roles.invalid && roles.touched">
-              <small *ngIf="roles.errors.required">Role required</small>
+              <small *ngIf="roles.errors.required">Le champs role est obligatoire</small>
             </div>
           </div>
           <div class="form-group">
-            <label for="manager" >manager</label>
+            <label for="manager" >Nom du manager</label>
             <select id="manager" name="manager" formControlName="manager"  class="form-control">
               <option value="0">-Select-</option>
-              <option *ngFor="let con of this.SalarieList "value="{{con.username}}"  >{{con.username}}</option>
+              <option *ngFor="let con of managerList"value="{{con.username}}"  >{{con.username}}</option>
             </select>
-            <!-- *ngIf="manager.roles.name === 'ROLE_MANAGER'"  -->
-            <!-- <div class="text-danger" *ngIf="crudApi.dataForm.get('typeconge').invalid && typeconge.touched">
-              <small *ngIf="typeconge.errors.required">conges required</small>
-            </div> -->
+            <div class="text-danger" *ngIf="crudApi.dataForm.get('manager').invalid && manager.touched">
+              <small *ngIf="manager.errors.required">Le champs manager est obligatoire</small>
+            </div>
           </div>
           <button type="submit" [disabled] ="!crudApi.dataForm.valid"   class="btn btn-info" class="form-control"  > Submit</button>
           <button (click)="viderFormulaire()" type="button" class="btn btn-outline-dark ml-1" class="form-control" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>

@@ -21,10 +21,10 @@
                 <a class="nav-link"  routerLink="/conge" routerLinkActive="active">Congés</a>
               </li>
               <li  *ngIf="authority === 'user'" class="nav-item">
-                <a class="nav-link" routerLink="/listconge" routerLinkActive="active">Voir l'historique de ses demandes</a>
+                <a class="nav-link" routerLink="/historiqueListConge" routerLinkActive="active">Voir l'historique de ses propres demandes de congés</a>
               </li>
               <li  *ngIf="authority === 'manager'" class="nav-item">
-                <a class="nav-link" routerLink="/listconge" routerLinkActive="active">Voir l'historique des demandes de Congés</a>
+                <a class="nav-link" routerLink="/listconge" routerLinkActive="active">Liste de toutes les demandes de Congés</a>
               </li>
               <li  *ngIf="authority === 'rh' || authority === 'manager'|| authority === 'user'" class="nav-item">
                 <a class="nav-link" routerLink="/listsalarie" routerLinkActive="active">Utilisateurs</a>

@@ -18,6 +18,7 @@ import { TypecongeService } from 'src/app/service/typeconge.service';
 })
 export class AddcongeComponent implements OnInit {
   conge:Conge[];
+  con :any;
   // conge:Conge=new Conge();
   SalarieList:Salarie[];
   listtypecon:TypeConge[];
@@ -48,23 +49,22 @@ export class AddcongeComponent implements OnInit {
      );
     
   }
-
+  viderFormulaire(){
+    this.crudApi.choixmenu = 1
+  }
   infoForm() {
     this.crudApi.dataForm = this.fb.group({
-      num: ['', [Validators.required]],
+      num: [''],
       date_debut: ['', [Validators.required]], 
-      date_fin: ['', [Validators.required]],  
-      statut:['', [Validators.required]],  
+      date_fin: ['', [Validators.required]], 
+      duree: ['', [Validators.required]],   
+      statut:['en attente', [Validators.required]],  
       typeconge:['', [Validators.required]],  
       salarie:['', [Validators.required]], 
       // idsal:['', [Validators.required]], 
       // id_type:['', [Validators.required]], 
         }) 
     }
-    // conge:Conge=new Conge(this.crudApi.dataForm.value.num,this.crudApi.dataForm.value.date_debut,
-    //   this.crudApi.dataForm.value.date_fin,this.crudApi.dataForm.value.statut,
-    //   this.crudApi.dataForm.value.typeconge,this.crudApi.dataForm.value.salarie,);
-
     ResetForm() {
       this.crudApi.dataForm.reset() 
   }
@@ -97,12 +97,13 @@ addData() {
        timer: 1500
 }) }
      );
-    this.router.navigate(['/listconge']);
+    this.router.navigate(['/historiqueListConge']);
   });
   // this.typecongeService.getAll().subscribe(
   //   response =>{this.typecongeService.listtypecon = response;}
   //  );
 }
+
   updateData()
   {
     debugger;
@@ -124,7 +125,7 @@ addData() {
      })
         }
        );
-      this.router.navigate(['/listconge']);
+      this.router.navigate(['/historiqueListConge']);
     });
     // this.typecongeService.getAll().subscribe(
     //   response =>{this.typecongeService.listtypecon = response;}

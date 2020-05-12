@@ -1,0 +1,49 @@
+<div class="col-md-6 user-container">
+    <h2 class="text-center">Edit User</h2>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <div class="hidden">
+        <input type="text"  formControlName="id" placeholder="id" name="id" class="form-control" id="id">
+      </div>
+
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input type="text" formControlName="nom"  placeholder="nom" name="nom" class="form-control" id="nom">
+      </div>
+  
+      <div class="form-group">
+        <label for="prenom">prenom</label>
+        <input formControlName="prenom" placeholder="prenom" name="prenom" class="form-control" id="prenom">
+      </div>
+  
+      <div class="form-group">
+        <label for="mail">E_mail</label>
+        <input formControlName="mail" placeholder="mail" name="mail" class="form-control" id="mail">
+      </div>
+  
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" formControlName="age" placeholder="age" name="age" class="form-control" id="age">
+      </div>
+
+      <div class="form-group">
+        <label for="age">Numero de telephone:</label>
+        <input type="number" formControlName="num_tel" placeholder="num_tel" name="num_tel" class="form-control" id="num_tel">
+      </div>
+  
+      <div class="form-group">
+        <label for="salary">username:</label>
+        <input type="text" formControlName="username" placeholder="username" name="username" class="form-control" id="username">
+      </div>
+
+      <div class="form-group">
+        <label for="salary">Grade:</label>
+        <input type="text" formControlName="grade" placeholder="grade" name="grade" class="form-control" id="grade">
+      </div>
+
+      <div class="form-group">
+        <label for="groupe">Groupe:</label>
+        <input type="text" formControlName="groupe" placeholder="groupe" name="groupe" class="form-control" id="groupe">
+      </div>
+      <button class="btn btn-success">Update</button>
+    </form>
+  </div>

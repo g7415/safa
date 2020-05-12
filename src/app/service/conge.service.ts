@@ -9,17 +9,34 @@ import { Conge } from '../model/conge';
   providedIn: 'root'
 })
 export class CongeService {
-
+  private EmaildemandeAccepter = 'http://localhost:8080/testapp/EmaildemandeAccepter';
+  private EmaildemandeRefuser = 'http://localhost:8080/testapp/EmaildemandeRefuser';
+  private baseUrlconAccep = 'http://localhost:8080/api/conAccep';
+  private baseUrlconRefuser = 'http://localhost:8080/api/conRefuser';
+  private baseUrlUsernameSal = 'http://localhost:8080/api/conusername';
+  private baseUrlIdSal = 'http://localhost:8080/api/conid';
   private baseUrl = 'http://localhost:8080/api/con';
   choixmenu : number = 1;
   dataForm: any =  FormGroup; 
   listcon:Conge[];
   constructor(private http: HttpClient,private toastr: ToastrService,public fb: FormBuilder) { }
 
+
+  creatEmail3(info:Conge):Observable<Conge>{
+    return this.http.post<Conge>(`${this.EmaildemandeRefuser}`, info)
+  }
+  creatEmail2(info:Conge):Observable<Conge>{
+    return this.http.post<Conge>(`${this.EmaildemandeAccepter}`, info)
+  }
   getData(num: number): Observable<Object> {
     return this.http.get(`${this.baseUrl}/${num}`);
   }
- 
+  getCongeByUsernameSal(username: string): Observable<Conge[]> {
+    return this.http.get<Conge[]>(`${this.baseUrlUsernameSal}/${username}`);
+  }
+  getCongeByIdSal(id: number): Observable<Object> {
+    return this.http.get(`${this.baseUrlIdSal}/${id}`);
+  }
   createData(info: Conge): Observable<Conge> {
     return this.http.post<Conge>(`${this.baseUrl}`, info);
   }
@@ -27,7 +44,6 @@ export class CongeService {
     return this.http.put(`${this.baseUrl}/${num}`, value);
   }
   
-
   deleteData(num: number): Observable<any> {
    
     return this.http.delete(`${this.baseUrl}/${num}`, { responseType: 'text' });
@@ -36,5 +52,13 @@ export class CongeService {
   getAll(): Observable<any> {
    
     return this.http.get(`${this.baseUrl}`);
+  }
+
+  updateCongAccep(num: number, value: any): Observable<Object> {
+    return this.http.put(`${this.baseUrlconAccep}/${num}`, value);
+  }
+
+  updateCongRefuser(num: number, value: any): Observable<Object> {
+    return this.http.put(`${this.baseUrlconRefuser}/${num}`, value);
   }
 }

@@ -1,6 +1,3 @@
-import { Component, OnInit, Inject  } from '@angular/core';
-import {FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { Observable } from "rxjs";
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import {MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -12,20 +9,31 @@ import { Conge } from 'src/app/model/conge';
 import Swal from 'sweetalert2';
 import { TypecongeService } from 'src/app/service/typeconge.service';
 import { TypeConge } from 'src/app/model/typeconge';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { SalarieService } from 'src/app/service/salarie.service';
+import { Salarie } from 'src/app/model/salarie';
 
 @Component({
-  selector: 'app-listconge',
-  templateUrl: './listconge.component.html',
-  styleUrls: ['./listconge.component.scss']
+  selector: 'app-historique-list-conge',
+  templateUrl: './historique-list-conge.component.html',
+  styleUrls: ['./historique-list-conge.component.scss']
 })
-export class ListcongeComponent implements OnInit {
+export class HistoriqueListCongeComponent implements OnInit {
   listtypecon:TypeConge[];
+  listcon:Conge[];
+  usr : Salarie;
   p: number = 1;
   count: number = 5;
   searchText:any;
   con : Conge;
-  conge:any
+  info: any;
+  sal : Salarie;
+  userUpdated: Object;
+  errorMessage: string;
   constructor(public crudApi: CongeService, public toastr: ToastrService,
+    private token: TokenStorageService,public salarieService:SalarieService, 
     private router : Router,public fb: FormBuilder,public typecongeService:TypecongeService,
     //Pour le popup (ajouter congé)
     private matDialog: MatDialog,
@@ -33,9 +41,21 @@ export class ListcongeComponent implements OnInit {
     public dialogRef:MatDialogRef<AddcongeComponent>,) { }
 
   ngOnInit() {
+    // this.salarieService.getProfil(this.token.getUsername())
+    // .subscribe(
+    //   data => {
+    //     this.usr = data;
+    //   console.log(data);
+    //   this.token.saveUsername(data.username);
+     
+    //   },
+    //   error => {
+    //     console.log(error);
+    //   }
+    // );
     this.getData();
+   
   }
- 
    addConge()
   {
  
@@ -48,9 +68,10 @@ export class ListcongeComponent implements OnInit {
   }
 
   getData() {
-   
-    this.crudApi.getAll().subscribe(
-      response =>{this.crudApi.listcon = response;}
+    debugger;
+    this.crudApi.getCongeByUsernameSal(this.token.getUsername())
+    .subscribe(
+      response =>{this.listcon = response;}
      );
       this.typecongeService.getAll().subscribe(
       response =>{this.listtypecon = response;}
@@ -67,8 +88,7 @@ export class ListcongeComponent implements OnInit {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
-      if (result.value)
-       {this.crudApi.deleteData(num)
+      if (result.value) {this.crudApi.deleteData(num)
           .subscribe(
             data => {
               console.log(data); 
@@ -103,52 +123,5 @@ export class ListcongeComponent implements OnInit {
      
   }
  
-
-congeRefuser(num: number,item : Conge){ 
-  this.crudApi.updateCongRefuser(num,item)
-  .subscribe(data =>{this.conge = data;
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Congé refuser',
-      showConfirmButton: false,
-      timer: 1500
-})
-this.crudApi.creatEmail3(item)
-.subscribe(
- res => {
- this.conge = res;
- console.log(this.conge);
- alert('Email Sent successfully');
- });
- this.getData();
-  })
-} 
-
-congeAccepter(num: number,item : Conge){ 
-  this.crudApi.updateCongAccep(num,item)
-  .subscribe(data =>{this.conge = data;
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Congé accepter',
-      showConfirmButton: false,
-      timer: 1500
-})
-
-this.crudApi.creatEmail2(item)
-.subscribe(
- res => {
- this.conge = res;
- console.log(this.conge);
- alert('Email Sent successfully');
- });
- this.getData();
-
-  })
-
-}  
-
-
-
+                 
 }

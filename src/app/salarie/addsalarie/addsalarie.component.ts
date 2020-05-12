@@ -20,6 +20,9 @@ export class AddsalarieComponent implements OnInit {
   userCreated;
   SalarieList:Salarie[];
   signupInfo: Salarie;
+  salarie:Salarie;
+  managerList:Salarie[];
+  
   submitted = false 
   public userFile : any = File 
   constructor(public crudApi: SalarieService ,private https: HttpClient,
@@ -37,32 +40,29 @@ ngOnInit(){
     if (this.crudApi.choixmenu == 1){
       this.infoForm()
     }
-    debugger;
+   
     this.crudApi.getAll().subscribe(
       response =>{this.SalarieList = response;}
      );
+    
+      this.crudApi.getAllManager().subscribe(
+        response =>{this.managerList = response;} );
+    
 }
-
-// SearchProduct(username: string) {  
-  
-//   let obj = this.SalarieList.filter(m => m.roles == this.roles);  
-//   this.SalarieList = obj;  
-//   return this.SalarieList;  
-// }  
 
 //donc je vais instancié mon formulaire , le vider
 infoForm() {
     this.crudApi.dataForm = this.fb.group({
       id: [''],
       nom:   ['', [Validators.required, Validators.minLength(3)]], 
-      prenom: ['', [Validators.required]], 
+      prenom: ['', [Validators.required, Validators.minLength(3)]], 
       solde_conge: ['', [Validators.required]],  
       date_entree:['', [Validators.required]],  
-      grade: ['', [Validators.required]], 
+      grade: ['', [Validators.required, Validators.minLength(3)]], 
       mail: ['', [Validators.required, Validators.minLength(7), custommail ]],  
-      num_tel:['', [Validators.required]], 
-      nom_responsable:  ['', [Validators.required]], 
-      groupe:  ['', [Validators.required]], 
+      num_tel:['', [Validators.required,Validators.minLength(7)]], 
+      nom_responsable:  ['', [Validators.required, Validators.minLength(3)]], 
+      groupe:  ['', [Validators.required, Validators.minLength(3)]], 
       username: ['', [Validators.required]], 
       password: ['', [Validators.required, Validators.minLength(5)]], 
       roles: ['', [Validators.required]], 
@@ -92,15 +92,18 @@ infoForm() {
 addData() {
       // let data = this.crudApi.dataForm.value;
       // data.role = [data.role];
-    debugger;
+    
     let formvalues = this.crudApi.dataForm.value;
     // formvalues.manager = { "username": formvalues.manager };
     this.crudApi.createData(formvalues)
-    .subscribe(user => {  
+    .subscribe(user => { 
+      debugger;
+    this.userCreated = user;
     this.dialogRef.close();
     this.crudApi.getAll()
     .subscribe(
-    response =>{this.crudApi.listsal = this.formatRole(response);
+    response =>{this.crudApi.listsal = this.formatRole(response)
+   
     Swal.fire({
     position: 'top-end',
     icon: 'success',
@@ -114,7 +117,7 @@ addData() {
     }
     );
     debugger;
-    this.crudApi.creatEmail(this.crudApi.dataForm.value)
+    this.crudApi.creatEmail(this.userCreated)
     .subscribe(
      res => {
      this.crudApi.dataForm.value = res;
@@ -154,6 +157,7 @@ updateData() {
    this.crudApi.getAllRoles().subscribe(
    response =>{this.crudApi.listrol = response;
    }
+
    );
    debugger;
    this.crudApi.creatEmail(this.userUpdated)
@@ -185,7 +189,6 @@ updateData() {
   get roles(){return this.crudApi.dataForm.get('roles')}
   get manager(){return this.crudApi.dataForm.get('manager')}
 
-
   formatRole(reponse : any){
     for (var salarie of reponse) {
       let tabRole = Array();
@@ -200,4 +203,5 @@ updateData() {
     }
     return reponse;
   }
+
 }

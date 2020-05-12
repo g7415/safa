@@ -7,6 +7,8 @@
       
       <form [formGroup]="crudApi.dataForm" (ngSubmit)="onSubmit()">
       <div>
+        {{crudApi.dataForm.value | json}}
+        {{crudApi.dataForm.valid}}
             <input type="hidden" class="form-control" formControlName="id_type" id="id_type">
           </div>
     
@@ -41,8 +43,8 @@
           </div>
           
          
-          <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
-          <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+          <button type="submit" [disabled] ="!crudApi.dataForm.valid"  class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+          <button (click)="viderFormulaire()" type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
         
       </form>
     </div>
