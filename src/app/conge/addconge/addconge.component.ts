@@ -11,6 +11,7 @@ import { Salarie } from 'src/app/model/salarie';
 import Swal from 'sweetalert2';
 import { TypeConge } from 'src/app/model/typeconge';
 import { TypecongeService } from 'src/app/service/typeconge.service';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 @Component({
   selector: 'app-addconge',
   templateUrl: './addconge.component.html',
@@ -19,12 +20,12 @@ import { TypecongeService } from 'src/app/service/typeconge.service';
 export class AddcongeComponent implements OnInit {
   conge:Conge[];
   con :any;
-  // conge:Conge=new Conge();
+  todayDate = new Date();
   SalarieList:Salarie[];
   listtypecon:TypeConge[];
   submitted = false 
   public userFile : any = File 
-  constructor(public crudApi: CongeService ,public fb: FormBuilder,public toastr: ToastrService,
+  constructor(public crudApi: CongeService ,public fb: FormBuilder,public toastr: ToastrService,private token: TokenStorageService,
   private router : Router, public salarieService: SalarieService,public typecongeService:TypecongeService,
   @Inject(MAT_DIALOG_DATA)  public data,
   public dialogRef:MatDialogRef<AddcongeComponent>,) { }
@@ -49,6 +50,7 @@ export class AddcongeComponent implements OnInit {
      );
     
   }
+
   viderFormulaire(){
     this.crudApi.choixmenu = 1
   }
@@ -56,7 +58,7 @@ export class AddcongeComponent implements OnInit {
     this.crudApi.dataForm = this.fb.group({
       num: [''],
       date_debut: ['', [Validators.required]], 
-      date_fin: ['', [Validators.required]], 
+      date_fin: ['', [Validators.required]],
       duree: ['', [Validators.required]],   
       statut:['en attente', [Validators.required]],  
       typeconge:['', [Validators.required]],  
@@ -65,6 +67,7 @@ export class AddcongeComponent implements OnInit {
       // id_type:['', [Validators.required]], 
         }) 
     }
+    
     ResetForm() {
       this.crudApi.dataForm.reset() 
   }

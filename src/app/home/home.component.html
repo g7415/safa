@@ -1,4 +1,4 @@
-<div *ngIf="info.token; else loggedOut">
+<!-- <div *ngIf="info.token; else loggedOut">
     <h5 class="text-primary">Your Information</h5>
     <p>
       <strong>Username:</strong> {{info.username}}<br/>
@@ -11,4 +11,17 @@
   <ng-template #loggedOut>
     Please login.
   </ng-template>
-  
+   -->
+   <script src="node_modules/chart.js/src/chart.js"></script>
+
+   <div class="container">
+    <div style="display: block">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+      </canvas>
+    </div>
+  </div>

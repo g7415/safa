@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SalarieService } from 'src/app/service/salarie.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-profile',
@@ -11,67 +12,58 @@ import { TokenStorageService } from 'src/app/auth/token-storage.service';
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit {
-
+  registerForm: FormGroup;
+  submitted = false;
   sala: any;
   editForm: FormGroup;
   toastr: any;
   errorMessage: string;
-  info: {};
   constructor(private formBuilder: FormBuilder,private router: Router,
-     private salarieService: SalarieService,private token: TokenStorageService,) { }
+    private salarieService: SalarieService,private token: TokenStorageService,) { }
 
   ngOnInit() {
-  let userId = this.token.getId();
-  this.salarieService.getData(parseInt(userId)).subscribe(
-  data => {this.sala=data,
-    this.token.saveId(data.id);
-    this.token.saveNom(data.nom);
-    console.log(this.token.getNom());
-    console.log(this.token.getId());
-
-    
-  console.log(this.sala);},
-  error=>console.log(error)
-    );
-    this.info = { id:this.token.getId(),
-      nom:this.token.getNom()}
-    if(!userId) {
-      alert("Invalid action.")
-      this.router.navigate(['profil']);
-      return;
+      this.registerForm = this.formBuilder.group({
+          id: [''],
+          nom: ['', [ Validators.required, Validators.minLength(3)]],
+          prenom: ['', [Validators.required, Validators.minLength(3)]],
+          mail: ['', [Validators.required ,Validators.email]],
+          num_tel: ['', [Validators.required, Validators.minLength(8)]],
       
-    }
-   
-
-    this.editForm = this.formBuilder.group({
-      id: [''],
-      nom: ['', Validators.required],
-      prenom: ['', Validators.required],
-      mail: ['', Validators.required],
-      age: ['', Validators.required],
-      num_tel: ['', Validators.required],
-      username: ['', Validators.required],
-      grade: ['', Validators.required],
-      groupe: ['', Validators.required]
-    });
-    // this.salarieService.getData(+userId)
-    //   .subscribe( data => {
-    //     this.editForm.setValue(data.result);
-    //   });
+      });
   }
- 
-  onSubmit() {
-    this.salarieService.updatedata(parseInt(this.token.getId()), this.editForm.value)
-     .subscribe(
-     response =>{this.salarieService.listsal 
-     this.toastr.info( 'Employé modifier avec Success');
-     } 
-     );
-      error => {this.errorMessage ='Please verify the informations in the form.', 
-                console.error(error)}
-     debugger;
-    
-     
-     }
 
+  // convenience getter for easy access to form fields
+  get f() { return this.registerForm.controls; }
+
+  onSubmit() {
+      this.submitted = true;
+
+      // stop here if form is invalid
+      if (this.registerForm.invalid) {
+          return;
+      }
+
+      // display form values on success
+      alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+  }
+
+  onReset() {
+      this.submitted = false;
+      this.registerForm.reset();
+  }
+  updateProfil(){
+    this.salarieService.updateProfil(parseInt(this.token.getId()),this.registerForm.value)
+    .subscribe(data=>{this.sala=data;
+      Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Mot de passe modifier',
+              showConfirmButton: false,
+              timer: 1500
+        })
+    })
+      }
 }
+
+
+ 

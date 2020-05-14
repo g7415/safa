@@ -9,6 +9,8 @@ import { Conge } from '../model/conge';
   providedIn: 'root'
 })
 export class CongeService {
+  
+  private baseUrlConByManager = 'http://localhost:8080/api/ConByManager';
   private EmaildemandeAccepter = 'http://localhost:8080/testapp/EmaildemandeAccepter';
   private EmaildemandeRefuser = 'http://localhost:8080/testapp/EmaildemandeRefuser';
   private baseUrlconAccep = 'http://localhost:8080/api/conAccep';
@@ -22,6 +24,9 @@ export class CongeService {
   constructor(private http: HttpClient,private toastr: ToastrService,public fb: FormBuilder) { }
 
 
+  getConByManager(id: number): Observable<Conge[]> {
+    return this.http.get<Conge[]>(`${this.baseUrlConByManager}/${id}`);
+  }
   creatEmail3(info:Conge):Observable<Conge>{
     return this.http.post<Conge>(`${this.EmaildemandeRefuser}`, info)
   }
@@ -31,6 +36,7 @@ export class CongeService {
   getData(num: number): Observable<Object> {
     return this.http.get(`${this.baseUrl}/${num}`);
   }
+
   getCongeByUsernameSal(username: string): Observable<Conge[]> {
     return this.http.get<Conge[]>(`${this.baseUrlUsernameSal}/${username}`);
   }

@@ -26,17 +26,23 @@
               <li  *ngIf="authority === 'manager'" class="nav-item">
                 <a class="nav-link" routerLink="/listconge" routerLinkActive="active">Liste de toutes les demandes de Congés</a>
               </li>
+              <li  *ngIf="authority === 'manager'" class="nav-item">
+                <a class="nav-link" routerLink="/listcongeByManager" routerLinkActive="active">Liste des demandes des ses collaborateurs</a>
+              </li>
               <li  *ngIf="authority === 'rh' || authority === 'manager'|| authority === 'user'" class="nav-item">
                 <a class="nav-link" routerLink="/listsalarie" routerLinkActive="active">Utilisateurs</a>
               </li>
               <li  *ngIf="authority === 'rh'|| authority === 'manager'|| authority === 'user' " class="nav-item">
                 <a class="nav-link" routerLink="/listtypeconge" routerLinkActive="active">Type Congé</a>
               </li>
+              <li  *ngIf="authority === 'rh'|| authority === 'manager'|| authority === 'user' " class="nav-item">
+                <a class="nav-link" routerLink="/updatePassword" routerLinkActive="active">Changer le mot de passe</a>
+              </li>
             </ul>
           </div>
           <div class="btn-group" role="group">
         
-            <button id="btnGroupDrop1" type="button" class="btn btn-secondary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  
+            <button  *ngIf="authority === 'rh'|| authority === 'manager'|| authority === 'user' " id="btnGroupDrop1" type="button" class="btn btn-secondary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  
              
               {{info.username}}
               

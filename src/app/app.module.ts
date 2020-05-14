@@ -31,6 +31,8 @@ import { ListtypecongeComponent } from './typeconge/listtypeconge/listtypeconge.
 import { CalendrierComponent } from './calendrier/calendrier.component';
 import { TreeViewModule } from "@syncfusion/ej2-angular-navigations";
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
+import { ChartsModule } from 'ng2-charts';
+
 import {
   DropDownListAllModule,
   MultiSelectAllModule
@@ -65,6 +67,9 @@ import {
 import { CommonModule } from "@angular/common";
 import { HistoriqueListCongeComponent } from './conge/historique-list-conge/historique-list-conge.component';
 import { EditProfileComponent } from './profil/edit-profile/edit-profile.component';
+import { UpdatePasswordComponent } from './salarie/update-password/update-password.component';
+import { ReinitialiseMdpComponent } from './login/reinitialise-mdp/reinitialise-mdp.component';
+import { ListcongeByManagerComponent } from './conge/listconge-by-manager/listconge-by-manager.component';
 
 
 const MATERIAL_MODULES = [MatToolbarModule,
@@ -73,6 +78,9 @@ const MATERIAL_MODULES = [MatToolbarModule,
 
   const appRoutes : Routes = [
     //{path:'', redirectTo :"listconge" , pathMatch:"full"},
+    {path: 'listcongeByManager', component: ListcongeByManagerComponent},
+    {path: 'reinitialiseMdp', component: ReinitialiseMdpComponent},
+    {path: 'updatePassword', component: UpdatePasswordComponent},
     {path: 'editProfile', component: EditProfileComponent},
     {path: 'navbar', component: NavbarComponent},
     {path: 'conge', component: AddcongeComponent},
@@ -116,9 +124,12 @@ const MATERIAL_MODULES = [MatToolbarModule,
     ListtypecongeComponent,
     CalendrierComponent,
     HistoriqueListCongeComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    UpdatePasswordComponent,
+    ReinitialiseMdpComponent,
+    ListcongeByManagerComponent
   ],
-  imports: [DateValueAccessorModule,Ng2SearchPipeModule ,NgxPaginationModule,
+  imports: [DateValueAccessorModule,Ng2SearchPipeModule ,NgxPaginationModule,ChartsModule,
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,

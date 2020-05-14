@@ -17,6 +17,9 @@ const httpOptions = {
 })
 export class SalarieService {
   
+  private resetPassword = 'http://localhost:8080/api/resetPassword';
+  private changeProfil = 'http://localhost:8080/api/updateProfil';
+  private changePassword = 'http://localhost:8080/api/changePassword';
   private baseUrlEmail = 'http://localhost:8080/testapp/getdetails';
   private baseUrlM = 'http://localhost:8080/api/manager';
   private baseUrl = 'http://localhost:8080/api/sal';
@@ -29,6 +32,17 @@ export class SalarieService {
   listrol:Role[];
   managerList:Salarie[];
   constructor(private http: HttpClient,private toastr: ToastrService,public fb: FormBuilder) { }
+
+  
+  reinitialiseMdp(username: String, value: any): Observable<Salarie> {
+    return this.http.put<Salarie>(`${this.resetPassword}/${username}`, value);
+  }
+  updateProfil(id: number, value: any): Observable<Salarie> {
+    return this.http.put<Salarie>(`${this.changeProfil}/${id}`, value);
+  }
+  updatePassword(username: String, value: any): Observable<Salarie> {
+    return this.http.put<Salarie>(`${this.changePassword}/${username}`, value);
+  }
   getProfil(username: String): Observable<Salarie> {
     return this.http.get<Salarie>(`${this.baseUrl1}/${username}`);
   }

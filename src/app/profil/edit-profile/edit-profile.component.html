@@ -1,49 +1,51 @@
-<div class="col-md-6 user-container">
-    <h2 class="text-center">Edit User</h2>
-    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-      <div class="hidden">
-        <input type="text"  formControlName="id" placeholder="id" name="id" class="form-control" id="id">
-      </div>
+<!-- main app container -->
+<div class="card m-3">
+    <h5 class="card-header">Modifier Profil</h5>
+    <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+    
+                <div class="form-group col-5">
+                    <label>Nom</label>
+                    <input type="text" formControlName="nom" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }" />
+                    <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                        <div *ngIf="f.nom.errors.required">Le champs nom est obligatoire</div>
+                    </div>
+                </div>
+                <div class="form-group col-5">
+                    <label>Prenom</label>
+                    <input type="text" formControlName="prenom" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }" />
+                    <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                        <div *ngIf="f.prenom.errors.required">Le champs prenom est obligatoire</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" formControlName="mail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }" />
+                <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
+                    <div *ngIf="f.mail.errors.required">Email est obligatoire</div>
+                    <div *ngIf="f.mail.errors.mail">
+                        L'email doit être une adresse  valide</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label>Numero de telephone</label>
+                    <input type="number" formControlName="num_tel" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.num_tel.errors }" />
+                    <div *ngIf="submitted && f.num_tel.errors" class="invalid-feedback">
+                        <div *ngIf="f.num_tel.errors.required">Le champs numero de telephone est obligatoire</div>
+                        <div *ngIf="f.num_tel.errors.minlength">Le champs numero de telephone doit avoir au moins 8 caractéres</div>
+                    </div>
+                </div>
+               
+            </div>
+        
+            <div class="text-center">
+                <button class="btn btn-primary mr-1" (click)="updateProfil()">Envoyer</button>
+                <button class="btn btn-secondary" type="reset" (click)="onReset()">Annuler</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-      <div class="form-group">
-        <label for="nom">Nom</label>
-        <input type="text" formControlName="nom"  placeholder="nom" name="nom" class="form-control" id="nom">
-      </div>
-  
-      <div class="form-group">
-        <label for="prenom">prenom</label>
-        <input formControlName="prenom" placeholder="prenom" name="prenom" class="form-control" id="prenom">
-      </div>
-  
-      <div class="form-group">
-        <label for="mail">E_mail</label>
-        <input formControlName="mail" placeholder="mail" name="mail" class="form-control" id="mail">
-      </div>
-  
-      <div class="form-group">
-        <label for="age">Age:</label>
-        <input type="number" formControlName="age" placeholder="age" name="age" class="form-control" id="age">
-      </div>
-
-      <div class="form-group">
-        <label for="age">Numero de telephone:</label>
-        <input type="number" formControlName="num_tel" placeholder="num_tel" name="num_tel" class="form-control" id="num_tel">
-      </div>
-  
-      <div class="form-group">
-        <label for="salary">username:</label>
-        <input type="text" formControlName="username" placeholder="username" name="username" class="form-control" id="username">
-      </div>
-
-      <div class="form-group">
-        <label for="salary">Grade:</label>
-        <input type="text" formControlName="grade" placeholder="grade" name="grade" class="form-control" id="grade">
-      </div>
-
-      <div class="form-group">
-        <label for="groupe">Groupe:</label>
-        <input type="text" formControlName="groupe" placeholder="groupe" name="groupe" class="form-control" id="groupe">
-      </div>
-      <button class="btn btn-success">Update</button>
-    </form>
-  </div>

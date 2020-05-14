@@ -13,14 +13,14 @@
           </div>
         <div class="form-group">
           <label>Date debut</label>
-          <input type="date" class="form-control" formControlName="date_debut" id="date_debut">
+          <input type="date" class="form-control" [min]="todayDate" formControlName="date_debut" id="date_debut" >
           <div *ngIf="date_debut.touched && crudApi.dataForm.get('date_debut').invalid">
             <small *ngIf="date_debut.errors.required" class="text-danger">Required date_debut</small>
         </div>
         </div>
         <div class="form-group">
           <label>Date fin</label>
-          <input type="date" class="form-control" formControlName="date_fin" id="date_fin">
+          <input type="date" class="form-control"  [min]="date_debut.value"formControlName="date_fin" id="date_fin">
           <div *ngIf="date_fin.touched && crudApi.dataForm.get('date_fin').invalid">
             <small *ngIf="date_fin.errors.required" class="text-danger">Required date_fin</small>
         </div>
