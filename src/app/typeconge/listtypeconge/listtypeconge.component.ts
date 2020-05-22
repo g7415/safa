@@ -7,6 +7,7 @@ import { FormBuilder } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { AddtypecongeComponent } from '../addtypeconge/addtypeconge.component';
 import Swal from 'sweetalert2';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 @Component({
   selector: 'app-listtypeconge',
@@ -18,7 +19,10 @@ export class ListtypecongeComponent implements OnInit {
   count: number = 5;
   searchText:any;
   typeconge : TypeConge;
-  constructor(public crudApi: TypecongeService, public toastr: ToastrService,
+  private roles: string[];
+  authority: string;
+  constructor(public crudApi: TypecongeService, public toastr: ToastrService
+    ,private tokenStorage: TokenStorageService,
     private router : Router,public fb: FormBuilder,
     private matDialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -26,6 +30,20 @@ export class ListtypecongeComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+    if (this.tokenStorage.getToken()) {
+      this.roles = this.tokenStorage.getAuthorities();
+      this.roles.every(role => {
+        if (role === 'ROLE_MANAGER') {
+          this.authority = 'manager';
+          return false;
+        } else if (role === 'ROLE_RH') {
+          this.authority = 'rh';
+          return false;
+        }
+        this.authority = 'user';
+        return true;
+      });
+    }
   }
   
   addTypeConge()

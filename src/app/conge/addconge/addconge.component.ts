@@ -54,6 +54,7 @@ export class AddcongeComponent implements OnInit {
   viderFormulaire(){
     this.crudApi.choixmenu = 1
   }
+  
   infoForm() {
     this.crudApi.dataForm = this.fb.group({
       num: [''],
@@ -85,6 +86,7 @@ addData() {
   debugger;
   let formvalues = this.crudApi.dataForm.value;
   formvalues.typeconge = { "id_type": formvalues.typeconge };
+  // formvalues.salarie = { "solde_conge": formvalues.solde_conge };
   formvalues.salarie = { "id" : formvalues.salarie };
   this.crudApi.createData(formvalues)
   .subscribe( data => {
@@ -137,6 +139,15 @@ addData() {
   }
   navigateToListConge(){
     this.router.navigate(['/listconge']);
-    console.log("Success Navigation");}
-  
+    console.log("Success Navigation");
+  }
+   dateDiff()
+   {
+    let date_debut = new Date(this.crudApi.dataForm.value.date_debut);
+    let date_fin = new Date(this.crudApi.dataForm.value.date_fin);
+    this.crudApi.dataForm.patchValue({
+      duree:  new Number((date_fin.getTime()  - date_debut.getTime())/ 86400000).toFixed(0)
+    });
+     
+   }
 }

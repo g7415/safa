@@ -22,9 +22,23 @@ export class AddsalarieComponent implements OnInit {
   signupInfo: Salarie;
   salarie:Salarie;
   managerList:Salarie[];
-  
+  userFile ;
+  public imagePath;
+  imgURL: any;
+  public message: string;
   submitted = false 
-  public userFile : any = File 
+   //upload image info
+   public selectedFile;
+   public event1;
+   receivedImageData :any;
+   base64Data: any;
+   convertedImage: any;
+   imageName : any;
+   retrievedImage : any;
+   retrieveResonse: any;
+   pictureData:any;
+   pic:any;
+  
   constructor(public crudApi: SalarieService ,private https: HttpClient,
     public fb: FormBuilder,
     public toastr: ToastrService,
@@ -66,9 +80,11 @@ infoForm() {
       username: ['', [Validators.required]], 
       password: ['', [Validators.required, Validators.minLength(5)]], 
       roles: ['', [Validators.required]], 
-      manager: ['', [Validators.required]], 
+      manager: [''], 
+      pic :['']
         }) 
   }
+
 
   ResetForm() {
       this.crudApi.dataForm.reset() 
@@ -88,13 +104,17 @@ infoForm() {
   viderFormulaire(){
     this.crudApi.choixmenu = 1
   }
-            
+   
+  
+  
 addData() {
-      // let data = this.crudApi.dataForm.value;
-      // data.role = [data.role];
-    
+ 
+// btoa Méthode permettant de créer une chaîne ASCII en base64 à partir d'une « chaîne » de données binaires.
+//  atob Méthode permettant de décoder une chaîne de donnée qui a été encodée en base64.
+    this.crudApi.dataForm.value.pic =  btoa(this.receivedImageData.pic)
     let formvalues = this.crudApi.dataForm.value;
-    // formvalues.manager = { "username": formvalues.manager };
+    // formvalues.manager= [formvalues.manager];
+    // console.log(formvalues);
     this.crudApi.createData(formvalues)
     .subscribe(user => { 
       debugger;
@@ -102,7 +122,8 @@ addData() {
     this.dialogRef.close();
     this.crudApi.getAll()
     .subscribe(
-    response =>{this.crudApi.listsal = this.formatRole(response)
+    response =>{this.crudApi.listsal = this.formatRole(response);
+      // this.crudApi.listsal = this.formatManager(response);
    
     Swal.fire({
     position: 'top-end',
@@ -140,6 +161,9 @@ addData() {
 }
 debugger;
 updateData() {
+  // btoa Méthode permettant de créer une chaîne ASCII en base64 à partir d'une « chaîne » de données binaires.
+//  atob Méthode permettant de décoder une chaîne de donnée qui a été encodée en base64.
+  this.crudApi.dataForm.value.pic =  btoa(this.receivedImageData.pic);
   let data = this.crudApi.dataForm.value;
   console.log(data); 
   // data.roles = [data.roles];
@@ -203,5 +227,52 @@ updateData() {
     }
     return reponse;
   }
+  // formatManager(reponse : any){
+  //   for (var salarie of reponse) {
+  //     let tabRole = Array();
+  //     let tabTabRole = Array();
+  //     let i = 0;
+  //     for(var manager of salarie.manager){
+  //       tabRole[i] = manager.username;
+  //       i++;
+  //     }
+  //     tabTabRole[0] = tabRole;
+  //     salarie.manager = tabTabRole;
+  //   }
+  //   return reponse;
+  // }
 
+ 
+
+/* partie spécifiée à uploading une photo de profile */
+public  onFileChanged(event) {
+  console.log(event);
+  this.selectedFile = event.target.files[0];
+
+  // Below part is used to display the selected image
+  let reader = new FileReader();
+  reader.readAsDataURL(event.target.files[0]);
+  reader.onload = (event2) => {
+    this.imgURL = reader.result;
+};
+}
+
+// This part is for uploading
+onUpload() {
+const uploadData = new FormData();
+uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
+
+this.https.post('http://localhost:8080/api/upload', uploadData)
+.subscribe( 
+             data => {
+               console.log(data);
+
+                     this.receivedImageData = data;
+                     this.pic = this.receivedImageData.pic;
+                     //"pic" est le nom d'un attribut dans le backend
+                     this.base64Data = this.receivedImageData.pic;
+                     this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data; },
+             err => console.log('Error Occured duringng saving: ' + err)
+          );
+        }
 }

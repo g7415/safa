@@ -37,7 +37,7 @@
     "angular-calendar": "^0.28.13",
     "angular-date-value-accessor": "^1.0.2",
     "angular-font-awesome": "^3.1.2",
-    "bootstrap": "^4.4.1",
+    "bootstrap": "^4.5.0",
     "chart.js": "^2.9.3",
     "date-fns": "^2.12.0",
     "font-awesome": "^4.7.0",

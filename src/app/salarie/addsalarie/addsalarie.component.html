@@ -126,13 +126,41 @@
           <div class="form-group">
             <label for="manager" >Nom du manager</label>
             <select id="manager" name="manager" formControlName="manager"  class="form-control">
-              <option value="0">-Select-</option>
+              <option value="">-Select-</option>
               <option *ngFor="let con of managerList"value="{{con.username}}"  >{{con.username}}</option>
             </select>
-            <div class="text-danger" *ngIf="crudApi.dataForm.get('manager').invalid && manager.touched">
+            <!-- <div class="text-danger" *ngIf="crudApi.dataForm.get('manager').invalid && manager.touched">
               <small *ngIf="manager.errors.required">Le champs manager est obligatoire</small>
-            </div>
+            </div> -->
           </div>
+          <!-- <div class="form-group">
+            <label>File Upload  </label>
+                <input type="file"class="form-control" accept="image/*" (change)="onSelectFile($event)"style="height:100%">
+                <img [src]="imgURL" height="200" *ngIf="imgURL">
+        </div> -->
+        <section>
+          <label class="label">Photo de profil : </label>
+          <label class="input"> <i class="icon-append fa fa-user"></i>
+            <input type="file" (change)="onFileChanged($event)"style="height:100%">
+            <input type="button" (click)="onUpload()" value="upload"> <hr>
+             
+             <div *ngIf=convertedImage>
+             <img [src]="convertedImage" height="120" width="120">
+             </div>
+            </label>
+                </section> 
+
+        <section>
+          <label class="label">Photo : </label>  
+          <label class="input"> 
+            <input type="text" formControlName="pic" name="pic" 
+              >
+              <!-- [value]="btoa(this.receivedImageData.pic)" -->
+            </label>
+        </section>
+
+
+
           <button type="submit" [disabled] ="!crudApi.dataForm.valid"   class="btn btn-info" class="form-control"  > Submit</button>
           <button (click)="viderFormulaire()" type="button" class="btn btn-outline-dark ml-1" class="form-control" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
       
@@ -140,3 +168,8 @@
     </div>
   </div>
 </div>
+
+
+ 
+ 
+ 

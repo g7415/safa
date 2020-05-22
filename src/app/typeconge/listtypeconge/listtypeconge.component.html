@@ -3,7 +3,7 @@
      <div class="pricing-header mx-auto">
       
        <div class="table-responsive">
-        <a class="btn btn-sm btn-primary text-white pull-right" (click)="addTypeConge()"><i class="fa fa-plus"></i>   Ajouter Type de congé </a>
+        <a  *ngIf="authority === 'rh'" class="btn btn-sm btn-primary text-white pull-right" (click)="addTypeConge()"><i class="fa fa-plus"></i>   Ajouter Type de congé </a>
         <h1>Listes des Types de congés</h1>
 <br/>
 <div class="search-hero" class="col-lg-12"> 
@@ -18,8 +18,8 @@
         <th scope="col">cong_deja_pris</th>
         <th scope="col">cong_restant</th>
       
-        <th class="text-center" scope="col">Modifier</th>
-        <th class="text-center" scope="col">Supprimer</th>
+        <th  *ngIf="authority === 'rh'" class="text-center" scope="col">Modifier</th>
+        <th  *ngIf="authority === 'rh'" class="text-center" scope="col">Supprimer</th>
 
         </tr>
         </thead>
@@ -35,9 +35,9 @@
         <!-- <td><button class="btn btn-info" style="margin-left: 20px;" >
           <i class="fal fa-eye"></i></button></td> -->
        
-          <td><button class="btn btn-warning" style="margin-left: 20px;" (click) = "selectData(item)">
+          <td  *ngIf="authority === 'rh'"><button class="btn btn-warning" style="margin-left: 20px;" (click) = "selectData(item)">
             <i class="fa fa-pencil-square-o" ></i></button></td>
-         <td><button class="btn btn-danger" (click) = "removeData(item.id_type)">
+         <td *ngIf="authority === 'rh'"><button class="btn btn-danger" (click) = "removeData(item.id_type)">
             <i class="fa fa-trash-o"></i></button></td>
           
            </tr>

@@ -76,7 +76,7 @@ conge=[];
   public barChartType = 'bar';
   public barChartLegend = true;
   public barChartData = [
-    // {data: [this.get()], label: 'Series A'}
+    // {data: [this.get()], label: 'Series A'},
     {data: [65, 59, 80, 81, 56, 55, 40], label: 'Conge'},
 
     {data: [28, 48, 40, 19, 86, 27, 90], label: 'Salarie'}

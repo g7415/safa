@@ -70,6 +70,7 @@ import { EditProfileComponent } from './profil/edit-profile/edit-profile.compone
 import { UpdatePasswordComponent } from './salarie/update-password/update-password.component';
 import { ReinitialiseMdpComponent } from './login/reinitialise-mdp/reinitialise-mdp.component';
 import { ListcongeByManagerComponent } from './conge/listconge-by-manager/listconge-by-manager.component';
+import { Listsalarie2Component } from './salarie/listsalarie2/listsalarie2.component';
 
 
 const MATERIAL_MODULES = [MatToolbarModule,
@@ -78,6 +79,7 @@ const MATERIAL_MODULES = [MatToolbarModule,
 
   const appRoutes : Routes = [
     //{path:'', redirectTo :"listconge" , pathMatch:"full"},
+    {path: 'listsalarie2', component:Listsalarie2Component },
     {path: 'listcongeByManager', component: ListcongeByManagerComponent},
     {path: 'reinitialiseMdp', component: ReinitialiseMdpComponent},
     {path: 'updatePassword', component: UpdatePasswordComponent},
@@ -127,7 +129,8 @@ const MATERIAL_MODULES = [MatToolbarModule,
     EditProfileComponent,
     UpdatePasswordComponent,
     ReinitialiseMdpComponent,
-    ListcongeByManagerComponent
+    ListcongeByManagerComponent,
+    Listsalarie2Component
   ],
   imports: [DateValueAccessorModule,Ng2SearchPipeModule ,NgxPaginationModule,ChartsModule,
     BrowserModule,

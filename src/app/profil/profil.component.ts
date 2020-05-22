@@ -20,6 +20,11 @@ export class ProfilComponent implements OnInit {
   errorMessage: string;
   toastr: any;
 
+  receivedImageData:any;
+  base64Data: any;
+  convertedImage: any;
+
+
   constructor(private token: TokenStorageService,public salarieService:SalarieService, public crudApi: SalarieService,
     private router : Router,public fb: FormBuilder,
     private matDialog: MatDialog,
@@ -44,40 +49,41 @@ export class ProfilComponent implements OnInit {
       this.token.saveNumero(data.num_tel);
       this.token.saveDate_entree(data.date_entree);
       this.token.saveId(data.id);
+      this.receivedImageData = data;
+      this.base64Data = atob(this.receivedImageData.pic);
+      this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data;
 
+      this.info = {
+        token: this.token.getToken(),
+        username: this.token.getUsername(),
+        nom: this.token.getNom(),
+        prenom: this.token.getPrenom(),
+        authorities: this.token.getAuthorities(),
+        mail:this.token.getMail(),
+        grade:this.token.getGrade(),
+        num_tel:this.token.getNumero(),
+        groupe:this.token.getGroupe(),
+        nom_responsable:this.token.getNom_responsable(),
+        date_entree:this.token.getDate_entree(),
+        password:this.token.getPassword(),
+        id:this.token.getId()
+      };
 
       },
       error => {
         console.log(error);
       }
     );
-    this.info = {
-      token: this.token.getToken(),
-      username: this.token.getUsername(),
-      nom: this.token.getNom(),
-      prenom: this.token.getPrenom(),
-      authorities: this.token.getAuthorities(),
-      mail:this.token.getMail(),
-      grade:this.token.getGrade(),
-      num_tel:this.token.getNumero(),
-      groupe:this.token.getGroupe(),
-      nom_responsable:this.token.getNom_responsable(),
-      date_entree:this.token.getDate_entree(),
-      password:this.token.getPassword(),
-      id:this.token.getId()
-    };
-    if (!localStorage.getItem('foo')) { 
-      localStorage.setItem('foo', 'no reload') 
-      location.reload() 
-    } else {
-      localStorage.removeItem('foo') 
-    }
+   
+    // if (!localStorage.getItem('foo')) { 
+    //   localStorage.setItem('foo', 'no reload') 
+    //   location.reload() 
+    // } else {
+    //   localStorage.removeItem('foo') 
+    // }
   }
-  goToUpdate(){
-    this.router.navigate(['/salarie']);
-    console.log("Success Navigation");
-  }
-  selectData() {
+ 
+  selectData() { 
     this.router.navigate(['/editProfile']);
     console.log("Success Navigation");
     // let userId = this.token.getId();
@@ -86,25 +92,12 @@ export class ProfilComponent implements OnInit {
     //   error=>console.log(error)
     //     );
   }
+  select() { 
+    this.router.navigate(['/updatePassword']);
+    console.log("Success Navigation");
+   
+  }
 
-  // editUser(salarie: Salarie): void {
-  //   window.localStorage.removeItem("editUserId");
-  //   window.localStorage.setItem("editUserId", salarie.id.toString());
-  //   this.router.navigate(['editProfile']);
-  // };
-  updateData() {
-    this.salarieService.updatedata(this.sal.id, this.sal)
-     .subscribe(
-     response =>{this.salarie= response;
-     this.toastr.info( 'Employé modifier avec Success');
-     } 
-     );
-      error => {this.errorMessage ='Please verify the informations in the form.', 
-                console.error(error)}
-     debugger;
-    
-     
-     }
-  
+ 
 }
 

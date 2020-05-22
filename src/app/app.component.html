@@ -15,13 +15,13 @@
                 <a class="nav-link" routerLink="auth/login">Login</a>
               </li>
               <li *ngIf="authority === 'user'|| authority === 'manager'|| authority === 'rh'" class="nav-item">
-                <a class="nav-link" routerLink="/profil" routerLinkActive="active" href="#">Profil</a>
+                <a class="nav-link" routerLink="/profil" routerLinkActive="active" href="#">Consulter Profil</a>
               </li>
-              <li *ngIf="authority === 'user'" class="nav-item">
+              <!-- <li *ngIf="authority === 'user'" class="nav-item">
                 <a class="nav-link"  routerLink="/conge" routerLinkActive="active">Congés</a>
-              </li>
+              </li> -->
               <li  *ngIf="authority === 'user'" class="nav-item">
-                <a class="nav-link" routerLink="/historiqueListConge" routerLinkActive="active">Voir l'historique de ses propres demandes de congés</a>
+                <a class="nav-link" routerLink="/historiqueListConge" routerLinkActive="active">Gerer congé</a>
               </li>
               <li  *ngIf="authority === 'manager'" class="nav-item">
                 <a class="nav-link" routerLink="/listconge" routerLinkActive="active">Liste de toutes les demandes de Congés</a>
@@ -30,14 +30,17 @@
                 <a class="nav-link" routerLink="/listcongeByManager" routerLinkActive="active">Liste des demandes des ses collaborateurs</a>
               </li>
               <li  *ngIf="authority === 'rh' || authority === 'manager'|| authority === 'user'" class="nav-item">
-                <a class="nav-link" routerLink="/listsalarie" routerLinkActive="active">Utilisateurs</a>
+                <a class="nav-link" routerLink="/listsalarie" routerLinkActive="active">Gérer compte employé</a>
+              </li>
+              <li  *ngIf="authority === 'rh' || authority === 'manager'|| authority === 'user'" class="nav-item">
+                <a class="nav-link" routerLink="/listsalarie2" routerLinkActive="active">Liste des employés</a>
               </li>
               <li  *ngIf="authority === 'rh'|| authority === 'manager'|| authority === 'user' " class="nav-item">
                 <a class="nav-link" routerLink="/listtypeconge" routerLinkActive="active">Type Congé</a>
               </li>
-              <li  *ngIf="authority === 'rh'|| authority === 'manager'|| authority === 'user' " class="nav-item">
+              <!-- <li  *ngIf="authority === 'rh'|| authority === 'manager'|| authority === 'user' " class="nav-item">
                 <a class="nav-link" routerLink="/updatePassword" routerLinkActive="active">Changer le mot de passe</a>
-              </li>
+              </li> -->
             </ul>
           </div>
           <div class="btn-group" role="group">

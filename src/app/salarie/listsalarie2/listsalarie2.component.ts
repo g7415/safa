@@ -12,28 +12,34 @@ import { Salarie } from 'src/app/model/salarie';
 import Swal from 'sweetalert2';
 import * as $ from 'jquery';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
+
 @Component({
-  selector: 'app-listsalarie',
-  templateUrl: './listsalarie.component.html',
-  styleUrls: ['./listsalarie.component.scss']
+  selector: 'app-listsalarie2',
+  templateUrl: './listsalarie2.component.html',
+  styleUrls: ['./listsalarie2.component.scss']
 })
-export class ListsalarieComponent implements OnInit {
+export class Listsalarie2Component implements OnInit {
   searchText:any;
   sal : Salarie;
+  salarie:Salarie[];
   p: number = 1;
-  count: number = 5;
-  fileUploads: Observable<string[]>;
+  count: number = 8;
+  receivedImageData:any;
+  base64Data: any;
+  convertedImage: any;
+  pic: any;
   private roles: string[];
   authority: string;
-  pic:any;
-  base64Data: string;
-  convertedImage: string;
+  username: any;
+  nom_responsable:any;
+  manager: any;
+  groupe: string;
   constructor(public crudApi: SalarieService, public toastr: ToastrService,
-    private router : Router,public fb: FormBuilder
-    ,private tokenStorage: TokenStorageService,
+    private tokenStorage: TokenStorageService,
+    private router : Router,public fb: FormBuilder,
     private matDialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef:MatDialogRef<AddsalarieComponent>) { }
+    public dialogRef:MatDialogRef<AddsalarieComponent>) { this.salarie=this.crudApi.listsal;}
 
   ngOnInit() {
     this.getData();
@@ -52,45 +58,41 @@ export class ListsalarieComponent implements OnInit {
       });
     }
   }
-  
+  filtrer(){
+    this.salarie=this.crudApi.listsal.filter(a => a.username.startsWith(this.username));
+  }
+  // && a.manager.username.startsWith(this.manager.username)
   addEmploye()
   {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width="40%";
-    dialogConfig.height="95%";
+    dialogConfig.height="90%";
     //dialogConfig.data="gdddd";
     this.matDialog.open(AddsalarieComponent, dialogConfig);
   }
   debugger;
   getData() {
     this.crudApi.getAll().subscribe(
-      response =>{
-        this.crudApi.listsal = this.formatRole(response);
+      response =>{this.crudApi.listsal = this.formatRole(response);
         for (var salarie of response) {
-           this.pic= salarie.pic
-          //  console.log(this.pic);
-          this.base64Data = atob(this.pic);
-          this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data; 
-          salarie.pic = this.convertedImage;
-          console.log(salarie.pic);
-        };
-        }
+          this.pic= salarie.pic
+         //  console.log(this.pic);
+         this.base64Data = atob(this.pic);
+         this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data; 
+         salarie.pic = this.convertedImage;
+         console.log(salarie.pic);
+       };
+       }
+      
      );
     this.crudApi.getAllRoles().subscribe(
       response =>{this.crudApi.listrol = response;}
      );
     
-      //  this.crudApi.getFiles().subscribe(
-      //      response =>{this.fileUploads = response;})
-      
   }
-formatPic(response:any){ 
-  for (var salarie of response) {
-  let pic= btoa(salarie.pic)}
-  return response;
-}
+
   formatRole(reponse : any){
     for (var salarie of reponse) {
       let tabRole = Array();
@@ -140,12 +142,10 @@ formatPic(response:any){
     // item.password = '';
     this.crudApi.choixmenu = 2;
     this.crudApi.dataForm = this.fb.group(Object.assign({},item));
-    if(item.manager){
-      this.crudApi.dataForm.patchValue({
-        manager: item.manager.username,
-        
-      });
-    }
+    this.crudApi.dataForm.patchValue({
+      manager: item.manager.username,
+      
+    });
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;

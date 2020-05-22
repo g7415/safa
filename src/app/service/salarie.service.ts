@@ -49,7 +49,7 @@ export class SalarieService {
   getData(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
-
+ 
  createData(info: Object): Observable<Object> {
    return this.http.post(`${this.baseUrl}`, info);
  }
@@ -84,6 +84,8 @@ export class SalarieService {
     return this.http.post<Salarie>(`${this.baseUrlEmail}`, info)
   }
   
-
+  getFiles(): Observable<any> {
+    return this.http.get('http://localhost:8080/api/file/all');
+  }
   
 }

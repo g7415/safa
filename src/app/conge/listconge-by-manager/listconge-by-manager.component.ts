@@ -55,8 +55,23 @@ export class ListcongeByManagerComponent implements OnInit {
     //   }
     // );
     this.getData();
+    
 
   }
+  // getProfil(){  
+  //    this.salarieService.getProfil(this.token.getUsername())
+  //   .subscribe(
+  //     data => {
+  //       this.usr = data;
+  //     console.log(data);
+  //     this.token.saveUsername(data.username);
+     
+  //     },
+  //     error => {
+  //       console.log(error);
+  //     }
+  //   );
+  // }
    addConge()
   {
  
@@ -81,6 +96,7 @@ export class ListcongeByManagerComponent implements OnInit {
       this.typecongeService.getAll().subscribe(
       response =>{this.listtypecon = response;}
      );
+    //  this.getProfil();
   }
   
   removeData(num: number) {
