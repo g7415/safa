@@ -6,6 +6,7 @@ import { SalarieService } from 'src/app/service/salarie.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
+import { custommail } from 'src/app/salarie/addsalarie/mail.validator';
 
 @Component({
   selector: 'app-edit-profile',
@@ -42,7 +43,7 @@ export class EditProfileComponent implements OnInit {
           id: [''],
           nom: ['', [ Validators.required, Validators.minLength(3)]],
           prenom: ['', [Validators.required, Validators.minLength(3)]],
-          mail: ['', [Validators.required ,Validators.email]],
+          mail: ['', [Validators.required, Validators.minLength(7), custommail ]],  
           num_tel: ['', [Validators.required, Validators.minLength(8)]],
           pic: [''],
       
@@ -76,18 +77,14 @@ export class EditProfileComponent implements OnInit {
 
 
   selectData() {
-
-    // this.router.navigate(['/editProfile']);
-    // console.log("Success Navigation");
-    // let userId = this.token.getId();
-    //   this.salarieService.getData(parseInt(userId)).subscribe(
-    //     data => this.sala = data, error => console.log(error)
-    //   );
-    
-      this.salarieService.getProfil(this.token.getUsername()).subscribe(
+        this.salarieService.getProfil(this.token.getUsername()).subscribe(
         data => {
         console.log(data);
-        this.sala=data;}
+        this.sala=data;
+        this.receivedImageData = data;
+        this.base64Data = atob(this.receivedImageData.pic);
+        this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data;
+      }
         );
   }
 
@@ -102,11 +99,11 @@ export class EditProfileComponent implements OnInit {
               showConfirmButton: false,
               timer: 1500
         })
+        this.router.navigate(['/profil']);
+        console.log("Success Navigation");
     })
-    this.router.navigate(['/profil']);
-    console.log("Success Navigation");
-    this.selectData();
-      }
+  
+  }
       /* partie spécifiée à uploading une photo de profile */
 public  onFileChanged(event) {
   console.log(event);

@@ -2,7 +2,8 @@
 import { Component } from '@angular/core';
 import {
     ScheduleComponent, EventSettingsModel, View, TimelineMonthService,
-    ResizeService, EventRenderedArgs, DragAndDropService, CellTemplateArgs, getWeekNumber, TimeScaleModel,getWeekLastDate
+    ResizeService, EventRenderedArgs, DragAndDropService, CellTemplateArgs, getWeekNumber, 
+    TimeScaleModel,getWeekLastDate
 } from '@syncfusion/ej2-angular-schedule';
 import { extend, Internationalization } from '@syncfusion/ej2-base';
 import { headerRowData } from 'src/data';

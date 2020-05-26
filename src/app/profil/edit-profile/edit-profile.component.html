@@ -3,55 +3,74 @@
     <h5 class="card-header">Modifier Profil</h5>
     <div class="card-body">
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+              <section>
+                    <label class="label">Photo de profil : </label>
+                    <br>
+                       <img [src]="convertedImage" height="120" width="120">
+                       <br>
+                       <br>
+                      <label class="input"> <i class="icon-append fa fa-user"></i>
+                        <input type="file" (change)="onFileChanged($event)"style="height:100%">
+                        <input type="button" (click)="onUpload()" value="upload"> <hr>
+                    </label>
+
+                </section>
+               <br>
             <div class="form-row">
-    
-                <div class="form-group col-5">
+                   <div class="form-group col-5">
                     <label>Nom</label>
                     <input type="text" [(ngModel)]="this.sala.nom" formControlName="nom" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }"   />
-                    <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
-                        <div *ngIf="f.nom.errors.required">Le champs nom est obligatoire</div>
+                    <div *ngIf="f.nom.touched && f.nom.invalid">
+                        <small *ngIf="f.nom.errors.required" class="text-danger">Le champs nom est obligatoire</small>
+                        <small *ngIf="f.nom.errors?.minlength" class="text-danger"> Le nom doit avoir au moins 3 caractéres </small>
                     </div>
+                    <!-- <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                        <div *ngIf="f.nom.errors.required">Le champs nom est obligatoire</div>
+                    </div> -->
                 </div>
 
                 <div class="form-group col-5">
                     <label>Prenom</label>
                     <input type="text" [(ngModel)]="this.sala.prenom"formControlName="prenom" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }" />
-                    <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
-                        <div *ngIf="f.prenom.errors.required">Le champs prenom est obligatoire</div>
+                    <div *ngIf="f.prenom.touched && f.prenom.invalid">
+                        <small *ngIf="f.prenom.errors.required" class="text-danger">Le champs prenom est obligatoire</small>
+                        <small *ngIf="f.prenom.errors?.minlength" class="text-danger"> Le prenom doit avoir au moins 3 caractéres </small>
                     </div>
+                    <!-- <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                        <div *ngIf="f.prenom.errors.required">Le champs prenom est obligatoire</div>
+                    </div> -->
                 </div>
             </div>
             <div class="form-group">
                 <label>Email</label>
                 <input type="text" [(ngModel)]="this.sala.mail"formControlName="mail" class="form-control"[ngClass]="{ 'is-invalid': submitted && f.mail.errors }" />
-                <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
+                <div    *ngIf="f.mail.invalid && f.mail.touched ">
+                    <small *ngIf="f.mail.errors?.required" class="text-danger"> Le champs E-mail est obligatoire</small>
+                    <small *ngIf="f.mail.errors?.minlength" class="text-danger">Le champs E-mail doit avoir au moins 7 caracteres </small>
+                    <small *ngIf="f.mail.errors?.custom || f.mail.errors?.pattern" class="text-danger"> / @ est manquant </small>
+                   </div>
+                <!-- <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
                     <div *ngIf="f.mail.errors.required">Email est obligatoire</div>
                     <div *ngIf="f.mail.errors.mail">
                         L'email doit être une adresse  valide</div>
-                </div>
+                </div> -->
             </div>
             <div class="form-row">
                 <div class="form-group col">
                     <label>Numero de telephone</label>
                     <input type="number"[(ngModel)]="this.sala.num_tel" formControlName="num_tel" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.num_tel.errors }" />
-                    <div *ngIf="submitted && f.num_tel.errors" class="invalid-feedback">
+                    <div *ngIf="f.num_tel.touched && f.num_tel.invalid">
+                        <small *ngIf="f.num_tel.errors.required" class="text-danger">Le champs numero de telephone est obligatoire</small>
+                        <small *ngIf="f.num_tel.errors?.minlength" class="text-danger"> Le champs numero de telephone doit avoir au moins 8 caractéres </small>
+                    </div>
+                    <!-- <div *ngIf="submitted && f.num_tel.errors" class="invalid-feedback">
                         <div *ngIf="f.num_tel.errors.required">Le champs numero de telephone est obligatoire</div>
                         <div *ngIf="f.num_tel.errors.minlength">Le champs numero de telephone doit avoir au moins 8 caractéres</div>
-                    </div>
+                    </div> -->
                 </div>
                
             </div>
-            <section>
-                <label class="label">Photo de profil : </label>
-                <label class="input"> <i class="icon-append fa fa-user"></i>
-                  <input type="file" (change)="onFileChanged($event)"style="height:100%">
-                  <input type="button" (click)="onUpload()" value="upload"> <hr>
-                   
-                   <div *ngIf=convertedImage>
-                   <img [src]="convertedImage" height="120" width="120">
-                   </div>
-                  </label>
-                      </section> 
+            
       
               <section>
                 <label class="label">Photo : </label>  
@@ -63,7 +82,7 @@
               </section>
       
             <div class="text-center">
-                <button class="btn btn-primary mr-1" (click)="updateProfil()">Envoyer</button>
+                <button class="btn btn-primary mr-1"[disabled] ="!registerForm.valid" (click)="updateProfil()">Envoyer</button>
                 <button class="btn btn-secondary" type="reset" (click)="onReset()">Annuler</button>
             </div>
         </form>

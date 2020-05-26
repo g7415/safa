@@ -17,14 +17,14 @@ const httpOptions = {
 })
 export class SalarieService {
   
-  private resetPassword = 'http://localhost:8080/api/resetPassword';
+  private resetPassword = 'http://localhost:8080/api/auth/resetPassword';
   private changeProfil = 'http://localhost:8080/api/updateProfil';
   private changePassword = 'http://localhost:8080/api/changePassword';
   private baseUrlEmail = 'http://localhost:8080/testapp/getdetails';
   private baseUrlM = 'http://localhost:8080/api/manager';
   private baseUrl = 'http://localhost:8080/api/sal';
   private baseUrl1 = 'http://localhost:8080/api/salarie';
-
+  private EmailresetPassword = 'http://localhost:8080/api/auth/resetPassword';
   private baseUrlRole = 'http://localhost:8080/api/roles';
   choixmenu : number = 1;
   dataForm: any =  FormGroup; 
@@ -83,9 +83,13 @@ export class SalarieService {
   creatEmail(info:Salarie):Observable<Salarie>{
     return this.http.post<Salarie>(`${this.baseUrlEmail}`, info)
   }
+  EmailresetPassword1(info:Salarie):Observable<Salarie>{
+    return this.http.post<Salarie>(`${this.EmailresetPassword}`, info)
+  }
   
   getFiles(): Observable<any> {
     return this.http.get('http://localhost:8080/api/file/all');
   }
+ 
   
 }

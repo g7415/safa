@@ -35,16 +35,18 @@ export class ReinitialiseMdpComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
-      this.submitted = true;
+    this.submitted = true;
 
-      // stop here if form is invalid
-      if (this.registerForm.invalid) {
-          return;
-      }
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+        return;
+    }
 
-      // display form values on success
-      alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null,2));
-  }
+    // display form values on success
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null,2));
+    this.router.navigate(['/auth/login']);
+      console.log("Success Navigation");
+}
 
   onReset() {
       this.submitted = false;
@@ -63,7 +65,6 @@ this.salarieService.reinitialiseMdp(this.registerForm.value.username,this.regist
           timer: 1500
     })
 })
-this.router.navigate(['/login']);
-      console.log("Success Navigation");
+
   }
 }

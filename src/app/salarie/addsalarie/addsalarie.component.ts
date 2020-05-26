@@ -74,11 +74,11 @@ infoForm() {
       date_entree:['', [Validators.required]],  
       grade: ['', [Validators.required, Validators.minLength(3)]], 
       mail: ['', [Validators.required, Validators.minLength(7), custommail ]],  
-      num_tel:['', [Validators.required,Validators.minLength(7)]], 
+      num_tel:['', [Validators.required,Validators.minLength(8)]], 
       nom_responsable:  ['', [Validators.required, Validators.minLength(3)]], 
       groupe:  ['', [Validators.required, Validators.minLength(3)]], 
       username: ['', [Validators.required]], 
-      password: ['', [Validators.required, Validators.minLength(5)]], 
+      password: ['', [Validators.required, Validators.minLength(8)]], 
       roles: ['', [Validators.required]], 
       manager: [''], 
       pic :['']
@@ -124,7 +124,6 @@ addData() {
     .subscribe(
     response =>{this.crudApi.listsal = this.formatRole(response);
       // this.crudApi.listsal = this.formatManager(response);
-   
     Swal.fire({
     position: 'top-end',
     icon: 'success',
@@ -137,18 +136,20 @@ addData() {
     response =>{this.crudApi.listrol = response;       
     }
     );
-    debugger;
+    let aaa =this.crudApi.dataForm.value
+    this.userCreated.password=aaa.password;
     this.crudApi.creatEmail(this.userCreated)
     .subscribe(
      res => {
-     this.crudApi.dataForm.value = res;
-     console.log(this.crudApi.dataForm.value);
+     this.salarie = res;
+     console.log(this.salarie);
      alert('Email Sent successfully');
      this.crudApi.dataForm.username = '';
      this.crudApi.dataForm.mail = '';
      });
    
 });
+
     // this.https.post<Salarie>('http://localhost:8080/testapp/getdetails', this.crudApi.dataForm.value)
     // .subscribe(
     // res => {
@@ -171,7 +172,6 @@ updateData() {
   .subscribe( user => {  
   this.userUpdated = user;
    this.dialogRef.close();
-   this.crudApi.choixmenu == 1
    this.crudApi.getAll()
    .subscribe(
    response =>{this.crudApi.listsal = this.formatRole(response);
@@ -183,8 +183,13 @@ updateData() {
    }
 
    );
-   debugger;
-   this.crudApi.creatEmail(this.userUpdated)
+  //  debugger;
+  //  this.crudApi.creatEmail(this.userUpdated)
+
+  
+  let aaa =this.crudApi.dataForm.value
+    this.userUpdated.password=aaa.password;
+    this.crudApi.creatEmail(this.userUpdated)
    .subscribe(
     res => {
     this.crudApi.dataForm.value = res;
@@ -275,4 +280,18 @@ this.https.post('http://localhost:8080/api/upload', uploadData)
              err => console.log('Error Occured duringng saving: ' + err)
           );
         }
+
+        generer_password() {
+          var ok = 'azertyupqsdfghjkmwxcvbn23456789AZERTYUPQSDFGHJKMWXCVBN';
+          var pass = '';
+          let longueur = 8;
+          for(let i=0;i<longueur;i++){
+              var wpos = Math.round(Math.random()*ok.length);
+              pass+=ok.substring(wpos,wpos+1);
+          }
+  
+          this.crudApi.dataForm.patchValue({
+            password: pass
+          });
+      }
 }

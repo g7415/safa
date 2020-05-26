@@ -78,7 +78,6 @@ export class AddcongeComponent implements OnInit {
          else
          {
            this.updateData();
-           this.crudApi.choixmenu = 1;
           }
 
                }

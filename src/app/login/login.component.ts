@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
     window.location.reload();
   }
   reinitialiseMdp(){
-    this.router.navigate(['/reinitialiseMdp']);
+    this.router.navigate(['/resetPassordEmail']);
     console.log("Success Navigation");
 
   }

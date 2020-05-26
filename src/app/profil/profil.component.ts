@@ -19,6 +19,7 @@ export class ProfilComponent implements OnInit {
   salarie:any;
   errorMessage: string;
   toastr: any;
+  gener:String;
 
   receivedImageData:any;
   base64Data: any;
@@ -75,22 +76,18 @@ export class ProfilComponent implements OnInit {
       }
     );
    
-    // if (!localStorage.getItem('foo')) { 
-    //   localStorage.setItem('foo', 'no reload') 
-    //   location.reload() 
-    // } else {
-    //   localStorage.removeItem('foo') 
-    // }
   }
- 
+//  generate(){
+//    this.salarieService.getgenererMdp().subscribe(
+//      data => {this.gener=data;
+//      console.log(this.gener);}
+//    )
+   
+
+//  }
   selectData() { 
     this.router.navigate(['/editProfile']);
     console.log("Success Navigation");
-    // let userId = this.token.getId();
-    // this.salarieService.getData(parseInt(userId)).subscribe(
-    //   data=>this.sal=data,
-    //   error=>console.log(error)
-    //     );
   }
   select() { 
     this.router.navigate(['/updatePassword']);
@@ -98,6 +95,15 @@ export class ProfilComponent implements OnInit {
    
   }
 
- 
+//  generer_password() {
+//     var ok = 'azertyupqsdfghjkmwxcvbn23456789AZERTYUPQSDFGHJKMWXCVBN';
+//     var pass = '';
+//     let longueur = 5;
+//     for(let i=0;i<longueur;i++){
+//         var wpos = Math.round(Math.random()*ok.length);
+//         pass+=ok.substring(wpos,wpos+1);
+//     }
+//     return pass;
+// }
 }
 

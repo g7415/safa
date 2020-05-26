@@ -142,10 +142,12 @@ export class Listsalarie2Component implements OnInit {
     // item.password = '';
     this.crudApi.choixmenu = 2;
     this.crudApi.dataForm = this.fb.group(Object.assign({},item));
-    this.crudApi.dataForm.patchValue({
-      manager: item.manager.username,
-      
-    });
+    if(item.manager){
+      this.crudApi.dataForm.patchValue({
+        manager: item.manager.username,
+        
+      });
+    }
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;

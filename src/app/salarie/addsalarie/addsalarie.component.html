@@ -70,10 +70,10 @@
           </div>
           <div class="form-group">
             <label  >Numero de telephone</label>
-            <input type="number" required [class.is-invalid] ="num_tel.touched && num_tel.invalid" class="form-control"minlength="7" formControlName="num_tel" id="num_tel">
+            <input type="number" required [class.is-invalid] ="num_tel.touched && num_tel.invalid" class="form-control"minlength="8" formControlName="num_tel" id="num_tel">
             <div *ngIf="num_tel.touched && num_tel.invalid">
               <small *ngIf="num_tel.errors.required" class="text-danger">Le champs numero de telephone est obligatoire</small>
-              <small *ngIf="num_tel.errors?.minlength" class="text-danger"> Le champs numero de telephone doit avoir au moins 7 caractéres </small>
+              <small *ngIf="num_tel.errors?.minlength" class="text-danger"> Le champs numero de telephone doit avoir au moins 8 caractéres </small>
 
           </div>
           </div>
@@ -96,19 +96,19 @@
         
           <div class="form-group">
             <label  >Username</label>
-            <input type="text"required [class.is-invalid] ="username.touched && username.invalid" class="form-control" formControlName="username" id="username">
+            <input type="text"required [class.is-invalid] ="username.touched && username.invalid" (change)="generer_password()"class="form-control" formControlName="username" id="username">
             <div *ngIf="username.touched && username.invalid">
               <small *ngIf="username.errors.required" class="text-danger">Le champs username est obligatoire</small>
           </div>
           </div>
           <div class="form-group">
             <label  >Mot de passe</label>
-            <input type="password" [class.is-invalid]="password.invalid && password.touched" minlength="5"  required class="form-control"  formControlName="password" id="password">
-            <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+            <input type="password" [class.is-invalid]="password.invalid && password.touched" readonly="true" minlength="5"  required class="form-control"  formControlName="password" id="password">
+            <!-- <span class="focus-input100" data-placeholder="&#xe80f;"></span>
                         <div *ngIf="password.touched && password.invalid">
                           <small *ngIf="password.errors?.minlength" class="text-danger">Le champs mot de passe doit avoir au moins 5 caractéres</small>
                             <small *ngIf="password.errors.required" class="text-danger">Le champs Mot de passe est obligatoire</small>
-                        </div>
+                        </div> -->
                         
           </div>
 
