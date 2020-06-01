@@ -21,7 +21,7 @@ import { TypeConge } from 'src/app/model/typeconge';
 export class ListcongeComponent implements OnInit {
   listtypecon:TypeConge[];
   p: number = 1;
-  count: number = 5;
+  count: number = 8;
   searchText:any;
   con : Conge;
   conge:any
@@ -48,8 +48,11 @@ export class ListcongeComponent implements OnInit {
   }
 
   getData() {
-   
-    this.crudApi.getAll().subscribe(
+    
+    // this.crudApi.getAll().subscribe(
+    //   response =>{this.crudApi.listcon = response;}
+    //  );
+    this.crudApi.getListConByStatut().subscribe(
       response =>{this.crudApi.listcon = response;}
      );
       this.typecongeService.getAll().subscribe(

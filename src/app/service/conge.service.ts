@@ -18,11 +18,17 @@ export class CongeService {
   private baseUrlUsernameSal = 'http://localhost:8080/api/conusername';
   private baseUrlIdSal = 'http://localhost:8080/api/conid';
   private baseUrl = 'http://localhost:8080/api/con';
+  private baseUrlListConByStatut = 'http://localhost:8080/api/conStatut';
+
+  
   choixmenu : number = 1;
   dataForm: any =  FormGroup; 
   listcon:Conge[];
   constructor(private http: HttpClient,private toastr: ToastrService,public fb: FormBuilder) { }
 
+  getListConByStatut(): Observable<any> {
+    return this.http.get(`${this.baseUrlListConByStatut}`);
+  }
 
   getConByManager(id: number): Observable<Conge[]> {
     return this.http.get<Conge[]>(`${this.baseUrlConByManager}/${id}`);

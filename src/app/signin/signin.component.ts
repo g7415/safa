@@ -8,8 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
+  
+
+
+
   loginForm: FormGroup;
-  constructor(_fb:FormBuilder,private router:Router) {let loginFormsControls={
+  constructor(_fb:FormBuilder,private router:Router) {
+    $(function(){
+      $(".btn-toggle-menu").click(function() {
+          $("#wrapper").toggleClass("toggled");
+      });
+    })
+    let loginFormsControls={
     username: new FormControl("",[Validators.required]),
     password : new FormControl("",[Validators.required])
   }
@@ -23,4 +33,6 @@ export class SigninComponent implements OnInit {
     navigateToacceil() {
       this.router.navigate(['listsalarie']);
       console.log("Success Navigation");}
+      
+
 }

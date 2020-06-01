@@ -24,11 +24,11 @@ export class ListcongeByManagerComponent implements OnInit {
   listcon:Conge[];
   usr : Salarie;
   p: number = 1;
-  count: number = 5;
+  count: number = 8;
   searchText:any;
   con : Conge;
   conge:any
-
+ll:any;
   info: any;
   sal : Salarie;
   userUpdated: Object;
@@ -91,14 +91,45 @@ export class ListcongeByManagerComponent implements OnInit {
     this.crudApi.getConByManager(id)
   
     .subscribe(
-      response =>{this.listcon = response;}
+      response =>{this.listcon = this.aaa(response);
+      
+      }
      );
       this.typecongeService.getAll().subscribe(
       response =>{this.listtypecon = response;}
      );
     //  this.getProfil();
   }
-  
+ 
+
+  aaa(response:any)
+  {
+  const sortBy = ["en attente", "accepter", "refuser"];
+  const customSort = ({ data, sortBy, sortField }) => {
+    const sortByObject = sortBy.reduce(
+      (obj, item, index) => ({
+        ...obj,
+        [item]: index
+      }),
+      {}
+    );
+    return data.sort(
+      (a, b) => sortByObject[a[sortField]] - sortByObject[b[sortField]]
+    );
+  };
+  const tasksWithDefault = response.map(item => ({
+    ...item,
+    sortStatus: sortBy.includes(item.statut) ? item.statut : "other"
+  }));
+  console.log(
+    customSort({
+      data: tasksWithDefault,
+      sortBy: [...sortBy, "other"],
+      sortField: "sortStatus"
+    })
+  );
+  return(tasksWithDefault)
+}
   removeData(num: number) {
     Swal.fire({
       title: 'Are you sure?',
@@ -175,7 +206,7 @@ congeAccepter(num: number,item : Conge){
       showConfirmButton: false,
       timer: 1500
 })
-
+// if(item.statut=="accepter"){
 this.crudApi.creatEmail2(item)
 .subscribe(
  res => {
@@ -183,6 +214,16 @@ this.crudApi.creatEmail2(item)
  console.log(this.conge);
  alert('Email Sent successfully');
  });
+// }
+//  else{
+//   this.crudApi.creatEmail3(item)
+//   .subscribe(
+//    res => {
+//    this.conge = res;
+//    console.log(this.conge);
+//    alert('Email Sent successfully');
+//    });
+//  }
  this.getData();
 
   })

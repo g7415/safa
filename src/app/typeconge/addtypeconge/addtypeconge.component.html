@@ -27,7 +27,7 @@
         </div>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label>cong_deja_pris</label>
             <input type="number" class="form-control" formControlName="cong_deja_pris" id="cong_deja_pris">
             <div *ngIf="cong_deja_pris.touched && crudApi.dataForm.get('cong_deja_pris').invalid">
@@ -40,7 +40,7 @@
             <div *ngIf="cong_restant.touched && crudApi.dataForm.get('cong_restant').invalid">
                 <small *ngIf="cong_restant.errors.required" class="text-danger">Required cong_restant</small>
             </div>
-          </div>
+          </div> -->
           
          
           <button type="submit" [disabled] ="!crudApi.dataForm.valid"  class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>

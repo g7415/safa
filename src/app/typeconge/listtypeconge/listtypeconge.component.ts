@@ -16,7 +16,7 @@ import { TokenStorageService } from 'src/app/auth/token-storage.service';
 })
 export class ListtypecongeComponent implements OnInit {
   p: number = 1;
-  count: number = 5;
+  count: number = 8;
   searchText:any;
   typeconge : TypeConge;
   private roles: string[];

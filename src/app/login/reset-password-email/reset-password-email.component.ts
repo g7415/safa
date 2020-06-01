@@ -17,6 +17,7 @@ export class ResetPasswordEmailComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   salarie: Salarie;
+  errorMessage:'';
 
   constructor(private formBuilder: FormBuilder,private token: TokenStorageService, private router:Router,
     private salarieService: SalarieService) { }
@@ -42,8 +43,9 @@ export class ResetPasswordEmailComponent implements OnInit {
 
       // display form values on success
       alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null,2));
-      this.router.navigate(['/auth/login']);
-      console.log("Success Navigation");
+      // this.router.navigate(['/auth/login']);
+      // console.log("Success Navigation");
+      this.onReset();
   }
 
   onReset() {
@@ -52,7 +54,7 @@ export class ResetPasswordEmailComponent implements OnInit {
     
   }
 
-congeAccepter(){ 
+  ResetPass(){ 
   this.salarieService.EmailresetPassword1(this.registerForm.value)
   .subscribe(data =>{this.salarie = data;
     Swal.fire({
@@ -62,7 +64,13 @@ congeAccepter(){
       showConfirmButton: false,
       timer: 1500
               })
-  })
+  },
+  error => {
+    console.log(error);
+    this.errorMessage = error.error.message;
+    
+  }
+  )
  
   
 }

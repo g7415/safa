@@ -48,6 +48,8 @@ export class ProfilComponent implements OnInit {
       this.token.saveNom_responsable(data.nom_responsable);
       this.token.savePassword(data.password);
       this.token.saveNumero(data.num_tel);
+      this.token.saveSoldeConge(data.solde_conge);
+
       this.token.saveDate_entree(data.date_entree);
       this.token.saveId(data.id);
       this.receivedImageData = data;
@@ -63,6 +65,8 @@ export class ProfilComponent implements OnInit {
         mail:this.token.getMail(),
         grade:this.token.getGrade(),
         num_tel:this.token.getNumero(),
+        solde_conge:this.token.getSoldeConge(),
+
         groupe:this.token.getGroupe(),
         nom_responsable:this.token.getNom_responsable(),
         date_entree:this.token.getDate_entree(),

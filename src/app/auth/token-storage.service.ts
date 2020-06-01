@@ -81,6 +81,16 @@ export class TokenStorageService {
   public getNumero(): string {
     return sessionStorage.getItem(NUMERO_KEY);
   }
+
+  public saveSoldeConge(solde_conge: number) {
+    window.sessionStorage.removeItem(SOLDE_CONGE_KEY);
+    window.sessionStorage.setItem(SOLDE_CONGE_KEY, solde_conge.toString());
+  }
+
+  public getSoldeConge(): string {
+    return sessionStorage.getItem(SOLDE_CONGE_KEY);
+  }
+  
   public saveMail(mail: string) {
     window.sessionStorage.removeItem(MAIL_KEY);
     window.sessionStorage.setItem(MAIL_KEY, mail);

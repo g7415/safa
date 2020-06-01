@@ -25,7 +25,7 @@ export class HistoriqueListCongeComponent implements OnInit {
   listcon:Conge[];
   usr : Salarie;
   p: number = 1;
-  count: number = 5;
+  count: number = 8;
   searchText:any;
   con : Conge;
   info: any;

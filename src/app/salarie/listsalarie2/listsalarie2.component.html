@@ -1,11 +1,19 @@
+<app-signin></app-signin>
+
 <br/><br/>
      <div class="pricing-header mx-auto">
       
        <div class="table-responsive">
+        <div class="well search-result">
+           
+                <!-- <input type="text" class="form-control" placeholder="Rechercher par username"name="username"  [(ngModel)]="username" (ngModelChange)="filtrer()"> -->
+                <h2 Align=RIGHT><input  type='text'  placeholder="Rechercher par username" name="username"  [(ngModel)]="username" (ngModelChange)="filtrer()"></h2>
+
+            
+        </div>
         <a *ngIf="authority === 'rh'" class="btn btn-sm btn-primary text-white pull-right" (click)="addEmploye()"><i class="fa fa-plus"></i>   Ajouter employé </a>
         <strong><h1>Listes des employés</h1></strong>
 <br/>
-<h2 Align=RIGHT>Rechercher par username<input type='text' name="username"  [(ngModel)]="username" (ngModelChange)="filtrer()"></h2>
 <!-- <form  class="form-inline my-2 my-lg-2">
     <input class="form-control mr-sm-2" name="username"  [(ngModel)]="username" (ngModelChange)="filtrer()" type="search" placeholder="Rechercher par username" aria-label="Search">
     

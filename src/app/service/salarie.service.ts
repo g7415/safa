@@ -84,7 +84,7 @@ export class SalarieService {
     return this.http.post<Salarie>(`${this.baseUrlEmail}`, info)
   }
   EmailresetPassword1(info:Salarie):Observable<Salarie>{
-    return this.http.post<Salarie>(`${this.EmailresetPassword}`, info)
+    return this.http.post<Salarie>(`${this.EmailresetPassword}`, info).pipe(catchError(this.errorHandler));
   }
   
   getFiles(): Observable<any> {

@@ -38,16 +38,16 @@ export class AddtypecongeComponent implements OnInit {
       id_type: [''],
       type_conge:   ['', [Validators.required]], 
       max_permis: ['', [Validators.required]], 
-      cong_deja_pris: ['', [Validators.required]],  
-      cong_restant:['', [Validators.required]],  
+      // cong_deja_pris: ['', [Validators.required]],  
+      // cong_restant:['', [Validators.required]],  
         }) 
     }
 
     get id_type(){return this.crudApi.dataForm.get('id_type')}
     get type_conge(){return this.crudApi.dataForm.get('type_conge')}
     get max_permis(){return this.crudApi.dataForm.get('max_permis')}
-    get cong_deja_pris(){return this.crudApi.dataForm.get('cong_deja_pris')}
-    get cong_restant(){return this.crudApi.dataForm.get('cong_restant')}
+    // get cong_deja_pris(){return this.crudApi.dataForm.get('cong_deja_pris')}
+    // get cong_restant(){return this.crudApi.dataForm.get('cong_restant')}
     
      ResetForm() {
       this.crudApi.dataForm.reset() 

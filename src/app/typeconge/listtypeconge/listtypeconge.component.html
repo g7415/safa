@@ -12,11 +12,11 @@
         <table  class="table table-bordered table-striped table-hover" >
         <thead>
         <tr>
-        <th scope="col">id_type</th>
+        <!-- <th scope="col">id_type</th> -->
         <th scope="col">Type_Conge</th>
         <th scope="col">max_permis</th>
-        <th scope="col">cong_deja_pris</th>
-        <th scope="col">cong_restant</th>
+        <!-- <th scope="col">cong_deja_pris</th>
+        <th scope="col">cong_restant</th> -->
       
         <th  *ngIf="authority === 'rh'" class="text-center" scope="col">Modifier</th>
         <th  *ngIf="authority === 'rh'" class="text-center" scope="col">Supprimer</th>
@@ -25,11 +25,11 @@
         </thead>
         <tbody>
         <tr *ngFor="let item of this.crudApi.listtypecon| paginate: { itemsPerPage: count, currentPage: p }| filter:searchText">
-        <th>{{item.id_type}}</th>
+        <!-- <th>{{item.id_type}}</th> -->
         <td>{{item.type_conge}}</td>
         <td>{{item.max_permis}}</td>
-        <td>{{item.cong_deja_pris}}</td>
-        <td>{{item.cong_restant}}</td>
+        <!-- <td>{{item.cong_deja_pris}}</td>
+        <td>{{item.cong_restant}}</td> -->
         
 
         <!-- <td><button class="btn btn-info" style="margin-left: 20px;" >

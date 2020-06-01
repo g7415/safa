@@ -15,54 +15,17 @@ conge=[];
   constructor(private token: TokenStorageService,private salarieService:SalarieService,private congeService: CongeService) { }
 
   ngOnInit() {this.get();
-    // this.congeService.getAll().subscribe(
-    //   response =>{this.conge = response,
-    //     error=>console.log(error)
-    //   }
-    //  );
-    // this.salarieService.getAll().subscribe(
-    //   response =>{this.salarie = this.formatRole(response),
-    //     error=>console.log(error)
-    //   }
-    //  );
-    // this.salarieService.getAllRoles().subscribe(
-    //   response =>{this.salarieService.listrol = response,
-    //     error=>console.log(error)
-    //   }
-    //  );
-    // this.info = {
-    //   token: this.token.getToken(),
-    //   username: this.token.getUsername(),
-    //   authorities: this.token.getAuthorities(),
-    // };
   }
   get(){
     this.congeService.getAll().subscribe(
-      response =>{this.conge = response,
-        error=>console.log(error)
-      }
+      response =>{this.conge = response;
+        console.log(this.conge) 
+      },
+      error=>console.log(error)
      );
+     
   }
-  formatRole(reponse : any){
-    for (var salarie of reponse) {
-      let tabRole = Array();
-      let tabTabRole = Array();
-      let i = 0;
-      for(var role of salarie.roles){
-        tabRole[i] = role.name;
-        i++;
-      }
-      tabTabRole[0] = tabRole;
-      salarie.roles = tabTabRole;
-    }
-    return reponse;
-  }
-  // logout() {
-  //   this.token.signOut();
-  //   window.location.reload();
-  //   // this.router.navigate(['auth/login']);
 
-  // }
   
   public barChartOptions = {
     scaleShowVerticalLines: false,
@@ -76,8 +39,8 @@ conge=[];
   public barChartType = 'bar';
   public barChartLegend = true;
   public barChartData = [
-    // {data: [this.get()], label: 'Series A'},
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Conge'},
+    {data: [this.get()], label: 'Congés'},
+    // {data: [65, 59, 80, 81, 56, 55, 40], label: 'Conge'},
 
     {data: [28, 48, 40, 19, 86, 27, 90], label: 'Salarie'}
   ];

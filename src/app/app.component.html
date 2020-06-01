@@ -12,7 +12,7 @@
               <!-- <li class="nav-item"><a class="nav-link" routerLink="home">Home</a></li> -->
              
               <li *ngIf="!authority" class="nav-item">
-                <a class="nav-link" routerLink="auth/login">Login</a>
+                <!-- <a class="nav-link" routerLink="auth/login">Login</a> -->
               </li>
               <li *ngIf="authority === 'user'|| authority === 'manager'|| authority === 'rh'" class="nav-item">
                 <a class="nav-link" routerLink="/profil" routerLinkActive="active" href="#">Consulter Profil</a>
@@ -23,13 +23,13 @@
               <li  *ngIf="authority === 'user'" class="nav-item">
                 <a class="nav-link" routerLink="/historiqueListConge" routerLinkActive="active">Gerer congé</a>
               </li>
-              <li  *ngIf="authority === 'manager'" class="nav-item">
+              <li  *ngIf="authority === 'manager'|| authority === 'user'" class="nav-item">
                 <a class="nav-link" routerLink="/listconge" routerLinkActive="active">Liste de toutes les demandes de Congés</a>
               </li>
               <li  *ngIf="authority === 'manager'" class="nav-item">
-                <a class="nav-link" routerLink="/listcongeByManager" routerLinkActive="active">Liste des demandes des ses collaborateurs</a>
+                <a class="nav-link" routerLink="/listcongeByManager" routerLinkActive="active">Liste des demandes de ses collaborateurs</a>
               </li>
-              <li  *ngIf="authority === 'rh' || authority === 'manager'|| authority === 'user'" class="nav-item">
+              <li  *ngIf="authority === 'rh' " class="nav-item">
                 <a class="nav-link" routerLink="/listsalarie" routerLinkActive="active">Gérer compte employé</a>
               </li>
               <li  *ngIf="authority === 'rh' || authority === 'manager'|| authority === 'user'" class="nav-item">
