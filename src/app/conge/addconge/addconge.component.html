@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar> -->
 
 <div class="row">
 
@@ -8,11 +8,15 @@
       <form [formGroup]="crudApi.dataForm" (ngSubmit)="onSubmit()">
         {{crudApi.dataForm.value | json}}
         {{crudApi.dataForm.valid}}
+        <div *ngIf ="error" class="alert alert-danger">
+          <p>{{error}}</p>
+        </div>
       <div>
             <input type="hidden" class="form-control" formControlName="num" id="num">
           </div>
         <div class="form-group">
           <label>Date debut</label>
+          
           <input type="date" class="form-control" [min]="todayDate" formControlName="date_debut" id="date_debut" >
           <div *ngIf="date_debut.touched && crudApi.dataForm.get('date_debut').invalid">
             <small *ngIf="date_debut.errors.required" class="text-danger">Required date_debut</small>
@@ -38,7 +42,7 @@
             <input type="text" class="form-control" readonly="true" formControlName="statut" id="statut">
             
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="salarie"> salarie</label>
             <select  id="conge.salarie" name="salarie" formControlName="salarie"  class="form-control">
               <option value="0">-Select-</option>
@@ -47,7 +51,7 @@
             <div class="text-danger" *ngIf="crudApi.dataForm.get('salarie').invalid && salarie.touched">
               <small *ngIf="salarie.errors.required">conges required</small>
             </div>
-          </div>
+          </div> -->
           <div class="form-group">
             <label for="typeconge">Type Conges</label>
             <select  id="conge.typeconge" name="typeconge" formControlName="typeconge"  class="form-control">

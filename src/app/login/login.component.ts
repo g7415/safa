@@ -47,6 +47,8 @@ export class LoginComponent implements OnInit {
         this.salarieService.getProfil(this.tokenStorage.getUsername()).subscribe(
           data => {
           this.tokenStorage.saveId(data.id);
+          this.tokenStorage.saveSoldeConge(data.solde_conge);
+
         },
         error => {
           console.log(error);

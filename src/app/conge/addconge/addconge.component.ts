@@ -18,12 +18,14 @@ import { TokenStorageService } from 'src/app/auth/token-storage.service';
   styleUrls: ['./addconge.component.scss']
 })
 export class AddcongeComponent implements OnInit {
+  error : String;
   conge:Conge[];
   con :any;
   todayDate = new Date();
   SalarieList:Salarie[];
   listtypecon:TypeConge[];
-  submitted = false 
+  submitted = false; 
+  sal=Salarie;
   public userFile : any = File 
   constructor(public crudApi: CongeService ,public fb: FormBuilder,public toastr: ToastrService,private token: TokenStorageService,
   private router : Router, public salarieService: SalarieService,public typecongeService:TypecongeService,
@@ -63,7 +65,7 @@ export class AddcongeComponent implements OnInit {
       duree: ['', [Validators.required]],   
       statut:['en attente', [Validators.required]],  
       typeconge:['', [Validators.required]],  
-      salarie:['', [Validators.required]], 
+      salarie:[''], 
       // idsal:['', [Validators.required]], 
       // id_type:['', [Validators.required]], 
         }) 
@@ -81,13 +83,21 @@ export class AddcongeComponent implements OnInit {
           }
 
                }
+               
 addData() {
   debugger;
   let formvalues = this.crudApi.dataForm.value;
+  console.log(this.crudApi.dataForm.get('typeconge'));
   formvalues.typeconge = { "id_type": formvalues.typeconge };
-  // formvalues.salarie = { "solde_conge": formvalues.solde_conge };
-  formvalues.salarie = { "id" : formvalues.salarie };
-  this.crudApi.createData(formvalues)
+  formvalues.salarie = {};
+  let aa=parseInt(this.token.getId());
+  console.log(aa);
+  
+  // this.salarieService.getData(aa).subscribe(res=>formvalues.salarie.value=res);
+  // formvalues.salarie = this.sal ;
+  // console.log(formvalues.salarie.value);
+
+  this.crudApi.createData(formvalues,aa)
   .subscribe( data => {
     this.dialogRef.close();
     this.crudApi.getAll()
@@ -99,10 +109,13 @@ addData() {
        title: 'Congé ajouté avec succes',
        showConfirmButton: false,
        timer: 1500
-}) }
+})
+this.router.navigate(['/historiqueListConge']);
+ }
      );
-    this.router.navigate(['/historiqueListConge']);
-  });
+  },err => this.error = err["error"]["message"]
+  );
+ 
   // this.typecongeService.getAll().subscribe(
   //   response =>{this.typecongeService.listtypecon = response;}
   //  );

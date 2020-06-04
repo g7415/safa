@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar> -->
 
 <br/>
      <div class="pricing-header mx-auto">
@@ -27,8 +27,8 @@
         
 
        
-        <th class="text-center" scope="col">Modifier</th>
-        <th class="text-center" scope="col">Supprimer</th>
+        <!-- <th class="text-center" scope="col">Modifier</th>
+        <th class="text-center" scope="col">Supprimer</th> -->
         <th class="text-center" scope="col">Accepter</th>
         <th class="text-center" scope="col">Refuser</th>
         </tr>
@@ -43,12 +43,12 @@
         <td>{{item.salarie.username}}</td>
         <td>{{item.typeconge.type_conge}}</td>
 
-          <td><button class="btn btn-warning" style="margin-left: 25px;" (click) = "selectData(item)">
+          <!-- <td><button class="btn btn-warning" style="margin-left: 25px;" (click) = "selectData(item)">
             <i class="fa fa-pencil-square-o" ></i></button></td>
          <td><button class="btn btn-danger"  style="margin-left: 25px;" (click) = "removeData(item.num)">
-            <i class="fa fa-trash-o"></i></button></td>
-            <td><button (click) = "congeAccepter(item.num,item)"><i class="fa fa-check" aria-hidden="true"></i></button> </td>
-            <td><button (click) = "congeRefuser(item.num,item)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+            <i class="fa fa-trash-o"></i></button></td> -->
+            <td><button *ngIf="item.statut === 'en attente'"(click) = "congeAccepter(item.num,item)"><i class="fa fa-check" aria-hidden="true"></i></button> </td>
+            <td><button *ngIf="item.statut === 'en attente'" (click) = "congeRefuser(item.num,item)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
            </tr>
         
              </tbody>

@@ -1,32 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgb(142, 248, 209);">
+  <img class="img" src="assets\unnamed.jpg" />
 
-<!--
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgb(142, 248, 209);">
-      <img class="img" src="assets\unnamed.jpg" />
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/profil" routerLinkActive="active" href="#">Profil</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link"  routerLink="/listconge" routerLinkActive="active">Congés</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/listsalarie" routerLinkActive="active">Utilisateurs</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="child">Quitter</a>
-            </li>
-            
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
-          </form>
-        </div>
-      </nav>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav navbar-nav" routerLinkActive="active">
+        <!-- <li class="nav-item"><a class="nav-link" routerLink="home">Home</a></li> -->
+       
+        <li *ngIf="!authority" class="nav-item">
+          <!-- <a class="nav-link" routerLink="auth/login">Login</a> -->
+        </li>
+        <li *ngIf="authority === 'user'|| authority === 'manager'|| authority === 'rh'" class="nav-item">
+          <a class="nav-link" routerLink="/profil" routerLinkActive="active" href="#"> Profil</a>
+        </li>
+        <!-- <li *ngIf="authority === 'user'" class="nav-item">
+          <a class="nav-link"  routerLink="/conge" routerLinkActive="active">Congés</a>
+        </li> -->
+        <li  *ngIf="authority === 'user'" class="nav-item">
+          <a class="nav-link" routerLink="/historiqueListConge" routerLinkActive="active">Demander congé</a>
+        </li>
+        <li *ngIf="authority === 'manager'|| authority === 'user'|| authority === 'rh'" class="nav-item">
+          <a class="nav-link"  routerLink="/listsalarie2" routerLinkActive="active">Ressource humaine</a>
+        </li>
+        <!-- <li  *ngIf="authority === 'manager'|| authority === 'user'" class="nav-item">
+          <a class="nav-link" routerLink="/listconge" routerLinkActive="active">Liste de toutes les demandes de Congés</a>
+        </li>
+        <li  *ngIf="authority === 'manager'" class="nav-item">
+          <a class="nav-link" routerLink="/listcongeByManager" routerLinkActive="active">Liste des demandes de ses collaborateurs</a>
+        </li>
+        <li  *ngIf="authority === 'rh' " class="nav-item">
+          <a class="nav-link" routerLink="/listsalarie" routerLinkActive="active">Gérer compte employé</a>
+        </li>
+        <li  *ngIf="authority === 'rh' || authority === 'manager'|| authority === 'user'" class="nav-item">
+          <a class="nav-link" routerLink="/listsalarie2" routerLinkActive="active">Liste des employés</a>
+        </li>
+        <li  *ngIf="authority === 'rh'|| authority === 'manager'|| authority === 'user' " class="nav-item">
+          <a class="nav-link" routerLink="/listtypeconge" routerLinkActive="active">Type Congé</a>
+        </li> -->
+        <!-- <li  *ngIf="authority === 'rh'|| authority === 'manager'|| authority === 'user' " class="nav-item">
+          <a class="nav-link" routerLink="/updatePassword" routerLinkActive="active">Changer le mot de passe</a>
+        </li> -->
+      </ul>
+    </div>
+
+    <div class="btn-group" role="group">
+  
+      <button  *ngIf="authority === 'rh'|| authority === 'manager'|| authority === 'user' " id="btnGroupDrop1" type="button" class="btn btn-secondary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  
+       
+        {{info.username}}
+        
+      </button>
+      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+        <a class="dropdown-item"(click)="logout()" href="#">Deconnexion</a>
+       
+
+      </div>
+    </div>
     
-    -->
+  </nav>

@@ -1,4 +1,4 @@
-<app-signin></app-signin>
+      <!-- <app-signin></app-signin> -->
 
 <br/><br/>
      <div class="pricing-header mx-auto">
@@ -7,17 +7,35 @@
         <div class="well search-result">
            
                 <!-- <input type="text" class="form-control" placeholder="Rechercher par username"name="username"  [(ngModel)]="username" (ngModelChange)="filtrer()"> -->
-                <h2 Align=RIGHT><input  type='text'  placeholder="Rechercher par username" name="username"  [(ngModel)]="username" (ngModelChange)="filtrer()"></h2>
-
+                <!-- <h2 Align=RIGHT><input  type='text' id="inputGroup" placeholder="Rechercher par username" name="username"
+                      [(ngModel)]="username" (ngModelChange)="filtrer()"> <span class="input-group-addon">
+                      <i class="fa fa-search"></i>
+                    </span>
+                </h2> -->
+ <!-- Input Group -->
+ <strong><h1>Listes des employés</h1></strong>
+ <a *ngIf="authority === 'rh'" class="btn btn-sm btn-primary text-white pull-right" (click)="addEmploye()"><i class="fa fa-plus"></i>   Ajouter employé </a>
+ <br/>
+ <div class="col-lg-4">
+    <div class="form-group">
+        
+        <div class="input-group">
+            <input type="text" class="form-control"  [(ngModel)]="username" (ngModelChange)="filtrer()"
+                   placeholder="Search by username" id="inputGroup"/>
+            <span class="input-group-addon">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+    </div>
+</div>
             
         </div>
-        <a *ngIf="authority === 'rh'" class="btn btn-sm btn-primary text-white pull-right" (click)="addEmploye()"><i class="fa fa-plus"></i>   Ajouter employé </a>
-        <strong><h1>Listes des employés</h1></strong>
-<br/>
+        
 <!-- <form  class="form-inline my-2 my-lg-2">
     <input class="form-control mr-sm-2" name="username"  [(ngModel)]="username" (ngModelChange)="filtrer()" type="search" placeholder="Rechercher par username" aria-label="Search">
     
   </form> -->
+
 <div class="main-content">
     <div class="section-content section-content-p30">
         <div class="container-fluid">

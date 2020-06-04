@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder,FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -40,7 +40,9 @@ export class CongeService {
     return this.http.post<Conge>(`${this.EmaildemandeAccepter}`, info)
   }
   getData(num: number): Observable<Object> {
-    return this.http.get(`${this.baseUrl}/${num}`);
+    const headers = new HttpHeaders();
+    headers.append('content-type', 'application/json');
+    return this.http.get(`${this.baseUrl}/${num}`,{headers});
   }
 
   getCongeByUsernameSal(username: string): Observable<Conge[]> {
@@ -49,8 +51,11 @@ export class CongeService {
   getCongeByIdSal(id: number): Observable<Object> {
     return this.http.get(`${this.baseUrlIdSal}/${id}`);
   }
-  createData(info: Conge): Observable<Conge> {
-    return this.http.post<Conge>(`${this.baseUrl}`, info);
+  // createData(info: Conge): Observable<Conge> {
+  //   return this.http.post<Conge>(`${this.baseUrl}`, info);
+  // }
+  createData(info: Conge,id:number): Observable<Conge> {
+    return this.http.post<Conge>(`${this.baseUrl}/${id}`, info);
   }
   updatedata(num: number, value: any): Observable<Object> {
     return this.http.put(`${this.baseUrl}/${num}`, value);

@@ -8,7 +8,7 @@ export class Conge {
   duree:number;
 statut: string ;
 typeconge:TypeConge;
-salarie:Salarie;
+salarie?:Salarie;
 // idsal:number;
 // id_type:number;
 // constructor(num:number,date_debut:Date,date_fin:Date,statut:string,typeconge:TypeConge,

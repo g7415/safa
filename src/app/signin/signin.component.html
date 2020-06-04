@@ -1,30 +1,41 @@
-
+<app-navbar></app-navbar>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div id="wrapper" class="wrapper-content">
+<div id="wrapper" class="wrapper-content" *ngIf="authority === 'user'|| authority === 'manager'|| authority === 'rh'">
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
         
 			<ul class="nav-news-feed">
-				<li><i class="fa fa-users icon2"></i><div><a href="#">Employé</a></div></li>
-				<li>
+				<li  *ngIf="authority === 'rh' || authority === 'manager'|| authority === 'user'">
+					<i class="fa fa-users icon2"></i><div><a href="#" routerLink="/listsalarie2">Employés</a></div>
+				</li>
+				<!-- <li  *ngIf="authority === 'rh' " class="nav-item">
+					<a class="nav-link" routerLink="/listsalarie" routerLinkActive="active">Gérer compte employé</a>
+			    </li> -->
+				<li *ngIf=" authority === 'manager'|| authority === 'user'">
 					<i class="fa fa-calendar icon1 "></i>
 					<div>
 						<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Calendrier</a>
 				   </div>
 				   <ul class="collapse list-unstyled" id="pageSubmenu">
 			
-					<li>
+					<li *ngIf=" authority === 'user'">
 						
 						     <a href="#"  routerLink="/historiqueListConge">Historique de ses demandes </a>
 					 
 					</li>
-					<li>
-						<a href="#">Liste de tous les congés</a>
+					<li  *ngIf="authority === 'manager'" class="nav-item">
+						<a class="nav-link" routerLink="/listcongeByManager" routerLinkActive="active">Liste des demandes de ses collaborateurs</a>
+					  </li>
+					<li *ngIf="authority === 'manager'|| authority === 'user'" class="nav-item">
+						<a href="#"routerLink="/listconge" routerLinkActive="active">Liste de tous les congés</a>
 					</li>
+
 				</ul>
 			   </li>
 
-				<li><i class="fa fa-list-alt icon4"></i><div><a href="#">Type Congé</a></div></li>
+				<li  *ngIf="authority === 'rh'|| authority === 'manager'|| authority === 'user' "><i class="fa fa-list-alt icon4"></i><div>
+					<a href="#"routerLink="/listtypeconge" routerLinkActive="active">Type Congé</a></div></li>
+				
 				<!-- <i class="fa fa-user icon3"></i> -->
 				<!-- <li><i class="fa fa-comments icon4"></i><div><a href="#">Messages</a></div></li>
 				<li><i class="fa fa-picture-o icon5"></i><div><a href="#">Images</a></div></li>
@@ -33,10 +44,11 @@
         </ul>
     </div>
 	
-    <button class="btn-menu  btn-toggle-menu" type="button">
+    <button  class="btn-menu  btn-toggle-menu" type="button">
 		<i class="fa fa-bars"></i>
 	</button>
-	
+	<router-outlet></router-outlet>
+
 </div>
 
 

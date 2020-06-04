@@ -32,6 +32,8 @@ import { CalendrierComponent } from './calendrier/calendrier.component';
 import { TreeViewModule } from "@syncfusion/ej2-angular-navigations";
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
 import { ChartsModule } from 'ng2-charts';
+// import { MatFormFieldModule, MatInputModule } from '@angular/material';
+// import { MaterialModule } from '@angular/material';
 
 import {
   DropDownListAllModule,
@@ -73,6 +75,8 @@ import { ListcongeByManagerComponent } from './conge/listconge-by-manager/listco
 import { Listsalarie2Component } from './salarie/listsalarie2/listsalarie2.component';
 import { ResetPasswordEmailComponent } from './login/reset-password-email/reset-password-email.component';
 import { ViewGraphComponent } from './view-graph/view-graph.component';
+import { CalComponent } from './cal/cal.component';
+
 
 
 const MATERIAL_MODULES = [MatToolbarModule,
@@ -82,6 +86,7 @@ const MATERIAL_MODULES = [MatToolbarModule,
   const appRoutes : Routes = [
     //{path:'', redirectTo :"listconge" , pathMatch:"full"},
     {path: 'view-graph', component:ViewGraphComponent },
+    {path: 'cal', component:CalComponent },
 
     {path: 'listsalarie2', component:Listsalarie2Component },
     {path: 'listcongeByManager', component: ListcongeByManagerComponent},
@@ -138,9 +143,11 @@ const MATERIAL_MODULES = [MatToolbarModule,
     ListcongeByManagerComponent,
     Listsalarie2Component,
     ResetPasswordEmailComponent,
-    ViewGraphComponent
+    ViewGraphComponent,
+    CalComponent
   ],
-  imports: [DateValueAccessorModule,Ng2SearchPipeModule ,NgxPaginationModule,ChartsModule,
+  imports: [
+    DateValueAccessorModule,Ng2SearchPipeModule ,NgxPaginationModule,ChartsModule,
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
