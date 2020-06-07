@@ -52,7 +52,8 @@ export class AddsalarieComponent implements OnInit {
 ngOnInit(){
 
     if (this.crudApi.choixmenu == 1){
-      this.infoForm()
+      this.infoForm();
+      
     }
    
     this.crudApi.getAll().subscribe(
@@ -84,16 +85,34 @@ infoForm() {
       pic :['']
         }) 
   }
-
+  getData() {
+    this.crudApi.getAll().subscribe(
+      response =>{this.crudApi.listsal = this.formatRole(response);
+        for (var salarie of response) {
+          this.pic= salarie.pic
+         //  console.log(this.pic);
+         this.base64Data = atob(this.pic);
+         this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data; 
+         salarie.pic = this.convertedImage;
+         console.log(salarie.pic);
+       };
+       }
+      
+     );
+    this.crudApi.getAllRoles().subscribe(
+      response =>{this.crudApi.listrol = response;}
+     );
+    
+  }
 
   ResetForm() {
       this.crudApi.dataForm.reset() 
   }
-  //si je suis en mode ajout je fais adddata sinon updatedata
-  // en applelons le web service service/salarie/service/ts eli fih les methodes
+
   onSubmit() {
     if (this.crudApi.choixmenu == 1)
        this.addData();
+       
     else
       {
         this.updateData();
@@ -123,6 +142,7 @@ addData() {
     this.crudApi.getAll()
     .subscribe(
     response =>{this.crudApi.listsal = this.formatRole(response);
+      this.getData();
       // this.crudApi.listsal = this.formatManager(response);
     Swal.fire({
     position: 'top-end',
@@ -176,6 +196,7 @@ updateData() {
    .subscribe(
    response =>{this.crudApi.listsal = this.formatRole(response);
    this.toastr.info( 'Employé modifier avec Success');
+   this.getData();
    }
    );
    this.crudApi.getAllRoles().subscribe(
@@ -233,20 +254,7 @@ updateData() {
 
     return reponse;
   }
-  // formatManager(reponse : any){
-  //   for (var salarie of reponse) {
-  //     let tabRole = Array();
-  //     let tabTabRole = Array();
-  //     let i = 0;
-  //     for(var manager of salarie.manager){
-  //       tabRole[i] = manager.username;
-  //       i++;
-  //     }
-  //     tabTabRole[0] = tabRole;
-  //     salarie.manager = tabTabRole;
-  //   }
-  //   return reponse;
-  // }
+
 
  
 

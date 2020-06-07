@@ -126,8 +126,11 @@ this.router.navigate(['/historiqueListConge']);
     debugger;
     let formvalues = this.crudApi.dataForm.value;
     formvalues.typeconge = { "id_type": formvalues.typeconge };
-    formvalues.salarie = { "id" : formvalues.salarie };
-    this.crudApi.updatedata(this.crudApi.dataForm.value.num,this.crudApi.dataForm.value)
+    // formvalues.salarie = { "id" : formvalues.salarie }
+    formvalues.salarie = {};
+    let aa=parseInt(this.token.getId());
+    console.log(aa);;
+    this.crudApi.updatedata(this.crudApi.dataForm.value.num,aa,formvalues)
     .subscribe( data => {
       this.dialogRef.close();
       this.crudApi.getAll()
@@ -143,7 +146,8 @@ this.router.navigate(['/historiqueListConge']);
         }
        );
       this.router.navigate(['/historiqueListConge']);
-    });
+    },err => this.error = err["error"]["message"]
+    );
     // this.typecongeService.getAll().subscribe(
     //   response =>{this.typecongeService.listtypecon = response;}
     //  );

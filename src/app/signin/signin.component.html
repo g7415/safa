@@ -11,31 +11,45 @@
 				<!-- <li  *ngIf="authority === 'rh' " class="nav-item">
 					<a class="nav-link" routerLink="/listsalarie" routerLinkActive="active">Gérer compte employé</a>
 			    </li> -->
-				<li *ngIf=" authority === 'manager'|| authority === 'user'">
+				<li *ngIf="authority === 'user'|| authority === 'manager'|| authority ==='rh'">
 					<i class="fa fa-calendar icon1 "></i>
 					<div>
 						<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Calendrier</a>
 				   </div>
-				   <ul class="collapse list-unstyled" id="pageSubmenu">
+			    <ul class="collapse list-unstyled" id="pageSubmenu">
 			
-					<li *ngIf=" authority === 'user'">
+					<li *ngIf="authority === 'user'">
 						
-						     <a href="#"  routerLink="/historiqueListConge">Historique de ses demandes </a>
+						     <div>
+							 <a href="#"  routerLink="/historiqueListConge">Historique de ses congés </a>
+							</div>
 					 
 					</li>
 					<li  *ngIf="authority === 'manager'" class="nav-item">
+						
 						<a class="nav-link" routerLink="/listcongeByManager" routerLinkActive="active">Liste des demandes de ses collaborateurs</a>
 					  </li>
-					<li *ngIf="authority === 'manager'|| authority === 'user'" class="nav-item">
+					<li *ngIf="authority === 'user'||authority === 'manager'|| authority ==='rh'" class="nav-item">
+						<div>
 						<a href="#"routerLink="/listconge" routerLinkActive="active">Liste de tous les congés</a>
+					</div>
 					</li>
 
 				</ul>
 			   </li>
 
-				<li  *ngIf="authority === 'rh'|| authority === 'manager'|| authority === 'user' "><i class="fa fa-list-alt icon4"></i><div>
-					<a href="#"routerLink="/listtypeconge" routerLinkActive="active">Type Congé</a></div></li>
-				
+				<li  *ngIf="authority === 'rh'|| authority === 'manager'|| authority === 'user' ">
+					<i class="fa fa-list-alt icon3"></i>
+					<div>
+					     <a href="#"routerLink="/listtypeconge" routerLinkActive="active">Type Congé</a>
+					</div>
+				</li>
+									
+					<li *ngIf="authority === 'user'"> 
+						<i class="fa fa-list-alt icon4"></i>
+						<div>
+							<a href="#" routerLink="/resumeConge">Resumé de congé</a></div></li>
+
 				<!-- <i class="fa fa-user icon3"></i> -->
 				<!-- <li><i class="fa fa-comments icon4"></i><div><a href="#">Messages</a></div></li>
 				<li><i class="fa fa-picture-o icon5"></i><div><a href="#">Images</a></div></li>

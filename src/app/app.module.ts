@@ -76,6 +76,7 @@ import { Listsalarie2Component } from './salarie/listsalarie2/listsalarie2.compo
 import { ResetPasswordEmailComponent } from './login/reset-password-email/reset-password-email.component';
 import { ViewGraphComponent } from './view-graph/view-graph.component';
 import { CalComponent } from './cal/cal.component';
+import { ResumeCongeComponent } from './conge/resume-conge/resume-conge.component';
 
 
 
@@ -85,6 +86,8 @@ const MATERIAL_MODULES = [MatToolbarModule,
 
   const appRoutes : Routes = [
     //{path:'', redirectTo :"listconge" , pathMatch:"full"},
+    {path: 'resumeConge', component:ResumeCongeComponent },
+
     {path: 'view-graph', component:ViewGraphComponent },
     {path: 'cal', component:CalComponent },
 
@@ -144,7 +147,8 @@ const MATERIAL_MODULES = [MatToolbarModule,
     Listsalarie2Component,
     ResetPasswordEmailComponent,
     ViewGraphComponent,
-    CalComponent
+    CalComponent,
+    ResumeCongeComponent
   ],
   imports: [
     DateValueAccessorModule,Ng2SearchPipeModule ,NgxPaginationModule,ChartsModule,

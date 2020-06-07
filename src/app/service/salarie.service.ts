@@ -31,6 +31,7 @@ export class SalarieService {
   listsal:Salarie[];
   listrol:Role[];
   managerList:Salarie[];
+  listMan: any;
   constructor(private http: HttpClient,private toastr: ToastrService,public fb: FormBuilder) { }
 
   

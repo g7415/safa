@@ -9,7 +9,10 @@ import { Conge } from '../model/conge';
   providedIn: 'root'
 })
 export class CongeService {
+   
   
+ 
+  private resumeConge = 'http://localhost:8080/api/SumCongePris';
   private baseUrlConByManager = 'http://localhost:8080/api/ConByManager';
   private EmaildemandeAccepter = 'http://localhost:8080/testapp/EmaildemandeAccepter';
   private EmaildemandeRefuser = 'http://localhost:8080/testapp/EmaildemandeRefuser';
@@ -25,7 +28,13 @@ export class CongeService {
   dataForm: any =  FormGroup; 
   listcon:Conge[];
   constructor(private http: HttpClient,private toastr: ToastrService,public fb: FormBuilder) { }
-
+  
+ 
+  getSumCongePris(username: String): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.append('content-type', 'application/json');
+    return this.http.get<any>(`${this.resumeConge}/${username}`,{headers});
+  }
   getListConByStatut(): Observable<any> {
     return this.http.get(`${this.baseUrlListConByStatut}`);
   }
@@ -57,9 +66,12 @@ export class CongeService {
   createData(info: Conge,id:number): Observable<Conge> {
     return this.http.post<Conge>(`${this.baseUrl}/${id}`, info);
   }
-  updatedata(num: number, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/${num}`, value);
+  updatedata(num: number,id:number, value: any): Observable<Object> {
+    return this.http.put(`${this.baseUrl}/${num}/${id}`, value);
   }
+  // updatedata(num: number, value: any): Observable<Object> {
+  //   return this.http.put(`${this.baseUrl}/${num}`, value);
+  // }
   
   deleteData(num: number): Observable<any> {
    

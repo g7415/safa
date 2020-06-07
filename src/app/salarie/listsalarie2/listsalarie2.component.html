@@ -1,34 +1,37 @@
-      <!-- <app-signin></app-signin> -->
-
-<br/><br/>
      <div class="pricing-header mx-auto">
       
        <div class="table-responsive">
         <div class="well search-result">
-           
-                <!-- <input type="text" class="form-control" placeholder="Rechercher par username"name="username"  [(ngModel)]="username" (ngModelChange)="filtrer()"> -->
-                <!-- <h2 Align=RIGHT><input  type='text' id="inputGroup" placeholder="Rechercher par username" name="username"
-                      [(ngModel)]="username" (ngModelChange)="filtrer()"> <span class="input-group-addon">
-                      <i class="fa fa-search"></i>
-                    </span>
-                </h2> -->
- <!-- Input Group -->
- <strong><h1>Listes des employés</h1></strong>
- <a *ngIf="authority === 'rh'" class="btn btn-sm btn-primary text-white pull-right" (click)="addEmploye()"><i class="fa fa-plus"></i>   Ajouter employé </a>
+     
+ <div class="container">
+    <div class="row justify-content-center bg-light"  >
+      <!-- style ="background-color :#74ebd5;" -->
+      <h1 >Liste des employés</h1>
+    </div>
+  </div>
+  <br/><br/>
+ <a *ngIf="authority === 'rh'" class="btn btn-sm btn-success text-white pull-right" (click)="addEmploye()"><i class="fa fa-plus"></i>   Ajouter employé </a>
  <br/>
- <div class="col-lg-4">
+ <div class="col-lg-3">
     <div class="form-group">
         
         <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+              </div>
             <input type="text" class="form-control"  [(ngModel)]="username" (ngModelChange)="filtrer()"
                    placeholder="Search by username" id="inputGroup"/>
             <span class="input-group-addon">
-                <i class="fa fa-search"></i>
+                
             </span>
         </div>
     </div>
 </div>
-            
+<select name="manager" formControlName="filterProduct">
+    <option *ngFor="let k of this.listMan; let i = index;">
+           {{k.username}} 
+    </option>
+  </select>
         </div>
         
 <!-- <form  class="form-inline my-2 my-lg-2">

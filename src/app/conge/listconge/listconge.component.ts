@@ -46,14 +46,17 @@ export class ListcongeComponent implements OnInit {
     dialogConfig.height="90%";
     this.matDialog.open(AddcongeComponent, dialogConfig);
   }
-
+  filtreById(response:any){
+    console.log(response.sort(function(a,b){ return b.num-a.num } ));
+    return response;
+}
   getData() {
     
     // this.crudApi.getAll().subscribe(
     //   response =>{this.crudApi.listcon = response;}
     //  );
     this.crudApi.getListConByStatut().subscribe(
-      response =>{this.crudApi.listcon = response;}
+      response =>{this.crudApi.listcon = this.filtreById(response);}
      );
       this.typecongeService.getAll().subscribe(
       response =>{this.listtypecon = response;}

@@ -34,6 +34,7 @@ export class Listsalarie2Component implements OnInit {
   nom_responsable:any;
   manager: any;
   groupe: string;
+  listMan: any;
   constructor(public crudApi: SalarieService, public toastr: ToastrService,
     private tokenStorage: TokenStorageService,
     private router : Router,public fb: FormBuilder,
@@ -90,7 +91,8 @@ export class Listsalarie2Component implements OnInit {
     this.crudApi.getAllRoles().subscribe(
       response =>{this.crudApi.listrol = response;}
      );
-    
+    this.crudApi.getAllManager()
+    .subscribe(response=>{this.listMan=response;})
   }
 
   formatRole(reponse : any){

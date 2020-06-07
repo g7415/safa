@@ -61,6 +61,8 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = true;
       }
     );
+    this.router.navigate(['/profil']);
+    console.log("Success Navigation");
   }
 
   reloadPage() {

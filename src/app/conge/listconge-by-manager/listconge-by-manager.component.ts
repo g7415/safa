@@ -91,7 +91,7 @@ ll:any;
     this.crudApi.getConByManager(id)
   
     .subscribe(
-      response =>{this.listcon = this.aaa(response);
+      response =>{this.listcon = this.zz(response);
       
       }
      );
@@ -101,7 +101,10 @@ ll:any;
     //  this.getProfil();
   }
  
-
+  zz(response:any){
+    console.log(response.sort(function(a,b){ return b.num-a.num } ));
+    return response;
+}
   aaa(response:any)
   {
   const sortBy = ["en attente", "accepter", "refuser"];

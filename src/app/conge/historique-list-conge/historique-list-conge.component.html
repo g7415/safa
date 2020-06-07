@@ -3,14 +3,50 @@
 <br/>
      <div class="pricing-header mx-auto">
        <div class="table-responsive">
+
+        <div class="container">
+          <div class="row justify-content-center bg-light"  >
+            <!-- style ="background-color :#74ebd5;" -->
+            <h1 >Historique de mes congés</h1>
+          </div>
+        </div>
         <!-- <button class="btn btn-warning" style="margin-left: 25px;" (click) = "getData()">
             <i class="fa fa-pencil-square-o" ></i> Voir l'historique de ses propres demandes de congés </button> -->
-        <a class="btn btn-sm btn-primary text-white pull-right" (click)="addConge()"><i class="fa fa-plus"></i>   Ajouter un congé </a>
-        <h1>Listes des congés</h1>
+        <a class="btn btn-sm btn-success text-white pull-right" (click)="addConge()"><i class="fa fa-plus"></i>   Ajouter un congé </a>
+        
+        <!-- <h1>Listes des congés</h1> -->
 <br/>
-<div class="search-hero" class="col-lg-12"> 
+<!-- <div class="search-hero" class="col-lg-12"> 
   <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for an employees by id or name ">
-</div>
+</div> -->
+
+
+
+<nav class="navbar navbar-light ">
+  <form class="form-inline">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+      </div>
+      <input class="form-control" type="text" name="search"
+      [(ngModel)]="searchText" autocomplete="off" placeholder="Recherche ">
+    </div>
+  </form>
+</nav>
+
+<!-- <div class="col-lg-4">
+  <div class="form-group">
+      
+      <div class="input-group">
+          <input type="text" class="form-control"  [(ngModel)]="statut" (ngModelChange)="filtrer()"
+                 placeholder="Search by typeconge" id="inputGroup"/>
+          <span class="input-group-addon">
+              <i class="fa fa-search"></i>
+          </span>
+      </div>
+  </div>
+</div> -->
+
         <table  class="table table-bordered table-striped table-hover">
         <thead>
         <tr>
@@ -32,7 +68,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of this.listcon | paginate: { itemsPerPage: count, currentPage: p }| filter:searchText">
+        <tr *ngFor="let item of this.listcon| filter:searchText | paginate: { itemsPerPage: count, currentPage: p }">
         <!-- <th>{{item.num}}</th> -->
         <td>{{item.date_debut| date:'yyyy-MM-dd'}}</td>
         <td>{{item.date_fin| date:'yyyy-MM-dd'}}</td>

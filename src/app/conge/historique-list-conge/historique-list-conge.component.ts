@@ -32,13 +32,19 @@ export class HistoriqueListCongeComponent implements OnInit {
   sal : Salarie;
   userUpdated: Object;
   errorMessage: string;
+   a : Conge;
+
+  c: Conge[];
+  // statut: string;
   constructor(public crudApi: CongeService, public toastr: ToastrService,
     private token: TokenStorageService,public salarieService:SalarieService, 
     private router : Router,public fb: FormBuilder,public typecongeService:TypecongeService,
     //Pour le popup (ajouter congé)
     private matDialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef:MatDialogRef<AddcongeComponent>,) { }
+    public dialogRef:MatDialogRef<AddcongeComponent>,) {
+      // this.c=this.listcon; 
+    }
 
   ngOnInit() {
     // this.salarieService.getProfil(this.token.getUsername())
@@ -56,6 +62,13 @@ export class HistoriqueListCongeComponent implements OnInit {
     this.getData();
    
   }
+  zz(response:any){
+    console.log(response.sort(function(a,b){ return b.num-a.num } ));
+    return response;
+}
+  // filtrer(){
+  //   this.c=this.crudApi.listcon.filter(a => a.statut.startsWith(this.statut));
+  // }
    addConge()
   {
  
@@ -71,7 +84,7 @@ export class HistoriqueListCongeComponent implements OnInit {
     debugger;
     this.crudApi.getCongeByUsernameSal(this.token.getUsername())
     .subscribe(
-      response =>{this.listcon = response;}
+      response =>{this.listcon=this.zz(response);}
      );
       this.typecongeService.getAll().subscribe(
       response =>{this.listtypecon = response;}

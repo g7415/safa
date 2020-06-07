@@ -1,0 +1,60 @@
+
+
+<br/>
+     <div class="pricing-header mx-auto">
+       <div class="table-responsive">
+           
+        <div class="container">
+          <div class="row justify-content-center bg-light"  >
+                       <h1 >Resumé de congé</h1>
+          </div>
+        </div>
+        <br/>
+
+<nav class="navbar navbar-light ">
+  <form class="form-inline">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+      </div>
+      <input class="form-control" type="text" name="search"
+      [(ngModel)]="searchText" autocomplete="off" placeholder="Recherche ">
+    </div>
+  </form>
+</nav>
+
+        <table  class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+      
+        <th scope="col">Type de conge</th>
+        <th scope="col">Maximum permis</th>
+        <th scope="col">Congés deja pris</th>
+        <th scope="col">Congés restants</th>
+       
+     
+      
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of listcon | filter:searchText | paginate: { itemsPerPage: count, currentPage: p } ; let i = index">
+        <!-- <th>{{item.num}}</th> -->
+      
+        <td> {{i[i]}}{{item[0]}}</td>
+        <th>{{i[i]}}{{item[1]}}</th>
+         <td>{{i[i]}}{{item[2]}}</td>
+         <td>{{i[i]}}{{item[3]}}</td>
+        <!-- <td>{{item.salarie.username}}</td>
+        <td>{{item.typeconge.type_conge}}</td>  -->
+
+         
+           </tr>
+        
+             </tbody>
+            
+             </table>
+             </div>
+             <div class="text-right">
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+           </div>
