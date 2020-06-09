@@ -70,7 +70,7 @@ export class AddtypecongeComponent implements OnInit {
     this.crudApi.getAll().subscribe(
     response =>{this.crudApi.listtypecon = response;
     Swal.fire({
-    position: 'top-end',
+    position: 'center',
     icon: 'success',
     title: 'Type Congé ajouter avec succes',
     showConfirmButton: false,

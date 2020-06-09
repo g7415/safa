@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getAuthorities();
+      this.router.navigate(['/profil']);
+      console.log("Success Navigation");
     }
   }
 
@@ -48,7 +50,7 @@ export class LoginComponent implements OnInit {
           data => {
           this.tokenStorage.saveId(data.id);
           this.tokenStorage.saveSoldeConge(data.solde_conge);
-
+         
         },
         error => {
           console.log(error);
@@ -60,9 +62,9 @@ export class LoginComponent implements OnInit {
         this.errorMessage = error.error.message;
         this.isLoginFailed = true;
       }
+      
     );
-    this.router.navigate(['/profil']);
-    console.log("Success Navigation");
+   
   }
 
   reloadPage() {

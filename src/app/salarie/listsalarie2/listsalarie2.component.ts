@@ -150,6 +150,7 @@ export class Listsalarie2Component implements OnInit {
         
       });
     }
+  
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;

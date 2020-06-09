@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder,FormGroup } from '@angular/forms';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, Subject } from 'rxjs';
 import { Salarie } from '../model/salarie';
 import { Role } from '../model/role';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 const httpOptions = {
 
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -26,15 +26,29 @@ export class SalarieService {
   private baseUrl1 = 'http://localhost:8080/api/salarie';
   private EmailresetPassword = 'http://localhost:8080/api/auth/resetPassword';
   private baseUrlRole = 'http://localhost:8080/api/roles';
+  private statistique = 'http://localhost:8080/api/dateEntree';
+  
   choixmenu : number = 1;
   dataForm: any =  FormGroup; 
   listsal:Salarie[];
   listrol:Role[];
   managerList:Salarie[];
   listMan: any;
+  private _refresh$ = new Subject();
   constructor(private http: HttpClient,private toastr: ToastrService,public fb: FormBuilder) { }
-
+  getStatistique1(date_entree: String): Observable<any> {
+    return this.http.get(`${this.statistique}/${date_entree}`).pipe(
+      tap(() => {
+        this._refresh$.next();
+      })
+    );
+  }
   
+  getRefresh()
+  {
+    return this._refresh$;
+  }
+
   reinitialiseMdp(username: String, value: any): Observable<Salarie> {
     return this.http.put<Salarie>(`${this.resetPassword}/${username}`, value);
   }

@@ -93,13 +93,13 @@ export class HistoriqueListCongeComponent implements OnInit {
   
   removeData(num: number) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: 'Etes vous sur?',
+      text: "Vous ne pourrez plus revenir en arrière!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Oui, supprimez-le!'
     }).then((result) => {
       if (result.value) {this.crudApi.deleteData(num)
           .subscribe(
@@ -110,9 +110,7 @@ export class HistoriqueListCongeComponent implements OnInit {
             error => console.log(error));
       
         Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
+          'Utilisateur supprimer avec succes.',
         )
       }
     })

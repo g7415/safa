@@ -145,7 +145,7 @@ addData() {
       this.getData();
       // this.crudApi.listsal = this.formatManager(response);
     Swal.fire({
-    position: 'top-end',
+    position: 'center',
     icon: 'success',
     title: 'Employé ajouter avec succes',
     showConfirmButton: false,
@@ -195,7 +195,14 @@ updateData() {
    this.crudApi.getAll()
    .subscribe(
    response =>{this.crudApi.listsal = this.formatRole(response);
-   this.toastr.info( 'Employé modifier avec Success');
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Employé modifier avec Success',
+      showConfirmButton: false,
+      timer: 1500})        
+      
+  //  this.toastr.info( 'Employé modifier avec Success');
    this.getData();
    }
    );

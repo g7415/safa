@@ -15,13 +15,50 @@
    <script src="node_modules/chart.js/src/chart.js"></script>
 
    <div class="container">
-    <div style="display: block">
-      <canvas baseChart
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
-              [options]="barChartOptions"
-              [legend]="barChartLegend"
-              [chartType]="barChartType">
-      </canvas>
-    </div>
+     <div class="row">
+       <div class="col-xs-12">
+        <input type="text" class="form-control" [(ngModel)]="annee">
+       </div>
+       &nbsp;
+       <div class="col-xs-12">
+        <select class="form-control" [(ngModel)]="mois">
+              <option value="01">1</option>
+              <option value="02">2</option>
+              <option value="03">3</option>
+              <option value="04">4</option>
+              <option value="05">5</option>
+              <option value="06">6</option>
+              <option value="07">7</option>
+              <option value="08">8</option>
+              <option value="09">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+          </select>
+      </div>
+      &nbsp;
+      <button class="btn btn-primary" (click)="get()">
+        <i class="fa fa-search"></i>  
+      </button>
+     </div>
+<br><br>
+<div class="container">
+  <div style="display: block">
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+    </canvas>
   </div>
+</div>
+  </div>
+
+
+  <p>
+    {{salarie}}
+  </p>
+
+
+ 

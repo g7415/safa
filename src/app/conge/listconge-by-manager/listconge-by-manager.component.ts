@@ -182,7 +182,7 @@ congeRefuser(num: number,item : Conge){
   this.crudApi.updateCongRefuser(num,item)
   .subscribe(data =>{this.conge = data;
     Swal.fire({
-      position: 'top-end',
+      position: 'center',
       icon: 'success',
       title: 'Congé refuser',
       showConfirmButton: false,
@@ -203,7 +203,7 @@ congeAccepter(num: number,item : Conge){
   this.crudApi.updateCongAccep(num,item)
   .subscribe(data =>{this.conge = data;
     Swal.fire({
-      position: 'top-end',
+      position: 'center',
       icon: 'success',
       title: 'Congé accepter',
       showConfirmButton: false,
@@ -215,7 +215,7 @@ this.crudApi.creatEmail2(item)
  res => {
  this.conge = res;
  console.log(this.conge);
- alert('Email Sent successfully');
+ alert('Email envoyer avec succes');
  });
 // }
 //  else{

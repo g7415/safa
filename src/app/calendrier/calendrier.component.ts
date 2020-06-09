@@ -42,7 +42,7 @@ export class CalendrierComponent {
   public data: Object[] = <Object[]>extend([], zooEventsData, null, true);
   public selectedDate: Date = new Date(2018, 1, 15);
   public eventSettings: EventSettingsModel = { dataSource: this.data };
-  public currentView: View = "Week";
+  public currentView: View = "Month";
   public flag = true;
     listtypecon: any;
   constructor(public crudApi: CongeService, 
@@ -72,9 +72,7 @@ export class CalendrierComponent {
     this.crudApi.getListConByStatut().subscribe(
       response =>{this.crudApi.listcon = response;}
      );
-      this.typecongeService.getAll().subscribe(
-      response =>{this.listtypecon = response;}
-     );
+   
   }
   oneventRendered(args: any): void {
     if (this.flag) {

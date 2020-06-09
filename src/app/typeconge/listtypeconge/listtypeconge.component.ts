@@ -52,7 +52,7 @@ export class ListtypecongeComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width="40%";
-    dialogConfig.height="90%";
+    dialogConfig.height="50%";
     //dialogConfig.data="gdddd";
     this.matDialog.open(AddtypecongeComponent, dialogConfig);
   }
@@ -98,7 +98,7 @@ export class ListtypecongeComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width="50%";
-    dialogConfig.height="90%";
+    dialogConfig.height="50%";
     this.matDialog.open(AddtypecongeComponent, dialogConfig);
   }
 

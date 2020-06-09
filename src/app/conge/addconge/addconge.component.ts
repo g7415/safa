@@ -27,6 +27,7 @@ export class AddcongeComponent implements OnInit {
   submitted = false; 
   sal=Salarie;
   public userFile : any = File 
+  t: any;
   constructor(public crudApi: CongeService ,public fb: FormBuilder,public toastr: ToastrService,private token: TokenStorageService,
   private router : Router, public salarieService: SalarieService,public typecongeService:TypecongeService,
   @Inject(MAT_DIALOG_DATA)  public data,
@@ -48,7 +49,13 @@ export class AddcongeComponent implements OnInit {
       response =>{this.SalarieList = response;}
      );
      this.typecongeService.getAll().subscribe(
-      response =>{this.listtypecon = response;}
+      response =>{this.listtypecon = response;
+      //   for (var type of response) {
+      //     this.t= type.type_conge[0][0];
+      //     console.log(this.t);
+        
+      //  };
+      }
      );
     
   }
@@ -87,6 +94,7 @@ export class AddcongeComponent implements OnInit {
 addData() {
   debugger;
   let formvalues = this.crudApi.dataForm.value;
+  console.log(formvalues.date_debut);
   console.log(this.crudApi.dataForm.get('typeconge'));
   formvalues.typeconge = { "id_type": formvalues.typeconge };
   formvalues.salarie = {};
@@ -104,7 +112,7 @@ addData() {
     .subscribe(
       response =>{this.crudApi.listcon = response;
        Swal.fire({
-       position: 'top-end',
+       position: 'center',
        icon: 'success',
        title: 'Congé ajouté avec succes',
        showConfirmButton: false,

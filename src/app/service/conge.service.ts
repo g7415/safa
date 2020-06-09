@@ -64,7 +64,9 @@ export class CongeService {
   //   return this.http.post<Conge>(`${this.baseUrl}`, info);
   // }
   createData(info: Conge,id:number): Observable<Conge> {
-    return this.http.post<Conge>(`${this.baseUrl}/${id}`, info);
+    const headers = new HttpHeaders();
+    headers.append('content-type', 'application/json');
+    return this.http.post<Conge>(`${this.baseUrl}/${id}`, info,{headers});
   }
   updatedata(num: number,id:number, value: any): Observable<Object> {
     return this.http.put(`${this.baseUrl}/${num}/${id}`, value);
