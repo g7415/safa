@@ -19,21 +19,30 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
               </div>
-            <input type="text" class="form-control"  [(ngModel)]="username" (ngModelChange)="filtrer()"
+            <input type="text" class="form-control"  [(ngModel)]="username" 
                    placeholder="Search by username" id="inputGroup"/>
             <span class="input-group-addon">
                 
             </span>
         </div>
+        
     </div>
 </div>
-<!-- <select name="manager" formControlName="filterProduct">
-    <option *ngFor="let k of this.listMan; let i = index;">
-           {{k.username}} 
-    </option>
-  </select> -->
+
+      <div class="col-lg-3">
+           <select name="manager" class="form-control"  [(ngModel)]="username" (ngModelChange)="filtrerManager()" >
+                   <option *ngFor="let k of this.listMan; let i = index;"  >
+                       {{k.username}} 
+                    </option>
+           </select>
+       </div>
+ 
         </div>
         
+      
+
+   
+</div>  
 <!-- <form  class="form-inline my-2 my-lg-2">
     <input class="form-control mr-sm-2" name="username"  [(ngModel)]="username" (ngModelChange)="filtrer()" type="search" placeholder="Rechercher par username" aria-label="Search">
     
@@ -44,7 +53,7 @@
         <div class="container-fluid">
             <div class="row">
               
-                        <div *ngFor="let item of this.crudApi.listsal| filter:username | paginate: { itemsPerPage: count, currentPage: p }"class="col-md-3">
+                        <div *ngFor="let item of this.crudApi.listsal |filter:username | paginate: { itemsPerPage: count, currentPage: p }"class="col-md-3">
                             <div class="container-fluid" >
                              <div class="card mb-3" style="max-width: 250px;">
                              <div align="center" >

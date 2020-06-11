@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
 import { TokenStorageService } from '../auth/token-storage.service';
-
+import { SalarieService } from '../service/salarie.service';
+import { CongeService } from '../service/conge.service';
+import * as Highcharts from 'highcharts';
+import * as Chart from 'chart.js';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cal',
@@ -10,59 +12,117 @@ import { TokenStorageService } from '../auth/token-storage.service';
   styleUrls: ['./cal.component.scss']
 })
 export class CalComponent implements OnInit {
-
-
-loginForm: FormGroup;
-
-constructor(_fb:FormBuilder,private router:Router,private tokenStorage: TokenStorageService) {
-  $(document).ready(function(){
-    $(".push_menu").click(function(){
-         $(".wrapper").toggleClass("active");
-    });
-});
-  let loginFormsControls={
-  username: new FormControl("",[Validators.required]),
-  password : new FormControl("",[Validators.required])
-}
-this.loginForm=_fb.group(loginFormsControls); }
-get username(){return this.loginForm.get('username')}
-get password(){return this.loginForm.get('password')}
-
-login(){let data=this.loginForm.value;
-  console.log(data)}
-  navigateToacceil() {
-    this.router.navigate(['listsalarie']);
-    console.log("Success Navigation");}
+  info: any;
+  congeRefu : number;
+  conge:number;
+  annee = "2020";
+  mois = "04";
+  LineChart:any;
+  BarChart:any;
+  PieChart:any;
+  submitted = false;
+  congeEnAtt: any;
+  NbMang: any;
+  nbRH: any;
+  nbEmp: any;
+    constructor(private token: TokenStorageService,private salarieService:SalarieService,private congeService: CongeService) { }
+  
+    ngOnInit() {
+      this.salarieService.getRefresh()
+      .subscribe(() => {
+        this.stat();
+      });
+  
+      this.stat();
+    }
+  
+  
+    getStatistiqueNbEmp(){
+      debugger;
+      this.submitted = true;
+        this.salarieService.getStatistiqueNbEmp().pipe(
+          finalize(() => this.submitted = false),
+        )
+        .subscribe(
+          response =>{this.nbEmp = response;
+            console.log(this.nbEmp);
+          },
+          error=>console.log(error)
+         );
+    }
+    getStatistiqueNbRH(){
+      debugger;
+      this.submitted = true;
+        this.salarieService.getStatistiqueNbRH().pipe(
+          finalize(() => this.submitted = false),
+        )
+        .subscribe(
+          response =>{this.nbRH = response;
+            console.log(this.nbRH);
+          },
+          error=>console.log(error)
+         );
+    }
+    getStatistiqueNbMan(){
+      debugger;
+      this.submitted = true;
+        this.salarieService.getStatistiqueNbMan().pipe(
+          finalize(() => this.submitted = false),
+        )
+        .subscribe(
+          response =>{this.NbMang = response;
+            console.log(this.NbMang);
+          },
+          error=>console.log(error)
+         );
+    }
+ 
     
-
-    private roles: string[];
-    authority: string;
-    info: any;
-   ngOnInit() {
-     if (this.tokenStorage.getToken()) {
-       this.roles = this.tokenStorage.getAuthorities();
-       this.roles.every(role => {
-         if (role === 'ROLE_MANAGER') {
-           this.authority = 'manager';
-           return false;
-         } else if (role === 'ROLE_RH') {
-           this.authority = 'rh';
-           return false;
-         }
-         this.authority = 'user';
-         return true;
-       });
-     }
-     this.info = {
-       token: this.tokenStorage.getToken(),
-       username: this.tokenStorage.getUsername(),
-       authorities: this.tokenStorage.getAuthorities()
-     };
-     
+    stat(){
+      debugger;
+      this.BarChart = new Chart('barChart', {
+        type: 'bar',
+      data: {
+       labels: ["Manager", "Responsable RH","Employé"],
+       datasets: [{
+           label: '# nombre',
+           data: [this.NbMang,this.nbRH,this.nbEmp],
+           backgroundColor: [
+               'rgba(255, 99, 132, 0.2)',
+               'rgba(54, 162, 235, 0.2)',
+               'rgba(255, 206, 86, 0.2)',
+               'rgba(75, 192, 192, 0.2)',
+               'rgba(153, 102, 255, 0.2)',
+               'rgba(255, 159, 64, 0.2)'
+           ],
+           borderColor: [
+               'rgba(255,99,132,1)',
+               'rgba(54, 162, 235, 1)',
+               'rgba(255, 206, 86, 1)',
+               'rgba(75, 192, 192, 1)',
+               'rgba(153, 102, 255, 1)',
+               'rgba(255, 159, 64, 1)'
+           ],
+           borderWidth: 1
+       }]
+      }, 
+      options: {
+       title:{
+           text:"Statistique ",
+           display:true
+       },
+       scales: {
+           yAxes: [{
+               ticks: {
+                   beginAtZero:true
+               }
+           }]
+       }
+      }
+      });
+      
+  
    }
-   logout() {
-     this.tokenStorage.signOut();
-     window.location.reload();
-   }
+  
   }
   

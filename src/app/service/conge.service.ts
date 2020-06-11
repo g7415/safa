@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder,FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Conge } from '../model/conge';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CongeService {
-   
-  
- 
+  private statEnAttente= 'http://localhost:8080/api/statEnAttente';
+  private statRefuser = 'http://localhost:8080/api/statRefuser';
+  private statAccepter = 'http://localhost:8080/api/statAccepter';
   private resumeConge = 'http://localhost:8080/api/SumCongePris';
   private baseUrlConByManager = 'http://localhost:8080/api/ConByManager';
   private EmaildemandeAccepter = 'http://localhost:8080/testapp/EmaildemandeAccepter';
@@ -27,9 +28,33 @@ export class CongeService {
   choixmenu : number = 1;
   dataForm: any =  FormGroup; 
   listcon:Conge[];
+  private _refresh$ = new Subject();
   constructor(private http: HttpClient,private toastr: ToastrService,public fb: FormBuilder) { }
-  
- 
+  getRefresh()
+  {
+    return this._refresh$;
+  }
+  getStatistiqueNbConEnAttente(): Observable<any> {
+    return this.http.get(`${this.statEnAttente}`).pipe(
+     tap(() => {
+       this._refresh$.next();
+     })
+   );
+}
+  getStatistiqueNbConRefu(): Observable<any> {
+    return this.http.get(`${this.statRefuser}`).pipe(
+      tap(() => {
+        this._refresh$.next();
+      })
+    );
+  }
+  getStatistiqueNbConAcc(): Observable<any> {
+       return this.http.get(`${this.statAccepter}`).pipe(
+        tap(() => {
+          this._refresh$.next();
+        })
+      );
+  }
   getSumCongePris(username: String): Observable<any> {
     const headers = new HttpHeaders();
     headers.append('content-type', 'application/json');

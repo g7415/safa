@@ -50,6 +50,8 @@ export class ListcongeComponent implements OnInit {
     console.log(response.sort(function(a,b){ return b.num-a.num } ));
     return response;
 }
+genererStatistique(){  this.router.navigate(['/view-graph']);
+console.log("Success Navigation");}
   getData() {
     
     // this.crudApi.getAll().subscribe(

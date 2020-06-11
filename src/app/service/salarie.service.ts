@@ -10,13 +10,14 @@ const httpOptions = {
 
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-// kad ma 3ana controlleurs fe back-end kad ma ana service fe front
-//on va declarer les fonctions qui vont faire la communications avec les fonctions eli fe controlleur 
+
 @Injectable({
   providedIn: 'root'
 })
 export class SalarieService {
-  
+  private NbMang = 'http://localhost:8080/api/NbMang';
+  private NbRH = 'http://localhost:8080/api/NbRH';
+  private NbEmp = 'http://localhost:8080/api/NbEmp';
   private resetPassword = 'http://localhost:8080/api/auth/resetPassword';
   private changeProfil = 'http://localhost:8080/api/updateProfil';
   private changePassword = 'http://localhost:8080/api/changePassword';
@@ -48,7 +49,27 @@ export class SalarieService {
   {
     return this._refresh$;
   }
-
+  getStatistiqueNbMan(): Observable<any> {
+    return this.http.get(`${this.NbMang}`).pipe(
+     tap(() => {
+       this._refresh$.next();
+     })
+   );
+}
+  getStatistiqueNbRH(): Observable<any> {
+    return this.http.get(`${this.NbRH}`).pipe(
+     tap(() => {
+       this._refresh$.next();
+     })
+   );
+}
+  getStatistiqueNbEmp(): Observable<any> {
+    return this.http.get(`${this.NbEmp}`).pipe(
+     tap(() => {
+       this._refresh$.next();
+     })
+   );
+}
   reinitialiseMdp(username: String, value: any): Observable<Salarie> {
     return this.http.put<Salarie>(`${this.resetPassword}/${username}`, value);
   }

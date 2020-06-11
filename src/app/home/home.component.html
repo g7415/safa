@@ -21,7 +21,14 @@
        </div>
        &nbsp;
        <div class="col-xs-12">
-        <select class="form-control" [(ngModel)]="mois">
+       
+          <select class="form-control" [(ngModel)]="mois">
+                  <option *ngFor="let item of arrayOne(12); let i = index;">  
+                      {{i+1}} 
+                   </option>
+          </select>
+    
+        <!-- <select class="form-control" [(ngModel)]="mois">
               <option value="01">1</option>
               <option value="02">2</option>
               <option value="03">3</option>
@@ -34,25 +41,23 @@
               <option value="10">10</option>
               <option value="11">11</option>
               <option value="12">12</option>
-          </select>
+          </select> -->
       </div>
       &nbsp;
-      <button class="btn btn-primary" (click)="get()">
-        <i class="fa fa-search"></i>  
+      <button type="submit" class="btn btn-primary" (click)="get()">
+        <ng-container *ngIf="submitted; else defaultText">
+          <div class="loader"></div>
+        </ng-container>
       </button>
+      <ng-template #defaultText><i class="fa fa-search"></i></ng-template>
      </div>
 <br><br>
-<div class="container">
-  <div style="display: block">
-    <canvas baseChart
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
-            [options]="barChartOptions"
-            [legend]="barChartLegend"
-            [chartType]="barChartType">
-    </canvas>
-  </div>
-</div>
+<!-- <canvas id="lineChart" ></canvas> -->
+<canvas id="barChart">
+
+</canvas>
+<!-- <canvas id="pieChart"></canvas> -->
+
   </div>
 
 

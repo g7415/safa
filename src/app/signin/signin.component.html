@@ -48,7 +48,32 @@
 					<li *ngIf="authority === 'user'"> 
 						<i class="fa fa-list-alt icon4"></i>
 						<div>
-							<a href="#" routerLink="/resumeConge">Resumé de congé</a></div></li>
+							<a href="#" routerLink="/resumeConge">Resumé de congé</a>
+						</div>
+					</li>
+					<li *ngIf="authority === 'rh'"> 
+						<i class="fa fa-bar-chart icon4"></i>
+						<div>
+							<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Statistiques</a>
+						</div>
+						<ul class="collapse list-unstyled" id="pageSubmenu">
+			
+							<li >
+								
+									 <div>
+									 <a routerLink="/cal">Statistiques congés</a>
+									</div>
+							 
+							</li>
+							<li >
+								<div>
+								<a routerLink="/view-graph" >Statistiques employés</a>
+							    </div>
+							
+							</li>
+		
+						</ul>
+					</li>	
 
 				<!-- <i class="fa fa-user icon3"></i> -->
 				<!-- <li><i class="fa fa-comments icon4"></i><div><a href="#">Messages</a></div></li>

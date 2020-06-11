@@ -35,12 +35,13 @@ export class Listsalarie2Component implements OnInit {
   manager: any;
   groupe: string;
   listMan: any;
+  dataaa:any;
   constructor(public crudApi: SalarieService, public toastr: ToastrService,
     private tokenStorage: TokenStorageService,
     private router : Router,public fb: FormBuilder,
     private matDialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef:MatDialogRef<AddsalarieComponent>) { this.salarie=this.crudApi.listsal;}
+    public dialogRef:MatDialogRef<AddsalarieComponent>) {this.salarie= this.crudApi.listsal;}
 
   ngOnInit() {
     this.getData();
@@ -62,7 +63,11 @@ export class Listsalarie2Component implements OnInit {
   filtrer(){
     this.salarie=this.crudApi.listsal.filter(a => a.username.startsWith(this.username));
   }
-  // && a.manager.username.startsWith(this.manager.username)
+  filtrerManager(){
+    debugger;
+    this.crudApi.listsal.filter(a => a.username.startsWith("manager"));
+  }
+
   addEmploye()
   {
     const dialogConfig = new MatDialogConfig();

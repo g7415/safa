@@ -170,7 +170,7 @@ this.router.navigate(['/historiqueListConge']);
     let date_debut = new Date(this.crudApi.dataForm.value.date_debut);
     let date_fin = new Date(this.crudApi.dataForm.value.date_fin);
     this.crudApi.dataForm.patchValue({
-      duree:  new Number((date_fin.getTime()  - date_debut.getTime())/ 86400000).toFixed(0)
+      duree:  new Number((date_fin.getTime() - date_debut.getTime())/ 86400000).toFixed(0)
     });
      
    }

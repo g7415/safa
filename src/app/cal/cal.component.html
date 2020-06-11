@@ -1,0 +1,83 @@
+<!-- <div *ngIf="info.token; else loggedOut">
+    <h5 class="text-primary">Your Information</h5>
+    <p>
+      <strong>Username:</strong> {{info.username}}<br/>
+      <strong>Roles:</strong> {{info.authorities}}<br />
+      <strong>Token:</strong> {{info.token}}.
+    </p>
+    <button class="btn btn-secondary" (click)="logout()">Logout</button>
+  </div>
+  
+  <ng-template #loggedOut>
+    Please login.
+  </ng-template>
+   -->
+ 
+<!-- <div *ngIf="info.token; else loggedOut">
+    <h5 class="text-primary">Your Information</h5>
+    <p>
+      <strong>Username:</strong> {{info.username}}<br/>
+      <strong>Roles:</strong> {{info.authorities}}<br />
+      <strong>Token:</strong> {{info.token}}.
+    </p>
+    <button class="btn btn-secondary" (click)="logout()">Logout</button>
+  </div>
+  
+  <ng-template #loggedOut>
+    Please login.
+  </ng-template>
+   -->
+ 
+
+   <div class="container">
+    &nbsp;
+    <button type="submit" class="btn btn-primary" (click)="getStatistiqueNbEmp()"
+    (click)="getStatistiqueNbMan()"(click)="getStatistiqueNbRH()">
+      <ng-container *ngIf="submitted; else defaultText">
+        <div class="loader"></div>
+      </ng-container>
+    </button>
+    <ng-template #defaultText><i class="fa fa-search"></i></ng-template>
+    <!-- <form>
+        <div class="form-row">
+    <div class="col">
+        <label class="col-sm-5 col-xs-6 control-label">Nombre des employés</label>
+        <div class="col-lg-6">
+            <input type="text" class="form-control"readonly="true" value="{{nbEmp}}">
+        </div>
+      </div>
+      <div class="col">
+        <label class="col-sm-5 col-xs-6 control-label">Nombre des manager</label>
+        <div class="col-lg-6">
+            <input type="text" class="form-control"readonly="true" value="{{NbMang}}">
+        </div>
+      </div>
+      <div class="col">
+        <label class="col-sm-5 col-xs-6 control-label">Nombre des responsables RH</label>
+        <div class="col-lg-6">
+            <input type="text" class="form-control"readonly="true" value="{{nbRH}}">
+        </div>
+      </div>
+        </div>
+    </form> -->
+    
+<canvas id="barChart">
+
+</canvas>
+<!-- <canvas id="pieChart"></canvas> -->
+
+  </div>
+{{nbRH}}
+{{nbRH}}
+{{NbMang}}
+
+  
+
+
+ 
+
+
+
+
+
+ 
