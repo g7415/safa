@@ -18,7 +18,7 @@
             <label for="typeconge">Type Conges</label>
             <select  id="conge.typeconge" name="typeconge" formControlName="typeconge"  class="form-control">
               <option value="0">-Select-</option>
-              <option *ngFor="let con of this.listtypecon" value="{{con.id_type}}"  >{{con.type_conge}}</option>
+              <option *ngFor="let con of this.listtypecon" value="{{con.id_type}}">{{con.type_conge}}</option>
             </select>
             <div class="text-danger" *ngIf="crudApi.dataForm.get('typeconge').invalid && typeconge.touched">
               <small *ngIf="typeconge.errors.required">conges required</small>
@@ -70,7 +70,18 @@
             <input type="text" class="form-control" readonly="true" formControlName="statut" id="statut">
             
           </div>
-          <!-- <div class="form-group">
+          
+          <!-- <div *ngIf="authority === 'manager'"  class="form-group" >
+            <label for="salarie"> salarie</label>
+            <select  id="conge.salarie" name="salarie" formControlName="salarie"  class="form-control">
+              <option value="0">-Select-</option>
+              <option *ngFor="let sal of this.ListSalByMan"  value="{{sal.id}}" >{{sal.username}}</option>
+            </select>
+            <div class="text-danger" *ngIf="crudApi.dataForm.get('salarie').invalid && salarie.touched">
+              <small *ngIf="salarie.errors.required">conges required</small>
+            </div>
+          </div> -->
+          <!-- <div *ngIf="authority === 'manager'"  class="form-group" >
             <label for="salarie"> salarie</label>
             <select  id="conge.salarie" name="salarie" formControlName="salarie"  class="form-control">
               <option value="0">-Select-</option>

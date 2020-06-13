@@ -110,7 +110,7 @@ export class HistoriqueListCongeComponent implements OnInit {
             error => console.log(error));
       
         Swal.fire(
-          'Utilisateur supprimer avec succes.',
+          'Congé supprimer avec succes.',
         )
       }
     })

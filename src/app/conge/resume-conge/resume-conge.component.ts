@@ -46,6 +46,19 @@ export class ResumeCongeComponent implements OnInit {
       response =>{
           this.listcon = response["resultat"];
           console.log(response["resultat"]);
+          for (var tc of response["resultat"]) {
+            if(tc[0]=="Congés legaux")
+            {
+              let aa=parseInt(this.token.getSoldeConge());
+              
+               tc[1]= aa;
+          
+          
+              console.log(tc[1]);
+            }
+           
+         };
+         
         }
       
      );
@@ -55,7 +68,28 @@ export class ResumeCongeComponent implements OnInit {
   }
 
 
-
+  getData1() {
+    this.typecongeService.getAll().subscribe(
+      response =>{this.typecongeService.listtypecon = response;
+        for (var tc of response) {
+          if(tc.id_type==10)
+          {
+            let aa=parseInt(this.token.getSoldeConge());
+            
+             tc.max_permis= aa;
+        
+        
+            console.log(tc.max_permis);
+          }
+         
+       };
+       }
+       
+      
+     );
+  
+  
+  }
  
                  
 }

@@ -10,8 +10,17 @@
     </div>
   </div>
   <br/><br/>
+
  <a *ngIf="authority === 'rh'" class="btn btn-sm btn-success text-white pull-right" (click)="addEmploye()"><i class="fa fa-plus"></i>   Ajouter employé </a>
  <br/>
+ <div class="col-md-3 ml-md-auto">
+    <select name="manager" class="form-control" [(ngModel)]="username" (ngModelChange)="filtrerManager()" >
+            <option *ngFor="let k of this.listMan">
+                {{k.username}} 
+             </option>
+    </select>
+</div>
+
  <div class="col-lg-3">
     <div class="form-group">
         
@@ -29,13 +38,7 @@
     </div>
 </div>
 
-      <div class="col-lg-3">
-           <select name="manager" class="form-control"  [(ngModel)]="username" (ngModelChange)="filtrerManager()" >
-                   <option *ngFor="let k of this.listMan; let i = index;"  >
-                       {{k.username}} 
-                    </option>
-           </select>
-       </div>
+    
  
         </div>
         

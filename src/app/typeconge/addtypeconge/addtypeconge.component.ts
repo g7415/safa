@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TypeConge } from 'src/app/model/typeconge';
 import Swal from 'sweetalert2';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 @Component({
   selector: 'app-addtypeconge',
@@ -17,7 +18,7 @@ export class AddtypecongeComponent implements OnInit {
   signupInfo: TypeConge;
   submitted = false 
   public userFile : any = File 
-  constructor(public crudApi: TypecongeService ,private https: HttpClient,
+  constructor(public crudApi: TypecongeService ,private https: HttpClient,private token: TokenStorageService,
     public fb: FormBuilder,
     public toastr: ToastrService,
     private router : Router,
@@ -64,6 +65,7 @@ export class AddtypecongeComponent implements OnInit {
              }  
             
   addData() {
+   
     this.crudApi.createData(this.crudApi.dataForm.value)
     .subscribe( data => {
     this.dialogRef.close();
@@ -87,7 +89,8 @@ viderFormulaire(){
   this.crudApi.choixmenu = 1
 }
   updateData()
-  {   let data = this.crudApi.dataForm.value;
+  {  
+    let data = this.crudApi.dataForm.value;
     console.log(data); 
     // data.roles = [data.roles];
     this.crudApi.updatedata(this.crudApi.dataForm.value.id_type,data)

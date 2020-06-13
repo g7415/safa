@@ -37,7 +37,9 @@ export class AddsalarieComponent implements OnInit {
    retrievedImage : any;
    retrieveResonse: any;
    pictureData:any;
-   pic:any;
+  picc: any;
+  pic: any;
+  
   
   constructor(public crudApi: SalarieService ,private https: HttpClient,
     public fb: FormBuilder,
@@ -94,7 +96,7 @@ infoForm() {
          this.base64Data = atob(this.pic);
          this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data; 
          salarie.pic = this.convertedImage;
-         console.log(salarie.pic);
+        //  console.log(salarie.pic);
        };
        }
       
@@ -143,7 +145,6 @@ addData() {
     .subscribe(
     response =>{this.crudApi.listsal = this.formatRole(response);
       this.getData();
-      // this.crudApi.listsal = this.formatManager(response);
     Swal.fire({
     position: 'center',
     icon: 'success',
@@ -170,21 +171,16 @@ addData() {
    
 });
 
-    // this.https.post<Salarie>('http://localhost:8080/testapp/getdetails', this.crudApi.dataForm.value)
-    // .subscribe(
-    // res => {
-    //   this.crudApi.dataForm.value = res;
-    //   console.log(this.crudApi.dataForm.value);
-    //   alert('Email Sent successfully');
-    //   this.crudApi.dataForm.username = '';
-    //   this.crudApi.dataForm.mail = '';
-    // });
 }
-debugger;
+
 updateData() {
   // btoa Méthode permettant de créer une chaîne ASCII en base64 à partir d'une « chaîne » de données binaires.
 //  atob Méthode permettant de décoder une chaîne de donnée qui a été encodée en base64.
-  this.crudApi.dataForm.value.pic =  btoa(this.receivedImageData.pic);
+this.pic=this.crudApi.dataForm.value.pic.slice(23)   
+console.log(this.pic);
+
+  this.crudApi.dataForm.value.pic =  btoa(this.pic);
+  console.log(this.crudApi.dataForm.value.pic); 
   let data = this.crudApi.dataForm.value;
   console.log(data); 
   // data.roles = [data.roles];
@@ -245,7 +241,7 @@ updateData() {
   get username(){return this.crudApi.dataForm.get('username')}
   get roles(){return this.crudApi.dataForm.get('roles')}
   get manager(){return this.crudApi.dataForm.get('manager')}
-
+  // get pic(){return this.crudApi.dataForm.get('pic')}
   formatRole(reponse : any){
     for (var salarie of reponse) {
       let tabRole = Array();
@@ -279,23 +275,31 @@ public  onFileChanged(event) {
 }
 
 // This part is for uploading
+
 onUpload() {
-const uploadData = new FormData();
-uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
+  const uploadData = new FormData();
+  uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
+  
+  this.https.post('http://localhost:8080/api/upload', uploadData)
+  .subscribe( 
+               data => {
+                 console.log("dataOnUpload",data);
+  
+                       this.receivedImageData = data;
+                       this.pic = this.receivedImageData.pic;
+                       
+                       console.log("this.receivedImageData.picOnUpload",this.receivedImageData.pic);
+                       //"pic" est le nom d'un attribut dans le backend
+                       this.base64Data = this.receivedImageData.pic;
+                       this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data; 
+                       console.log("convertedImageOnUpload",this.convertedImage);
+                       this.crudApi.dataForm.value.pic=this.convertedImage;
+                       console.log("this.crudApi.dataForm.value.pic",this.convertedImage);
 
-this.https.post('http://localhost:8080/api/upload', uploadData)
-.subscribe( 
-             data => {
-               console.log(data);
-
-                     this.receivedImageData = data;
-                     this.pic = this.receivedImageData.pic;
-                     //"pic" est le nom d'un attribut dans le backend
-                     this.base64Data = this.receivedImageData.pic;
-                     this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data; },
-             err => console.log('Error Occured duringng saving: ' + err)
-          );
-        }
+                      },
+               err => console.log('Error Occured duringng saving: ' + err)
+            );
+          }
 
         generer_password() {
           var ok = 'azertyupqsdfghjkmwxcvbn23456789AZERTYUPQSDFGHJKMWXCVBN';

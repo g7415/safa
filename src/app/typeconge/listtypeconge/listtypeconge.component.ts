@@ -21,7 +21,8 @@ export class ListtypecongeComponent implements OnInit {
   typeconge : TypeConge;
   private roles: string[];
   authority: string;
-  constructor(public crudApi: TypecongeService, public toastr: ToastrService
+  type: any;
+  constructor(public crudApi: TypecongeService, public toastr: ToastrService,private token: TokenStorageService
     ,private tokenStorage: TokenStorageService,
     private router : Router,public fb: FormBuilder,
     private matDialog: MatDialog,
@@ -59,7 +60,22 @@ export class ListtypecongeComponent implements OnInit {
 
   getData() {
     this.crudApi.getAll().subscribe(
-      response =>{this.crudApi.listtypecon = response;}
+      response =>{this.crudApi.listtypecon = response;
+        for (var tc of response) {
+          if(tc.id_type==10)
+          {
+            let aa=parseInt(this.token.getSoldeConge());
+            
+             tc.max_permis= aa;
+        
+        
+            console.log(tc.max_permis);
+          }
+         
+       };
+       }
+       
+      
      );
   
   

@@ -36,6 +36,7 @@ export class Listsalarie2Component implements OnInit {
   groupe: string;
   listMan: any;
   dataaa:any;
+  sala: Salarie;
   constructor(public crudApi: SalarieService, public toastr: ToastrService,
     private tokenStorage: TokenStorageService,
     private router : Router,public fb: FormBuilder,
@@ -88,7 +89,7 @@ export class Listsalarie2Component implements OnInit {
          this.base64Data = atob(this.pic);
          this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data; 
          salarie.pic = this.convertedImage;
-         console.log(salarie.pic);
+        //  console.log(salarie.pic);
        };
        }
       
@@ -145,17 +146,24 @@ export class Listsalarie2Component implements OnInit {
 
   selectData(item : Salarie) {
     // item.roles = [item.roles[0]['name']];
-    debugger;
+    
     // item.password = '';
+
+
     this.crudApi.choixmenu = 2;
+  
+        
+   
     this.crudApi.dataForm = this.fb.group(Object.assign({},item));
+    console.log(item);
     if(item.manager){
       this.crudApi.dataForm.patchValue({
         manager: item.manager.username,
         
       });
     }
-  
+
+
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;

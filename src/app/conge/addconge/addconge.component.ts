@@ -28,8 +28,12 @@ export class AddcongeComponent implements OnInit {
   sal=Salarie;
   public userFile : any = File 
   t: any;
+  private roles: string[];
+  authority: string;
+  info: any;
+  ListSalByMan: any;
   constructor(public crudApi: CongeService ,public fb: FormBuilder,public toastr: ToastrService,private token: TokenStorageService,
-  private router : Router, public salarieService: SalarieService,public typecongeService:TypecongeService,
+  private router : Router, public salarieService: SalarieService,public typecongeService:TypecongeService,private tokenStorage: TokenStorageService,
   @Inject(MAT_DIALOG_DATA)  public data,
   public dialogRef:MatDialogRef<AddcongeComponent>,) { }
   get num(){return this.crudApi.dataForm.get('num')}
@@ -50,14 +54,32 @@ export class AddcongeComponent implements OnInit {
      );
      this.typecongeService.getAll().subscribe(
       response =>{this.listtypecon = response;
-      //   for (var type of response) {
-      //     this.t= type.type_conge[0][0];
-      //     console.log(this.t);
-        
-      //  };
       }
      );
+     this.salarieService.getSalarieListByManager(parseInt(this.token.getId()))
+     .subscribe(
+      response =>{this.ListSalByMan = response;}
+     );
     
+     if (this.tokenStorage.getToken()) {
+      this.roles = this.tokenStorage.getAuthorities();
+      this.roles.every(role => {
+        if (role === 'ROLE_MANAGER') {
+          this.authority = 'manager';
+          return false;
+        } else if (role === 'ROLE_RH') {
+          this.authority = 'rh';
+          return false;
+        }
+        this.authority = 'user';
+        return true;
+      });
+    }
+    this.info = {
+      token: this.tokenStorage.getToken(),
+      username: this.tokenStorage.getUsername(),
+      authorities: this.tokenStorage.getAuthorities()
+    };
   }
 
   viderFormulaire(){
@@ -92,7 +114,8 @@ export class AddcongeComponent implements OnInit {
                }
                
 addData() {
-  debugger;
+ 
+  // if(this.authority != 'manager'){
   let formvalues = this.crudApi.dataForm.value;
   console.log(formvalues.date_debut);
   console.log(this.crudApi.dataForm.get('typeconge'));
@@ -123,7 +146,7 @@ this.router.navigate(['/historiqueListConge']);
      );
   },err => this.error = err["error"]["message"]
   );
- 
+// }
   // this.typecongeService.getAll().subscribe(
   //   response =>{this.typecongeService.listtypecon = response;}
   //  );

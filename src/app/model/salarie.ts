@@ -18,7 +18,7 @@ export class Salarie {
 	conges:Conge[];
 	pic:any;
 	  constructor(nom:  string, prenom: string,solde_conge:number,date_entree:Date,grade: string,
-		  mail:  string,num_tel: number,nom_responsable:  string,groupe:  string,username:  string, password:  string , roles: string)
+		  mail:  string,num_tel: number,nom_responsable:  string,groupe:  string,username:  string, password:  string , roles: string,pic:any)
 		   {
 		this.nom = nom;
 		this.prenom=prenom;
@@ -30,7 +30,8 @@ export class Salarie {
 		this.nom_responsable=nom_responsable;
 		this.groupe=groupe;
 		this.username = username;
-        this.password = password;
+		this.password = password;
+		this.pic=pic;
 		// this.roles = ['role'];
 
 	}

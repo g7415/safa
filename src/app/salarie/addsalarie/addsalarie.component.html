@@ -142,7 +142,7 @@
           <label class="label">Photo de profil : </label>
           <label class="input"> <i class="icon-append fa fa-user"></i>
             <input type="file" (change)="onFileChanged($event)"style="height:100%">
-            <input type="button" (click)="onUpload()" value="upload"> <hr>
+            <input type="button"  (click)="onUpload()" value="upload"> <hr>
              
              <div *ngIf=convertedImage>
              <img [src]="convertedImage" height="120" width="120">

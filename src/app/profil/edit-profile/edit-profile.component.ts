@@ -79,17 +79,25 @@ export class EditProfileComponent implements OnInit {
   selectData() {
         this.salarieService.getProfil(this.token.getUsername()).subscribe(
         data => {
-        console.log(data);
+        console.log("selectData",data);
         this.sala=data;
-        this.receivedImageData = data;
-        this.base64Data = atob(this.receivedImageData.pic);
-        this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data;
+        // this.receivedImageData = data;
+        console.log("this.receivedImageData.pic",this.sala.pic);
+
+        this.base64Data = this.sala.pic;
+        this.pic=atob(this.sala.pic);
+
+        console.log("receivedImageData",this.pic);
+
+        this.convertedImage = 'data:image/jpeg;base64,' + this.pic;
+        console.log("convertedImage",this.convertedImage);
+
       }
         );
   }
 
   updateProfil(){
-    this.registerForm.value.pic =  btoa(this.receivedImageData.pic);
+    this.registerForm.value.pic =  btoa(this.pic);
     this.salarieService.updateProfil(parseInt(this.token.getId()),this.registerForm.value)
     .subscribe(data=>{this.sala=data;
       Swal.fire({
@@ -123,13 +131,16 @@ public  onFileChanged(event) {
         this.https.post('http://localhost:8080/api/upload', uploadData)
         .subscribe( 
                      data => {
-                       console.log(data);
+                       console.log("dataOnUpload",data);
         
                              this.receivedImageData = data;
                              this.pic = this.receivedImageData.pic;
+                             console.log("this.receivedImageData.picOnUpload",this.receivedImageData.pic);
                              //"pic" est le nom d'un attribut dans le backend
                              this.base64Data = this.receivedImageData.pic;
-                             this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data; },
+                             this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data; 
+                             console.log("convertedImageOnUpload",this.convertedImage);
+                            },
                      err => console.log('Error Occured duringng saving: ' + err)
                   );
                 }

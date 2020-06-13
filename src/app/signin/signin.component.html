@@ -18,7 +18,7 @@
 				   </div>
 			    <ul class="collapse list-unstyled" id="pageSubmenu">
 			
-					<li *ngIf="authority === 'user'">
+					<li *ngIf="authority === 'user'|| authority === 'manager'">
 						
 						     <div>
 							 <a href="#"  routerLink="/historiqueListConge">Historique de ses congés </a>
@@ -45,7 +45,7 @@
 					</div>
 				</li>
 									
-					<li *ngIf="authority === 'user'"> 
+					<li *ngIf="authority === 'user'|| authority === 'manager'"> 
 						<i class="fa fa-list-alt icon4"></i>
 						<div>
 							<a href="#" routerLink="/resumeConge">Resumé de congé</a>
@@ -61,13 +61,13 @@
 							<li >
 								
 									 <div>
-									 <a routerLink="/cal">Statistiques congés</a>
+									 <a routerLink="/view-graph">Statistiques congés</a>
 									</div>
 							 
 							</li>
 							<li >
 								<div>
-								<a routerLink="/view-graph" >Statistiques employés</a>
+								<a routerLink="/cal" >Statistiques employés</a>
 							    </div>
 							
 							</li>

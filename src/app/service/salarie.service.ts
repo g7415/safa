@@ -28,6 +28,7 @@ export class SalarieService {
   private EmailresetPassword = 'http://localhost:8080/api/auth/resetPassword';
   private baseUrlRole = 'http://localhost:8080/api/roles';
   private statistique = 'http://localhost:8080/api/dateEntree';
+  private salByMang = 'http://localhost:8080/api/salByMang';
   
   choixmenu : number = 1;
   dataForm: any =  FormGroup; 
@@ -37,6 +38,11 @@ export class SalarieService {
   listMan: any;
   private _refresh$ = new Subject();
   constructor(private http: HttpClient,private toastr: ToastrService,public fb: FormBuilder) { }
+
+  getSalarieListByManager(id: number): Observable<any> {
+    return this.http.get(`${this.salByMang}/${id}`);
+  }
+
   getStatistique1(date_entree: String): Observable<any> {
     return this.http.get(`${this.statistique}/${date_entree}`).pipe(
       tap(() => {
@@ -85,7 +91,7 @@ export class SalarieService {
   getData(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
- 
+
  createData(info: Object): Observable<Object> {
    return this.http.post(`${this.baseUrl}`, info);
  }
