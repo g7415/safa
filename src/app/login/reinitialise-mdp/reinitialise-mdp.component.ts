@@ -16,6 +16,7 @@ export class ReinitialiseMdpComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   salarie: Salarie;
+  error: any;
 
   constructor(private formBuilder: FormBuilder,private token: TokenStorageService, private router:Router,
     private salarieService: SalarieService) { }
@@ -44,8 +45,7 @@ export class ReinitialiseMdpComponent implements OnInit {
 
     // display form values on success
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null,2));
-    this.router.navigate(['/auth/login']);
-      console.log("Success Navigation");
+  
 }
 
   onReset() {
@@ -64,7 +64,10 @@ this.salarieService.reinitialiseMdp(this.registerForm.value.username,this.regist
           showConfirmButton: false,
           timer: 1500
     })
-})
+    this.router.navigate(['/auth/login']);
+    console.log("Success Navigation");
+},err => this.error = err["error"]["message"]
+)
 
   }
 }

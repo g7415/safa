@@ -6,20 +6,21 @@
         <div class="container">
           <div class="row justify-content-center bg-light"  >
             <!-- style ="background-color :#74ebd5;" -->
-            <h1 >Liste des demandes de congés de ses collaborateurs</h1>
+            <h1 >Liste des demandes de congés de mes collaborateurs</h1>
           </div>
-        </div><br/>
-        <a class="btn btn-sm btn-success text-white pull-right" (click)="addConge()"><i class="fa fa-plus"></i>   Ajouter un congé </a>
-<nav class="navbar navbar-light ">
-  <form class="form-inline">
+        </div><br/><br>
+        <!-- <a class="btn btn-sm btn-success text-white pull-left" (click)="addConge()"><i class="fa fa-plus"></i>   Ajouter une demande de congé </a> -->
+<br>
+ <nav class="navbar navbar-light ">
+  <div class="col-md-3 ml-md-auto">
     <div class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
       </div>
       <input class="form-control" type="text" name="search"
-      [(ngModel)]="searchText" autocomplete="off" placeholder="Recherche ">
+      [(ngModel)]="searchText" autocomplete="off" placeholder="Recherche.. ">
     </div>
-  </form>
+  </div>
 </nav>
 
 <!-- <div class="search-hero" class="col-lg-12"> 
@@ -28,13 +29,13 @@
         <table  class="table table-bordered table-striped table-hover">
         <thead>
         <tr>
-        <!-- <th scope="col">num</th> -->
-        <th scope="col">date_debut</th>
-        <th scope="col">date_fin</th>
+        <th scope="col">num</th>
+        <th scope="col">Date début</th>
+        <th scope="col">Date fin</th>
         <th scope="col">Durée</th>
-        <th scope="col">statut</th>
-        <th scope="col">Username Salarie</th>
-        <th scope="col">type de conge</th>
+        <th scope="col">Statut</th>
+        <th scope="col">Nom du salarie</th>
+        <th scope="col">Type de conge</th>
         <!-- <th scope="col">idsal</th>
         <th scope="col">Type congé</th> -->
         
@@ -49,7 +50,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let item of this.listcon| filter:searchText | paginate: { itemsPerPage: count, currentPage: p }">
-        <!-- <th>{{item.num}}</th> -->
+        <th>{{item.num}}</th>
         <td>{{item.date_debut| date:'yyyy-MM-dd'}}</td>
         <td>{{item.date_fin| date:'yyyy-MM-dd'}}</td>
         <th>{{item.duree}}</th>

@@ -10,9 +10,10 @@
             <h1 >Historique de mes congés</h1>
           </div>
         </div>
+        <br><br>
         <!-- <button class="btn btn-warning" style="margin-left: 25px;" (click) = "getData()">
             <i class="fa fa-pencil-square-o" ></i> Voir l'historique de ses propres demandes de congés </button> -->
-        <a class="btn btn-sm btn-success text-white pull-right" (click)="addConge()"><i class="fa fa-plus"></i>   Ajouter un congé </a>
+        <a class="btn btn-sm btn-success text-white pull-left" (click)="addConge()"><i class="fa fa-plus"></i>   Ajouter un congé </a>
         
         <!-- <h1>Listes des congés</h1> -->
 <br/>
@@ -23,7 +24,7 @@
 
 
 <nav class="navbar navbar-light " >
-  <form class="form-inline">
+  <div class="col-md-3 ml-md-auto">
     <div class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
@@ -31,7 +32,7 @@
       <input class="form-control" type="text" name="search"
       [(ngModel)]="searchText" autocomplete="off" placeholder="Recherche ">
     </div>
-  </form>
+  </div>
 </nav>
 
 <!-- <div class="col-lg-4">
@@ -51,12 +52,12 @@
         <thead>
         <tr>
         <!-- <th scope="col">num</th> -->
-        <th scope="col">date_debut</th>
-        <th scope="col">date_fin</th>
+        <th scope="col">Date debut</th>
+        <th scope="col">Date fin</th>
         <th scope="col">Durée</th>
-        <th scope="col">statut</th>
-        <th scope="col">Username Salarie</th>
-        <th scope="col">type de conge</th>
+        <th scope="col">Statut</th>
+        <th scope="col">Nom du salarié</th>
+        <th scope="col">Type de congé</th>
         <!-- <th scope="col">idsal</th>
         <th scope="col">Type congé</th> -->
         

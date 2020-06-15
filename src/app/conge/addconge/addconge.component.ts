@@ -12,6 +12,8 @@ import Swal from 'sweetalert2';
 import { TypeConge } from 'src/app/model/typeconge';
 import { TypecongeService } from 'src/app/service/typeconge.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { formatDate } from '@angular/common';
+
 @Component({
   selector: 'app-addconge',
   templateUrl: './addconge.component.html',
@@ -32,7 +34,7 @@ export class AddcongeComponent implements OnInit {
   authority: string;
   info: any;
   ListSalByMan: any;
-  constructor(public crudApi: CongeService ,public fb: FormBuilder,public toastr: ToastrService,private token: TokenStorageService,
+  constructor( public crudApi: CongeService ,public fb: FormBuilder,public toastr: ToastrService,private token: TokenStorageService,
   private router : Router, public salarieService: SalarieService,public typecongeService:TypecongeService,private tokenStorage: TokenStorageService,
   @Inject(MAT_DIALOG_DATA)  public data,
   public dialogRef:MatDialogRef<AddcongeComponent>,) { }
@@ -190,11 +192,41 @@ this.router.navigate(['/historiqueListConge']);
   }
    dateDiff()
    {
-    let date_debut = new Date(this.crudApi.dataForm.value.date_debut);
-    let date_fin = new Date(this.crudApi.dataForm.value.date_fin);
+     
+        let date_debut = new Date(this.crudApi.dataForm.value.date_debut);
+        let date_fin = new Date(this.crudApi.dataForm.value.date_fin);
+        this.crudApi.dataForm.patchValue({
+          duree:  new Number((date_fin.getTime() - date_debut.getTime())/ 86400000).toFixed(0)
+        });
+
+   
+     
+   }
+
+   effacer(){
+     debugger;
+     this.typeconge.id_type = this.crudApi.dataForm.value.typeconge;
+     this.crudApi.dataForm.patchValue({
+       date_fin: "",
+       date_debut: "",
+       duree: ""
+    });
+   }
+
+   dateFin()
+   {
+    debugger;
+     if(this.typeconge.id_type == 19){
+    let date_fin = new Date(this.crudApi.dataForm.value.date_debut);
+    let hours = date_fin.getHours() + 2;
+    console.log(date_fin);
+    date_fin.setHours(hours);
+    let formattedDt = formatDate(date_fin, 'yyyy-MM-ddThh:mm', 'en_US')
+
     this.crudApi.dataForm.patchValue({
-      duree:  new Number((date_fin.getTime() - date_debut.getTime())/ 86400000).toFixed(0)
+      date_fin: formattedDt
     });
      
+   }
    }
 }

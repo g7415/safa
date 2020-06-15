@@ -12,11 +12,11 @@
           </div>
         </div>
         <br>
-        <a  *ngIf="authority === 'rh'" class="btn btn-sm btn-success text-white pull-right" (click)="addTypeConge()"><i class="fa fa-plus"></i>   Ajouter Type de congé </a>
+        <a  *ngIf="authority === 'rh'" class="btn btn-sm btn-success text-white pull-left" (click)="addTypeConge()"><i class="fa fa-plus"></i>   Ajouter Type de congé </a>
 <br/><br/>
 
 <nav class="navbar navbar-light ">
-  <form class="form-inline">
+  <div class="col-md-3 ml-md-auto">
     <div class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
@@ -24,7 +24,7 @@
       <input class="form-control" type="text" name="search"
       [(ngModel)]="searchText" autocomplete="off" placeholder="Recherche ">
     </div>
-  </form>
+  </div>
 </nav>
         <table  class="table table-bordered table-striped table-hover" >
         <thead>

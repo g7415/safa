@@ -15,13 +15,13 @@
             <input type="hidden" class="form-control" formControlName="num" id="num">
           </div>
           <div class="form-group">
-            <label for="typeconge">Type Conges</label>
-            <select  id="conge.typeconge" name="typeconge" formControlName="typeconge"  class="form-control">
-              <option value="0">-Select-</option>
-              <option *ngFor="let con of this.listtypecon" value="{{con.id_type}}">{{con.type_conge}}</option>
+            <label for="typeconge">Types de congés</label>
+            <select  id="conge.typeconge" name="typeconge"  formControlName="typeconge" (change)="effacer()"  class="form-control">
+              <option value="" disabled selected>Select your option</option>
+              <option *ngFor="let con of this.listtypecon"  value="{{con.id_type}}"  >{{con.type_conge}}</option>
             </select>
             <div class="text-danger" *ngIf="crudApi.dataForm.get('typeconge').invalid && typeconge.touched">
-              <small *ngIf="typeconge.errors.required">conges required</small>
+              <small *ngIf="typeconge.errors.required">Le champ types de congés est obligatoire</small>
             </div>
           </div>
         <!-- <div class="form-group">
@@ -33,15 +33,16 @@
         </div> -->
 
       <div class="form-group">
-        <label for="meeting-time">Date debut</label>
-        <input type="datetime-local" class="form-control" [min]="todayDate" 
-        formControlName="date_debut" id="date_debut">
+        <label for="meeting-time">Date début</label>
+        <input  type="datetime-local" class="form-control" [min]="todayDate" 
+        formControlName="date_debut" id="date_debut" (change)="dateFin()">
         <div *ngIf="date_debut.touched && crudApi.dataForm.get('date_debut').invalid">
           <small *ngIf="date_debut.errors.required" class="text-danger">Required date_debut</small>
         </div>
       </div>
 
-      <div class="form-group">
+
+      <div class="form-group" >
         <label for="meeting-time">Date fin</label>
         <input type="datetime-local"(change)="dateDiff()" class="form-control" 
          [min]="date_debut.value"formControlName="date_fin" id="date_fin">
@@ -92,9 +93,9 @@
             </div>
           </div> -->
           
-          <button type="submit"[disabled] ="!crudApi.dataForm.valid"  class="btn btn-dark"(click)="navigateToListConge()">
-          <i class="fa fa-database"></i> Submit</button>
-          <button (click)="viderFormulaire()" type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+          <button type="submit"[disabled] ="!crudApi.dataForm.valid"  class="btn btn-success"(click)="navigateToListConge()">
+          <i class="fa fa-database"></i> Enregistrer</button>
+          <button (click)="viderFormulaire()" type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Annuler</button>
           <!-- <td><button (click) = "congeAccepter()"><i class="fa fa-check" aria-hidden="true"></i></button> </td> -->
       </form>
     </div>

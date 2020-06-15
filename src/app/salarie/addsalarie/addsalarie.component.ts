@@ -39,6 +39,7 @@ export class AddsalarieComponent implements OnInit {
    pictureData:any;
   picc: any;
   pic: any;
+  error: any;
   
   
   constructor(public crudApi: SalarieService ,private https: HttpClient,
@@ -169,7 +170,8 @@ addData() {
      this.crudApi.dataForm.mail = '';
      });
    
-});
+},err => this.error = err["error"]["message"]
+);
 
 }
 

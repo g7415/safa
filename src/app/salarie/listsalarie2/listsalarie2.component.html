@@ -1,7 +1,7 @@
-     <div class="pricing-header mx-auto">
+     <!-- <div class="pricing-header mx-auto"> -->
       
-       <div class="table-responsive">
-        <div class="well search-result">
+       <!-- <div class="table-responsive">
+        <div class="well search-result"> -->
      
  <div class="container">
     <div class="row justify-content-center bg-light"  >
@@ -11,9 +11,10 @@
   </div>
   <br/><br/>
 
- <a *ngIf="authority === 'rh'" class="btn btn-sm btn-success text-white pull-right" (click)="addEmploye()"><i class="fa fa-plus"></i>   Ajouter employé </a>
- <br/>
- <div class="col-md-3 ml-md-auto">
+ <a *ngIf="authority === 'rh'" class="btn btn-sm btn-success text-white pull-left" (click)="addEmploye()"><i class="fa fa-plus"></i>   Ajouter employé </a>
+ 
+ &nbsp;
+ <!-- <div class="col-md-3 ml-md-auto">
     <select name="manager" class="form-control" [(ngModel)]="username" (ngModelChange)="filtrerManager()" >
             <option *ngFor="let k of this.listMan">
                 {{k.username}} 
@@ -36,20 +37,45 @@
         </div>
         
     </div>
-</div>
+</div> -->
 
+<div class="row">
+    <div class="col-md-3 ml-md-auto">
+      <div class="input-group">
+          <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+            </div>
+          <input type="text" class="form-control"  [(ngModel)]="username" 
+                 placeholder="Recherche..." id="inputGroup"/>
+          <span class="input-group-addon">
+              
+          </span>
+      </div>
+    </div>
+    <div class="col-md-3 ">
+      <select name="manager" class="form-control" [(ngModel)]="username" (ngModelChange)="filtrerManager()" >
+        <option value="" disabled selected>Filtrer par manager</option>
+          <option *ngFor="let k of this.listMan">
+              {{k.username}} 
+           </option>
+  </select>
+    </div>
+</div>
     
  
-        </div>
+        <!-- </div>
         
       
 
    
-</div>  
+</div>   -->
 <!-- <form  class="form-inline my-2 my-lg-2">
     <input class="form-control mr-sm-2" name="username"  [(ngModel)]="username" (ngModelChange)="filtrer()" type="search" placeholder="Rechercher par username" aria-label="Search">
     
   </form> -->
+ 
+  <br/><br/>
+
 
 <div class="main-content">
     <div class="section-content section-content-p30">
@@ -73,6 +99,8 @@
                                 <div class="nom">Nom : {{item.nom}}</div>
                                 <div class="nom">Prenom :{{item.prenom}}</div>
                                 <div class="nom">Email : {{item.mail}}</div>
+                                <div class="nom">Numéro de téléphone : {{item.num_tel}}</div>
+
                                 <!-- <div class="nom">Nom du responsable : {{item.manager.username}}</div> -->
                             </div>
                                 <br>

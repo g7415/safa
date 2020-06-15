@@ -5,7 +5,11 @@
     <strong><button type="button" class="close" data-dismiss="alert">&times;</button>
              {{this.errorMessage}}</strong> 
   </div>
-
+  <div *ngIf ="error" class='alert alert-danger  alert-dismissible col-md-12 '>
+    <strong><button type="button" class="close" data-dismiss="alert">&times;</button>
+             {{error}}</strong> 
+  </div>
+   
     <div class="col-md-12 col-md-offset-2 " >
       <h1 style="text-align: center;">Employé </h1>
       <!-- (ngSubmit) hezli les donnés lel fonction onSubmit -->
@@ -19,7 +23,7 @@
           </div>
 
         <div class="form-group">
-          <label  >Nom</label>
+          <label  >Nom :</label>
           <input type="text" required [class.is-invalid] ="nom.touched && nom.invalid" class="form-control"minlength="3" formControlName="nom" id="nom">
         <div  *ngIf="nom.invalid && nom.touched ">
           <small *ngIf="nom.errors?.required" class="text-danger"> Le champs nom est obligatoire</small>
@@ -28,7 +32,7 @@
         </div>
 
         <div class="form-group">
-          <label  >Prenom</label>
+          <label  >Prenom :</label>
           <input type="text" required [class.is-invalid] ="prenom.touched && prenom.invalid" class="form-control"minlength="3" formControlName="prenom" id="prenom">
           <div *ngIf="prenom.touched && prenom.invalid">
             <small *ngIf="prenom.errors.required" class="text-danger"> Le champs prenom est obligatoire</small>
@@ -37,21 +41,21 @@
         </div>
 
         <div class="form-group">
-            <label  >Solde de congé</label>
+            <label  >Solde de congé :</label>
             <input type="number" required [class.is-invalid] ="solde_conge.touched && solde_conge.invalid" class="form-control" formControlName="solde_conge" id="solde_conge">
             <div *ngIf="solde_conge.touched && solde_conge.invalid">
               <small *ngIf="solde_conge.errors.required" class="text-danger">Le champs solde de congé est obligatoire</small>
           </div>
           </div>
           <div class="form-group">
-            <label  >Date d'entrée</label>
+            <label  >Date d'entrée :</label>
             <input type="date"required [class.is-invalid] ="date_entree.touched && date_entree.invalid" class="form-control" formControlName="date_entree" id="date_entree">
             <div *ngIf="date_entree.touched && date_entree.invalid">
               <small *ngIf="date_entree.errors.required" class="text-danger">Le champs date d'entrée est obligatoire</small>
           </div>
           </div>
           <div class="form-group">
-            <label  >Grade</label>
+            <label  >Grade :</label>
             <input type="text"required [class.is-invalid] ="grade.touched && grade.invalid" class="form-control" minlength="3"formControlName="grade" id="grade">
             <div *ngIf="grade.touched && grade.invalid">
               <small *ngIf="grade.errors.required" class="text-danger">Le champs grade est obligatoire</small>
@@ -59,7 +63,7 @@
           </div>
           </div>
           <div class="form-group">
-            <label  >Email</label>
+            <label  >Email :</label>
             <input pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" minlength="7"  [class.is-invalid]="mail.invalid && mail.touched" type="text" class="form-control" formControlName="mail" id="mail"placeholder="exemple@mail.com">
              <!-- le "crudApi.dataFormForm.get('mail')" est remplacé par 'mail' à travers la fonction get mail dans la classe modele-->
        <div    *ngIf="mail.invalid && mail.touched ">
@@ -69,7 +73,7 @@
        </div>     
           </div>
           <div class="form-group">
-            <label  >Numero de telephone</label>
+            <label  >Numero de téléphone :</label>
             <input type="number" required [class.is-invalid] ="num_tel.touched && num_tel.invalid" class="form-control"minlength="8" formControlName="num_tel" id="num_tel">
             <div *ngIf="num_tel.touched && num_tel.invalid">
               <small *ngIf="num_tel.errors.required" class="text-danger">Le champs numero de telephone est obligatoire</small>
@@ -78,7 +82,7 @@
           </div>
           </div>
           <div class="form-group">
-            <label  >Nom du responsable</label>
+            <label  >Nom du responsable :</label>
             <input type="text"required [class.is-invalid] ="nom_responsable.touched && nom_responsable.invalid"minlength="3"  class="form-control" formControlName="nom_responsable" id="nom_responsable">
             <div *ngIf="nom_responsable.touched && nom_responsable.invalid">
               <small *ngIf="nom_responsable.errors.required" class="text-danger">Le champs nom_responsable est obligatoire</small>
@@ -86,7 +90,7 @@
           </div>
           </div>
           <div class="form-group">
-            <label  >Groupe</label>
+            <label  >Groupe :</label>
             <input type="text" required [class.is-invalid] ="groupe.touched && groupe.invalid"minlength="3" class="form-control" formControlName="groupe" id="groupe">
             <div *ngIf="groupe.touched && groupe.invalid">
               <small *ngIf="groupe.errors.required" class="text-danger">Le champs groupe est obligatoire</small>
@@ -95,14 +99,14 @@
           </div>
         
           <div class="form-group">
-            <label  >Username</label>
+            <label  >Nom d'utilisateur :</label>
             <input type="text"required [class.is-invalid] ="username.touched && username.invalid" (change)="generer_password()"class="form-control" formControlName="username" id="username">
             <div *ngIf="username.touched && username.invalid">
               <small *ngIf="username.errors.required" class="text-danger">Le champs username est obligatoire</small>
           </div>
           </div>
           <div class="form-group">
-            <label  >Mot de passe</label>
+            <label  >Mot de passe :</label>
             <input type="password" [class.is-invalid]="password.invalid && password.touched" readonly="true" minlength="5"  required class="form-control"  formControlName="password" id="password">
             <!-- <span class="focus-input100" data-placeholder="&#xe80f;"></span>
                         <div *ngIf="password.touched && password.invalid">
@@ -113,7 +117,7 @@
           </div>
 
           <div class="form-group">
-            <label for="roles">Roles</label>
+            <label for="roles">Roles :</label>
             
             <select  id="roles"  name="roles" requied formControlName="roles" multiple class="form-control" >
               <option *ngFor="let role of this.crudApi.listrol"     value="{{role.name}}"  >{{role.name}}</option>
@@ -124,7 +128,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="manager" >Nom du manager</label>
+            <label for="manager" >Nom du manager :</label>
             <select id="manager" name="manager" formControlName="manager"  class="form-control">
               <option value="">-Select-</option>
               <option *ngFor="let con of managerList"value="{{con.username}}"  >{{con.username}}</option>
@@ -161,8 +165,8 @@
 
 
 
-          <button type="submit" [disabled] ="!crudApi.dataForm.valid"   class="btn btn-info" class="form-control"  > Submit</button>
-          <button (click)="viderFormulaire()" type="button" class="btn btn-outline-dark ml-1" class="form-control" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+          <button type="submit" [disabled] ="!crudApi.dataForm.valid"   class="btn btn-success" class="form-control"  > Enregistrer</button>
+          <button (click)="viderFormulaire()" type="button" class="btn btn-outline-dark ml-1" class="form-control" [mat-dialog-close]><i class="fa fa-close"></i> Annuler</button>
       
       </form>
     </div>

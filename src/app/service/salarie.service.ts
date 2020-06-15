@@ -77,7 +77,9 @@ export class SalarieService {
    );
 }
   reinitialiseMdp(username: String, value: any): Observable<Salarie> {
-    return this.http.put<Salarie>(`${this.resetPassword}/${username}`, value);
+    const headers = new HttpHeaders();
+    headers.append('content-type', 'application/json');
+    return this.http.put<Salarie>(`${this.resetPassword}/${username}`, value,{headers});
   }
   updateProfil(id: number, value: any): Observable<Salarie> {
     return this.http.put<Salarie>(`${this.changeProfil}/${id}`, value);
@@ -93,7 +95,9 @@ export class SalarieService {
   }
 
  createData(info: Object): Observable<Object> {
-   return this.http.post(`${this.baseUrl}`, info);
+  const headers = new HttpHeaders();
+  headers.append('content-type', 'application/json');
+   return this.http.post(`${this.baseUrl}`, info,{headers});
  }
  
   updatedata(id: number, value: any): Observable<Object> {

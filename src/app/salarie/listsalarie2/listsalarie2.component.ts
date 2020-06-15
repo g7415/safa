@@ -61,9 +61,9 @@ export class Listsalarie2Component implements OnInit {
       });
     }
   }
-  filtrer(){
-    this.salarie=this.crudApi.listsal.filter(a => a.username.startsWith(this.username));
-  }
+  // filtrer(){
+  //   this.salarie=this.crudApi.listsal.filter(a => a.username.startsWith(this.username));
+  // }
   filtrerManager(){
     debugger;
     this.crudApi.listsal.filter(a => a.username.startsWith("manager"));
@@ -148,12 +148,7 @@ export class Listsalarie2Component implements OnInit {
     // item.roles = [item.roles[0]['name']];
     
     // item.password = '';
-
-
     this.crudApi.choixmenu = 2;
-  
-        
-   
     this.crudApi.dataForm = this.fb.group(Object.assign({},item));
     console.log(item);
     if(item.manager){
@@ -162,8 +157,6 @@ export class Listsalarie2Component implements OnInit {
         
       });
     }
-
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;

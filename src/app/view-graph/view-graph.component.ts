@@ -27,10 +27,10 @@ export class ViewGraphComponent implements OnInit {
     ngOnInit() {
       this.congeService.getRefresh()
       .subscribe(() => {
-        this.stat();
+        this.stat1();
       });
   
-      this.stat();
+      this.stat1();
     }
   
   
@@ -120,5 +120,37 @@ export class ViewGraphComponent implements OnInit {
   
    }
   
+
+   
+   stat1(){
+
+    this.LineChart = new Chart('lineChart', {
+      type: 'line',
+    data: {
+     labels:["congé accepté", "congé refusé","congé en attente"],
+     datasets: [{
+         label: 'Nombre de congés acceptés , refusés et en attente',
+         data: [this.conge,this.congeRefu,this.congeEnAtt],
+         fill:false,
+         lineTension:0.2,
+         borderColor:"green",
+         borderWidth: 2
+     }]
+    }, 
+    options: {
+     title:{
+         text:"Statistique",
+         display:true
+     },
+     scales: {
+         yAxes: [{
+             ticks: {
+                 beginAtZero:true
+             }
+         }]
+     }
+    }
+    });
+   }
   }
   
