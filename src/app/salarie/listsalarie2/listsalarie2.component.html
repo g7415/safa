@@ -53,8 +53,8 @@
       </div>
     </div>
     <div class="col-md-3 ">
-      <select name="manager" class="form-control" [(ngModel)]="username" (ngModelChange)="filtrerManager()" >
-        <option value="" disabled selected>Filtrer par manager</option>
+      <select name="manager" class="form-control" [(ngModel)]="filtreManager" (ngModelChange)="filtrerManager()" >
+        <option value="" selected>Filtrer par manager</option>
           <option *ngFor="let k of this.listMan">
               {{k.username}} 
            </option>
@@ -82,7 +82,7 @@
         <div class="container-fluid">
             <div class="row">
               
-                        <div *ngFor="let item of this.crudApi.listsal |filter:username | paginate: { itemsPerPage: count, currentPage: p }"class="col-md-3">
+                        <div *ngFor="let item of this.listeSalarie |filter:username  | paginate: { itemsPerPage: count, currentPage: p }"class="col-md-3">
                             <div class="container-fluid" >
                              <div class="card mb-3" style="max-width: 250px;">
                              <div align="center" >

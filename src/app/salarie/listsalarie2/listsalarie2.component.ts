@@ -37,6 +37,8 @@ export class Listsalarie2Component implements OnInit {
   listMan: any;
   dataaa:any;
   sala: Salarie;
+  filtreManager: any;
+  listeSalarie:Salarie[];
   constructor(public crudApi: SalarieService, public toastr: ToastrService,
     private tokenStorage: TokenStorageService,
     private router : Router,public fb: FormBuilder,
@@ -45,6 +47,7 @@ export class Listsalarie2Component implements OnInit {
     public dialogRef:MatDialogRef<AddsalarieComponent>) {this.salarie= this.crudApi.listsal;}
 
   ngOnInit() {
+
     this.getData();
     if (this.tokenStorage.getToken()) {
       this.roles = this.tokenStorage.getAuthorities();
@@ -60,13 +63,24 @@ export class Listsalarie2Component implements OnInit {
         return true;
       });
     }
+  
   }
   // filtrer(){
   //   this.salarie=this.crudApi.listsal.filter(a => a.username.startsWith(this.username));
   // }
   filtrerManager(){
     debugger;
-    this.crudApi.listsal.filter(a => a.username.startsWith("manager"));
+    if(this.filtreManager === ""){
+      this.listeSalarie=this.crudApi.listsal;
+    }else{
+      this.listeSalarie=this.crudApi.listsal.filter(
+      
+        a =>  (a.manager ? a.manager.username === this.filtreManager : a.username === this.filtreManager) 
+        
+        );
+    }
+  
+  
   }
 
   addEmploye()
@@ -91,6 +105,7 @@ export class Listsalarie2Component implements OnInit {
          salarie.pic = this.convertedImage;
         //  console.log(salarie.pic);
        };
+       this.listeSalarie= this.crudApi.listsal;
        }
       
      );
