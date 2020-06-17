@@ -72,7 +72,7 @@ export class ResumeCongeComponent implements OnInit {
     this.typecongeService.getAll().subscribe(
       response =>{this.typecongeService.listtypecon = response;
         for (var tc of response) {
-          if(tc.id_type==10)
+          if(tc.id_type==9)
           {
             let aa=parseInt(this.token.getSoldeConge());
             

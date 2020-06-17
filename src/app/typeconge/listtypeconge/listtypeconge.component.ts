@@ -62,7 +62,7 @@ export class ListtypecongeComponent implements OnInit {
     this.crudApi.getAll().subscribe(
       response =>{this.crudApi.listtypecon = response;
         for (var tc of response) {
-          if(tc.id_type==10)
+          if(tc.id_type==9)
           {
             let aa=parseInt(this.token.getSoldeConge());
             

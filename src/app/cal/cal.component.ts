@@ -116,7 +116,12 @@ export class CalComponent implements OnInit {
                ticks: {
                    beginAtZero:true
                }
-           }]
+           }],
+           xAxes: [{
+            ticks: {
+              beginAtZero: true,            
+          }
+        }]
        }
       }
       });
