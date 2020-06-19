@@ -18,16 +18,16 @@
 				   </div>
 			    <ul class="collapse list-unstyled" id="pageSubmenu">
 			
-					<li *ngIf="authority === 'user'|| authority === 'manager'">
+					<li *ngIf="authority === 'user'|| authority === 'manager'|| authority === 'rh'">
 						
 						     <div>
-							 <a href="#"  routerLink="/historiqueListConge">Historique de ses congés </a>
+							 <a href="#"  routerLink="/historiqueListConge">Historique de mes congés </a>
 							</div>
 					 
 					</li>
 					<li  *ngIf="authority === 'manager'" class="nav-item">
 						
-						<a class="nav-link" routerLink="/listcongeByManager" routerLinkActive="active">Liste des demandes de ses collaborateurs</a>
+						<a class="nav-link" routerLink="/listcongeByManager" routerLinkActive="active">Liste des demandes de mes collaborateurs</a>
 					  </li>
 					<li *ngIf="authority === 'user'||authority === 'manager'|| authority ==='rh'" class="nav-item">
 						<div>
@@ -38,14 +38,14 @@
 				</ul>
 			   </li>
 
-				<li  *ngIf="authority === 'rh'|| authority === 'manager'|| authority === 'user' ">
+				<li  *ngIf="authority === 'rh' ">
 					<i class="fa fa-list-alt icon3"></i>
 					<div>
 					     <a href="#"routerLink="/listtypeconge" routerLinkActive="active">Type Congé</a>
 					</div>
 				</li>
 									
-					<li *ngIf="authority === 'user'|| authority === 'manager'"> 
+					<li *ngIf="authority === 'user'|| authority === 'manager'|| authority === 'rh'"> 
 						<i class="fa fa-list-alt icon4"></i>
 						<div>
 							<a href="#" routerLink="/resumeConge">Resumé de congé</a>

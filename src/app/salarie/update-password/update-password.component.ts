@@ -39,7 +39,7 @@ export class UpdatePasswordComponent implements OnInit {
           return;
       }
       // display form values on success
-      alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null,4));
+    //   alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null,4));
       this.router.navigate(['/profil']);
       console.log("Success Navigation");
   }

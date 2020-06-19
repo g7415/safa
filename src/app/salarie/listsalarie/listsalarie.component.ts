@@ -63,7 +63,8 @@ export class ListsalarieComponent implements OnInit {
     //dialogConfig.data="gdddd";
     this.matDialog.open(AddsalarieComponent, dialogConfig);
   }
-  debugger;
+
+
   getData() {
     this.crudApi.getAll().subscribe(
       response =>{

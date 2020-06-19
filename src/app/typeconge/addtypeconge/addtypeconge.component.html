@@ -7,8 +7,8 @@
       
       <form [formGroup]="crudApi.dataForm" (ngSubmit)="onSubmit()">
       <div>
-        {{crudApi.dataForm.value | json}}
-        {{crudApi.dataForm.valid}}
+        <!-- {{crudApi.dataForm.value | json}}
+        {{crudApi.dataForm.valid}} -->
             <input type="hidden" class="form-control" formControlName="id_type" id="id_type">
           </div>
     
@@ -16,7 +16,7 @@
             <label  >Type_Conge</label>
             <input type="text" class="form-control" formControlName="type_conge" id="type_conge">
             <div *ngIf="type_conge.touched && crudApi.dataForm.get('type_conge').invalid">
-              <small *ngIf="type_conge.errors.required" class="text-danger">Required type_conge</small>
+              <small *ngIf="type_conge.errors.required" class="text-danger">le champ type_conge est obligatoire</small>
           </div>
           </div>
         <div class="form-group">

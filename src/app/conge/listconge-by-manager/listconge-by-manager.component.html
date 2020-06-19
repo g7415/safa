@@ -29,7 +29,7 @@
         <table  class="table table-bordered table-striped table-hover">
         <thead>
         <tr>
-        <th scope="col">num</th>
+        <!-- <th scope="col">num</th> -->
         <th scope="col">Date début</th>
         <th scope="col">Date fin</th>
         <th scope="col">Durée</th>
@@ -50,7 +50,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let item of this.listcon| filter:searchText | paginate: { itemsPerPage: count, currentPage: p }">
-        <th>{{item.num}}</th>
+        <!-- <th>{{item.num}}</th> -->
         <td>{{item.date_debut| date:'yyyy-MM-dd'}}</td>
         <td>{{item.date_fin| date:'yyyy-MM-dd'}}</td>
         <th>{{item.duree}}</th>

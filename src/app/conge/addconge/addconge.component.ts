@@ -146,6 +146,7 @@ addData() {
 this.router.navigate(['/historiqueListConge']);
  }
      );
+     this.refresh();
   },err => this.error = err["error"]["message"]
   );
 // }
@@ -153,10 +154,12 @@ this.router.navigate(['/historiqueListConge']);
   //   response =>{this.typecongeService.listtypecon = response;}
   //  );
 }
-
+refresh(): void {
+  window.location.reload();
+}
   updateData()
   {
-    debugger;
+   
     let formvalues = this.crudApi.dataForm.value;
     formvalues.typeconge = { "id_type": formvalues.typeconge };
     // formvalues.salarie = { "id" : formvalues.salarie }
@@ -178,6 +181,7 @@ this.router.navigate(['/historiqueListConge']);
      })
         }
        );
+       this.refresh();
       this.router.navigate(['/historiqueListConge']);
     },err => this.error = err["error"]["message"]
     );
@@ -186,8 +190,9 @@ this.router.navigate(['/historiqueListConge']);
     //  );
     
   }
+ 
   navigateToListConge(){
-    this.router.navigate(['/listconge']);
+    this.router.navigate(['/historiqueListConge']);
     console.log("Success Navigation");
   }
    dateDiff()

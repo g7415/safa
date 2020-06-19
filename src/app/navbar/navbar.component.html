@@ -18,7 +18,7 @@
         <!-- <li *ngIf="authority === 'user'" class="nav-item">
           <a class="nav-link"  routerLink="/conge" routerLinkActive="active">Congés</a>
         </li> -->
-        <li  *ngIf="authority === 'user'" class="nav-item">
+        <li  *ngIf="authority === 'user'|| authority === 'manager'|| authority === 'rh'" class="nav-item">
           <a class="nav-link" routerLink="/historiqueListConge" routerLinkActive="active">Demander congé</a>
         </li>
         <li *ngIf="authority === 'manager'|| authority === 'user'|| authority === 'rh'" class="nav-item">

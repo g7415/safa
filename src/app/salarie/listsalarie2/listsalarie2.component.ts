@@ -93,7 +93,7 @@ export class Listsalarie2Component implements OnInit {
     //dialogConfig.data="gdddd";
     this.matDialog.open(AddsalarieComponent, dialogConfig);
   }
-  debugger;
+ 
   getData() {
     this.crudApi.getAll().subscribe(
       response =>{this.crudApi.listsal = this.formatRole(response);
@@ -106,6 +106,7 @@ export class Listsalarie2Component implements OnInit {
         //  console.log(salarie.pic);
        };
        this.listeSalarie= this.crudApi.listsal;
+       console.log("liste:",this.listeSalarie)
        }
       
      );

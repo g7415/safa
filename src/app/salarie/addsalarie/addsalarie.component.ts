@@ -88,6 +88,9 @@ infoForm() {
       pic :['']
         }) 
   }
+  refresh(): void {
+    window.location.reload();
+}
   getData() {
     this.crudApi.getAll().subscribe(
       response =>{this.crudApi.listsal = this.formatRole(response);
@@ -169,8 +172,11 @@ addData() {
      this.crudApi.dataForm.username = '';
      this.crudApi.dataForm.mail = '';
      });
+     this.refresh();
+
    
-},err => this.error = err["error"]["message"]
+},err => this.error = err["error"]["message"],
+
 );
 
 }
@@ -224,6 +230,7 @@ console.log(this.pic);
     this.crudApi.dataForm.username = '';
     this.crudApi.dataForm.mail = '';
     });
+    this.refresh();
     } ,
     error => {this.errorMessage ='Please verify the informations in the form.', 
               console.error(error)}
