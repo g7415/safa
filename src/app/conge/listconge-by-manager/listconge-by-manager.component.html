@@ -64,8 +64,12 @@
             <i class="fa fa-trash-o"></i></button></td> -->
             <td><button *ngIf="item.statut === 'en attente'"(click) = "congeAccepter(item.num,item)">
               <i class="fa fa-check" aria-hidden="true"></i></button> </td>
-            <td><button *ngIf="item.statut === 'en attente'" 
-              (click) = "congeRefuser(item.num,item)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+            <td>
+              <!-- <button *ngIf="item.statut === 'en attente'" 
+              (click) = "congeRefuser(item.num,item)"(click) = "selectData(item)"><i class="fa fa-times" aria-hidden="true"></i></button> -->
+              <button *ngIf="item.statut === 'en attente'" 
+              (click) = "selectData(item)"><i class="fa fa-times" aria-hidden="true"></i></button>
+            </td>
            </tr>
         
              </tbody>

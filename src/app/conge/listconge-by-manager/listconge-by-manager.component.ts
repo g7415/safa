@@ -14,6 +14,7 @@ import { FormBuilder } from '@angular/forms';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { SalarieService } from 'src/app/service/salarie.service';
 import { Salarie } from 'src/app/model/salarie';
+import { CommentaireComponent } from '../commentaire/commentaire.component';
 @Component({
   selector: 'app-listconge-by-manager',
   templateUrl: './listconge-by-manager.component.html',
@@ -161,9 +162,26 @@ ll:any;
 
   }
   
+  // selectData(item : Conge) {
+  //   this.crudApi.choixmenu = 2;
+  //   this.crudApi.dataForm = this.fb.group(Object.assign({},item));
+  //   this.crudApi.dataForm.patchValue({
+  //     salarie: item.salarie.id,
+  //     typeconge: item.typeconge.id_type
+  //   });
+  //   const dialogConfig = new MatDialogConfig();
+  //   dialogConfig.autoFocus = true;
+  //   dialogConfig.disableClose = true;
+  //   dialogConfig.width="40%";
+  //   dialogConfig.height="90%";
+    
+  //   this.matDialog.open(AddcongeComponent, dialogConfig);
+     
+  // }
   selectData(item : Conge) {
     this.crudApi.choixmenu = 2;
     this.crudApi.dataForm = this.fb.group(Object.assign({},item));
+    console.log("item",item)
     this.crudApi.dataForm.patchValue({
       salarie: item.salarie.id,
       typeconge: item.typeconge.id_type
@@ -172,15 +190,17 @@ ll:any;
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width="40%";
-    dialogConfig.height="90%";
+    dialogConfig.height="50%";
     
-    this.matDialog.open(AddcongeComponent, dialogConfig);
+    this.matDialog.open(CommentaireComponent, dialogConfig);
      
   }
  
 congeRefuser(num: number,item : Conge){ 
   this.crudApi.updateCongRefuser(num,item)
+  
   .subscribe(data =>{this.conge = data;
+    console.log("this.conge",this.conge);
     Swal.fire({
       position: 'center',
       icon: 'success',
@@ -188,11 +208,11 @@ congeRefuser(num: number,item : Conge){
       showConfirmButton: false,
       timer: 1500
 })
-this.crudApi.creatEmail3(item)
+this.crudApi.creatEmail3(this.conge)
 .subscribe(
  res => {
  this.conge = res;
- console.log(this.conge);
+ console.log("e",this.conge);
  alert('Email Sent successfully');
  });
  this.getData();

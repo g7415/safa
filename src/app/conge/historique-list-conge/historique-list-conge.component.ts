@@ -47,18 +47,7 @@ export class HistoriqueListCongeComponent implements OnInit {
     }
 
   ngOnInit() {
-    // this.salarieService.getProfil(this.token.getUsername())
-    // .subscribe(
-    //   data => {
-    //     this.usr = data;
-    //   console.log(data);
-    //   this.token.saveUsername(data.username);
-     
-    //   },
-    //   error => {
-    //     console.log(error);
-    //   }
-    // );
+  
     this.getData();
    
   }

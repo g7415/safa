@@ -52,11 +52,20 @@ export class ResumeCongeComponent implements OnInit {
               let aa=parseInt(this.token.getSoldeConge());
               
                tc[1]= aa;
-          
-          
+          tc[3]=tc[1]-tc[2];
+          console.log("tc3",tc[3]);
               console.log(tc[1]);
+              if (tc[3]<0)
+              {
+                tc[3]=0
+              }
             }
-           
+           else {
+             if (tc[3]<0)
+             {
+               tc[3]=0
+             }
+           }
          };
          
         }

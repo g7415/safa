@@ -58,6 +58,7 @@
         <th scope="col">Statut</th>
         <th scope="col">Nom du salarié</th>
         <th scope="col">Type de congé</th>
+        <th scope="col">Raison</th>
         <!-- <th scope="col">idsal</th>
         <th scope="col">Type congé</th> -->
         
@@ -77,7 +78,7 @@
         <td>{{item.statut}}</td>
         <td>{{item.salarie.username}}</td>
         <td>{{item.typeconge.type_conge}}</td>
-
+        <td>{{item.commentaire}}</td>
           <td><button *ngIf="item.statut === 'en attente'" class="btn btn-warning" style="margin-left: 25px;" (click) = "selectData(item)">
             <i class="fa fa-pencil-square-o" ></i></button></td>
          <td><button *ngIf="item.statut === 'en attente'" class="btn btn-danger"  style="margin-left: 25px;" (click) = "removeData(item.num)">

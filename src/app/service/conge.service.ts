@@ -10,6 +10,8 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CongeService {
+  
+  private conCommentaire = 'http://localhost:8080/api/conCommentaire';
   private statEnAttente= 'http://localhost:8080/api/statEnAttente';
   private statRefuser = 'http://localhost:8080/api/statRefuser';
   private statAccepter = 'http://localhost:8080/api/statAccepter';
@@ -30,6 +32,10 @@ export class CongeService {
   listcon:Conge[];
   private _refresh$ = new Subject();
   constructor(private http: HttpClient,private toastr: ToastrService,public fb: FormBuilder) { }
+
+  AjouterCommentaire(num: number,id:number, value: any): Observable<Object> {
+    return this.http.put(`${this.conCommentaire}/${num}/${id}`, value);
+  }
   getRefresh()
   {
     return this._refresh$;

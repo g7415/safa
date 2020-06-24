@@ -123,34 +123,89 @@ export class ViewGraphComponent implements OnInit {
 
    
    stat1(){
+     // pie chart:
+this.PieChart = new Chart('pieChart', {
+  type: 'pie',
+data: {
+ labels: ["congé accepté", "congé refusé","congé en attente"],
+ datasets: [{
+  label: 'Nombre de congés acceptés , refusés et en attente',
+  data: [this.conge,this.congeRefu,this.congeEnAtt],
+     backgroundColor: [
+      // 'rgba(191,255,0,0.91)',
+      // 'rgba(132, 207, 166, 0.637)',
+       
 
-    this.LineChart = new Chart('lineChart', {
-      type: 'line',
-    data: {
-     labels:["congé accepté", "congé refusé","congé en attente"],
-     datasets: [{
-         label: 'Nombre de congés acceptés , refusés et en attente',
-         data: [this.conge,this.congeRefu,this.congeEnAtt],
-         fill:false,
-         lineTension:0.2,
-         borderColor:"green",
-         borderWidth: 2
-     }]
-    }, 
-    options: {
-     title:{
-         text:"Statistique",
-         display:true
-     },
-     scales: {
-         yAxes: [{
-             ticks: {
-                 beginAtZero:true
-             }
-         }]
-     }
+      'rgba(17, 190, 176, 0.842)',
+      // 'rgba(76, 204, 26, 0.637)',
+      
+      'rgba(27, 209, 154, 0.26)',
+      'rgba(18,235,78,0.62)'
+        //  'rgba(255, 99, 132, 0.2)',
+        //  'rgba(54, 162, 235, 0.2)',
+        //  'rgba(255, 206, 86, 0.2)',
+        //  'rgba(75, 192, 192, 0.2)',
+        //  'rgba(153, 102, 255, 0.2)',
+        //  'rgba(255, 159, 64, 0.2)'
+     ],
+    //  borderColor: [
+    //      'rgba(255,99,132,1)',
+    //      'rgba(54, 162, 235, 1)',
+    //      'rgba(255, 206, 86, 1)',
+    //      'rgba(75, 192, 192, 1)',
+    //      'rgba(153, 102, 255, 1)',
+    //      'rgba(255, 159, 64, 1)'
+    //  ],
+     borderWidth: 1
+ }]
+}, 
+options: {
+ title:{
+     text:"Statistique",
+     display:true
+ },
+ scales: {
+     yAxes: [{
+         ticks: {
+             beginAtZero:true
+         }
+     }],
+     xAxes: [{
+      ticks: {
+        beginAtZero: true,            
     }
-    });
+  }]
+ }
+}
+});
+
+  //   this.LineChart = new Chart('lineChart', {
+  //     type: 'line',
+  //   data: {
+  //    labels:["congé accepté", "congé refusé","congé en attente"],
+  //    datasets: [{
+  //        label: 'Nombre de congés acceptés , refusés et en attente',
+  //        data: [this.conge,this.congeRefu,this.congeEnAtt],
+  //        fill:false,
+  //        lineTension:0.2,
+  //        borderColor:"green",
+  //        borderWidth: 2
+  //    }]
+  //   }, 
+  //   options: {
+  //    title:{
+  //        text:"Statistique",
+  //        display:true
+  //    },
+  //    scales: {
+  //        yAxes: [{
+  //            ticks: {
+  //                beginAtZero:true
+  //            }
+  //        }]
+  //    }
+  //   }
+  //   });
    }
   }
   

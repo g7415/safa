@@ -3,7 +3,7 @@
 <div class="row">
 
     <div class="col-md-12 col-md-offset-2 scroll">
-      <h1 style="text-align: center;">Congé </h1>
+      <h1 style="text-align: center;">Cause du refus </h1>
       
       <form [formGroup]="crudApi.dataForm" (ngSubmit)="onSubmit()">
         <!-- {{crudApi.dataForm.value | json}}
@@ -14,7 +14,7 @@
       <div>
             <input type="hidden" class="form-control" formControlName="num" id="num">
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="typeconge">Types de congés</label>
             <select  id="conge.typeconge" name="typeconge"  formControlName="typeconge" (change)="effacer()"  class="form-control">
               <option value="" disabled selected>Select your option</option>
@@ -24,13 +24,7 @@
               <small *ngIf="typeconge.errors.required">Le champ types de congés est obligatoire</small>
             </div>
           </div>
-        <!-- <div class="form-group">
-          <label>Date debut</label>
-          <input type="date" class="form-control" [min]="todayDate" formControlName="date_debut" id="date_debut" >
-          <div *ngIf="date_debut.touched && crudApi.dataForm.get('date_debut').invalid">
-            <small *ngIf="date_debut.errors.required" class="text-danger">Required date_debut</small>
-        </div>
-        </div> -->
+    
 
       <div class="form-group">
         <label for="meeting-time">Date début</label>
@@ -51,52 +45,31 @@
          </div>
       </div>
 
-        <!-- <div class="form-group">
-          <label>Date fin</label>
-          <input (change)="dateDiff()" type="date" class="form-control"  [min]="date_debut.value"formControlName="date_fin" id="date_fin">
-          <div *ngIf="date_fin.touched && crudApi.dataForm.get('date_fin').invalid">
-            <small *ngIf="date_fin.errors.required" class="text-danger">Required date_fin</small>
-        </div>
-        </div> -->
         <div class="form-group">
           <label>Durée</label>
           <input type="number" class="form-control"  formControlName="duree" id="duree">
-          <!-- (ngModelChange)=dateDiff(date_debut.value,date_fin.value) -->
-          <!-- <div *ngIf="duree.touched && crudApi.dataForm.get('duree').invalid">
-            <small *ngIf="duree.errors.required" class="text-danger">Required duree</small>
-        </div> -->
+        
         </div>
-        <!-- <div class="form-group">
+        <div class="form-group">
             <label>Statut</label>
             <input type="text" class="form-control" readonly="true" formControlName="statut" id="statut">
             
           </div> -->
           
-          <!-- <div *ngIf="authority === 'manager'"  class="form-group" >
-            <label for="salarie"> salarie</label>
-            <select  id="conge.salarie" name="salarie" formControlName="salarie"  class="form-control">
-              <option value="0">-Select-</option>
-              <option *ngFor="let sal of this.ListSalByMan"  value="{{sal.id}}" >{{sal.username}}</option>
-            </select>
-            <div class="text-danger" *ngIf="crudApi.dataForm.get('salarie').invalid && salarie.touched">
-              <small *ngIf="salarie.errors.required">conges required</small>
-            </div>
-          </div> -->
-          <!-- <div *ngIf="authority === 'manager'"  class="form-group" >
-            <label for="salarie"> salarie</label>
-            <select  id="conge.salarie" name="salarie" formControlName="salarie"  class="form-control">
-              <option value="0">-Select-</option>
-              <option *ngFor="let sal of this.SalarieList"  value="{{sal.id}}" >{{sal.username}}</option>
-            </select>
-            <div class="text-danger" *ngIf="crudApi.dataForm.get('salarie').invalid && salarie.touched">
-              <small *ngIf="salarie.errors.required">conges required</small>
-            </div>
-          </div> -->
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Commentaires :</label>
+            <textarea class="form-control"formControlName="commentaire" id="commentaire" rows="5"></textarea>
+          </div>
           
           <button type="submit"[disabled] ="!crudApi.dataForm.valid"  class="btn btn-success"(click)="navigateToListConge()" >
           <i class="fa fa-database"></i> Enregistrer</button>
-          <button (click)="viderFormulaire()" type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Annuler</button>
+          <button  type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Annuler</button>
           <!-- <td><button (click) = "congeAccepter()"><i class="fa fa-check" aria-hidden="true"></i></button> </td> -->
       </form>
     </div>
   </div>
+        
+          
+    
+
+     
