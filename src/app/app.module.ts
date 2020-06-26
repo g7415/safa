@@ -86,6 +86,7 @@ const MATERIAL_MODULES = [MatToolbarModule,
 ]; 
 
   const appRoutes : Routes = [
+    {path: 'stat', component:TypecongeComponent},
     //{path:'', redirectTo :"listconge" , pathMatch:"full"},
     {path: 'commentaire', component:CommentaireComponent },
     {path: 'resumeConge', component:ResumeCongeComponent },
