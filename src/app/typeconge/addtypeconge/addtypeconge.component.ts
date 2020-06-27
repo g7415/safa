@@ -99,7 +99,15 @@ viderFormulaire(){
       this.crudApi.choixmenu == 1
       this.crudApi.getAll().subscribe(
         response =>{this.crudApi.listtypecon = response;
-          this.toastr.info( 'TypeConge modifier avec Success'); }
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Type Congé modifier avec succes',
+            showConfirmButton: false,
+            timer: 1500})        
+           
+        
+        }
        );
       
   

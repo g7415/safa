@@ -55,7 +55,7 @@ export class UpdatePasswordComponent implements OnInit {
       this.salarieService.updatePassword(this.token.getUsername(),this.registerForm.value)
      .subscribe(data=>{this.salarie=data;
           Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
           title: 'Mot de passe modifier',
           showConfirmButton: false,

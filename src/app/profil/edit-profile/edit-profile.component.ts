@@ -101,7 +101,7 @@ export class EditProfileComponent implements OnInit {
     this.salarieService.updateProfil(parseInt(this.token.getId()),this.registerForm.value)
     .subscribe(data=>{this.sala=data;
       Swal.fire({
-              position: 'top-end',
+              position: 'center',
               icon: 'success',
               title: 'Données modifier',
               showConfirmButton: false,

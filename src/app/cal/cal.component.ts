@@ -74,7 +74,7 @@ export class CalComponent implements OnInit {
       data: {
        labels: ["Manager", "Responsable RH","Employé"],
        datasets: [{
-           label: '# nombre',
+        label: 'Nombre de Manager , Responsable RH , Employé',
            data: [this.NbMang,this.nbRH,this.nbEmp],
            backgroundColor: [
             'rgba(17, 190, 176, 0.842)',
@@ -89,19 +89,14 @@ export class CalComponent implements OnInit {
               //  'rgba(153, 102, 255, 0.2)',
               //  'rgba(255, 159, 64, 0.2)'
            ],
-           borderColor: [
-            'rgba(17, 190, 176, 1)',
-            // 'rgba(76, 204, 26, 0.637)',
+          //  borderColor: [
+          //   'rgba(17, 190, 176, 1)',
+         
             
-            'rgba(27, 209, 154,0,26)',
-            'rgba(18,235,78,1)'
-              //  'rgba(255,99,132,1)',
-              //  'rgba(54, 162, 235, 1)',
-              //  'rgba(255, 206, 86, 1)',
-              //  'rgba(75, 192, 192, 1)',
-              //  'rgba(153, 102, 255, 1)',
-              //  'rgba(255, 159, 64, 1)'
-           ],
+          //   'rgba(27, 209, 154,0,26)',
+          //   'rgba(18,235,78,1)'
+            
+          //  ],
            borderWidth: 1
        }]
       }, 
@@ -110,6 +105,7 @@ export class CalComponent implements OnInit {
            text:"Statistique ",
            display:true
        },
+       tooltips:{enabled:true},
        scales: {
            yAxes: [{
                ticks: {

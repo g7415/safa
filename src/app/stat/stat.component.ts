@@ -63,7 +63,7 @@ this.PieChart = new Chart('pieChart', {
 data: {
   labels: ["congé accepté", "congé refusé","congé en attente"],
   datasets: [{
-   label: 'Nombre de congés acceptés , refusés et en attente',
+  //  label: 'Nombre de congés acceptés , refusés et en attente',
      data: [ this.conge,this.congeRefu, this.congeEnAtt],
      backgroundColor: [
       'rgba(17, 190, 176, 0.842)',
