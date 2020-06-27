@@ -55,6 +55,16 @@ export class SalarieService {
   {
     return this._refresh$;
   }
+
+  getStatistiqueNbMan1(): Observable<any> {
+    return this.http.get(`${this.NbMang}`)
+}
+  getStatistiqueNbRH1(): Observable<any> {
+    return this.http.get(`${this.NbRH}`)
+}
+  getStatistiqueNbEmp1(): Observable<any> {
+    return this.http.get(`${this.NbEmp}`)
+}
   getStatistiqueNbMan(): Observable<any> {
     return this.http.get(`${this.NbMang}`).pipe(
      tap(() => {

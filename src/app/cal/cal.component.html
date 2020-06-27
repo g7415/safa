@@ -28,56 +28,9 @@
   </ng-template>
    -->
  
+   <div style="text-align:center"style="width: 30cm;height: 30cm;">
+   
 
-   <div class="container">
-    &nbsp;
-    <button type="submit" class="btn btn-success" (click)="getStatistiqueNbEmp()"
-    (click)="getStatistiqueNbMan()"(click)="getStatistiqueNbRH()">
-      <ng-container *ngIf="submitted; else defaultText">
-        <div class="loader"></div>
-      </ng-container>
-    </button>
-    <ng-template #defaultText><i class="fa fa-search"></i></ng-template>
-    <!-- <form>
-        <div class="form-row">
-    <div class="col">
-        <label class="col-sm-5 col-xs-6 control-label">Nombre des employés</label>
-        <div class="col-lg-6">
-            <input type="text" class="form-control"readonly="true" value="{{nbEmp}}">
-        </div>
-      </div>
-      <div class="col">
-        <label class="col-sm-5 col-xs-6 control-label">Nombre des manager</label>
-        <div class="col-lg-6">
-            <input type="text" class="form-control"readonly="true" value="{{NbMang}}">
-        </div>
-      </div>
-      <div class="col">
-        <label class="col-sm-5 col-xs-6 control-label">Nombre des responsables RH</label>
-        <div class="col-lg-6">
-            <input type="text" class="form-control"readonly="true" value="{{nbRH}}">
-        </div>
-      </div>
-        </div>
-    </form> -->
-    
-<canvas id="barChart">
-
-</canvas>
-<!-- <canvas id="pieChart"></canvas> -->
-
-  </div>
-{{nbRH}}
-{{nbRH}}
-{{NbMang}}
-
-  
-
-
- 
-
-
-
-
-
- 
+    <canvas id="barChart"></canvas>
+   
+   </div>

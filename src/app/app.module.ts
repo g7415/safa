@@ -78,6 +78,7 @@ import { ViewGraphComponent } from './view-graph/view-graph.component';
 import { CalComponent } from './cal/cal.component';
 import { ResumeCongeComponent } from './conge/resume-conge/resume-conge.component';
 import { CommentaireComponent } from './conge/commentaire/commentaire.component';
+import { StatComponent } from './stat/stat.component';
 
 
 
@@ -86,6 +87,7 @@ const MATERIAL_MODULES = [MatToolbarModule,
 ]; 
 
   const appRoutes : Routes = [
+    {path: 'stat1', component:StatComponent},
     {path: 'stat', component:TypecongeComponent},
     //{path:'', redirectTo :"listconge" , pathMatch:"full"},
     {path: 'commentaire', component:CommentaireComponent },
@@ -152,7 +154,8 @@ const MATERIAL_MODULES = [MatToolbarModule,
     ViewGraphComponent,
     CalComponent,
     ResumeCongeComponent,
-    CommentaireComponent
+    CommentaireComponent,
+    StatComponent
   ],
   imports: [
     DateValueAccessorModule,Ng2SearchPipeModule ,NgxPaginationModule,ChartsModule,

@@ -47,6 +47,7 @@ export class CongeService {
      })
    );
 }
+
   getStatistiqueNbConRefu(): Observable<any> {
     return this.http.get(`${this.statRefuser}`).pipe(
       tap(() => {
@@ -54,6 +55,7 @@ export class CongeService {
       })
     );
   }
+
   getStatistiqueNbConAcc(): Observable<any> {
        return this.http.get(`${this.statAccepter}`).pipe(
         tap(() => {
@@ -61,6 +63,20 @@ export class CongeService {
         })
       );
   }
+
+
+
+  getStatistiqueNbConEnAttente1(): Observable<any> {
+    return this.http.get(`${this.statEnAttente}`)
+  }
+  getStatistiqueNbConRefu1(): Observable<any> {
+    return this.http.get(`${this.statRefuser}`)
+  }
+  getStatistiqueNbConAcc1(): Observable<any> {
+    return this.http.get(`${this.statAccepter}`)
+  }
+
+
   getSumCongePris(username: String): Observable<any> {
     const headers = new HttpHeaders();
     headers.append('content-type', 'application/json');

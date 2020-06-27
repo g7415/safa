@@ -27,59 +27,48 @@ export class CalComponent implements OnInit {
   nbEmp: any;
     constructor(private token: TokenStorageService,private salarieService:SalarieService,private congeService: CongeService) { }
   
-    ngOnInit() {
-      this.salarieService.getRefresh()
-      .subscribe(() => {
-        this.stat();
-      });
-  
-      this.stat();
-    }
-  
-  
-    getStatistiqueNbEmp(){
-      debugger;
-      this.submitted = true;
-        this.salarieService.getStatistiqueNbEmp().pipe(
-          finalize(() => this.submitted = false),
-        )
-        .subscribe(
-          response =>{this.nbEmp = response;
-            console.log(this.nbEmp);
-          },
-          error=>console.log(error)
-         );
-    }
-    getStatistiqueNbRH(){
-      debugger;
-      this.submitted = true;
-        this.salarieService.getStatistiqueNbRH().pipe(
-          finalize(() => this.submitted = false),
-        )
-        .subscribe(
-          response =>{this.nbRH = response;
-            console.log(this.nbRH);
-          },
-          error=>console.log(error)
-         );
-    }
-    getStatistiqueNbMan(){
-      debugger;
-      this.submitted = true;
-        this.salarieService.getStatistiqueNbMan().pipe(
-          finalize(() => this.submitted = false),
-        )
-        .subscribe(
-          response =>{this.NbMang = response;
-            console.log(this.NbMang);
-          },
-          error=>console.log(error)
-         );
-    }
- 
+    ngOnInit(): void {
     
-    stat(){
-      debugger;
+      this.getData();
+  
+   
+  
+  
+  
+    }
+  
+  
+    async getPromise() {
+      const promiseGet= await this.salarieService.getStatistiqueNbEmp1().toPromise()
+       return promiseGet;
+      
+     } 
+     async getPromise1() {
+      const promiseGet= await this.salarieService.getStatistiqueNbRH1().toPromise()
+       return promiseGet;
+      
+     } 
+     async getPromise2() {
+      const promiseGet= await this.salarieService.getStatistiqueNbMan1().toPromise()
+       return promiseGet;
+      
+     } 
+     async getData(){
+      await this.getPromise().then((res)=>{
+        console.log('stat',res)
+        this.nbEmp = res
+      }); console.log('val',this.nbEmp);
+  
+      await this.getPromise1().then((res)=>{
+        console.log('stat',res)
+        this.nbRH = res
+      }); console.log('val1',this.NbMang);
+      await this.getPromise2().then((res)=>{
+        console.log('stat',res)
+        this.NbMang = res
+      }); console.log('val1',this.NbMang);
+  
+  
       this.BarChart = new Chart('barChart', {
         type: 'bar',
       data: {
@@ -136,10 +125,12 @@ export class CalComponent implements OnInit {
       }
       });
       
-  
-   }
-  
-
-
+    }
   }
+  
+   
+  
+
+
+  
   
