@@ -46,7 +46,7 @@
     "chart.js": "^2.9.3",
     "date-fns": "^2.12.0",
     "font-awesome": "^4.7.0",
-    "highcharts": "^8.1.0",
+    "highcharts": "^9.0.0",
     "jquery": "^3.5.0",
     "ng-mat-search-bar": "^9.0.0-beta.0",
     "ng2-charts": "^2.3.1",
